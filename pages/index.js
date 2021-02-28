@@ -13,7 +13,8 @@ function Home() {
   return (
     <>
       <div id={styles.showcase}>
-        <img src="./assets/kit/coverAsset@10x.png" id={styles.showcaseImage}></img>
+        <div id="showcaseImage"></div>
+        {/* <img src="./assets/kit/coverAsset@10x.png" id={styles.showcaseImage}></img> */}
         <div id={styles.innerShowcase} style={{height: width >= 600 ? "85%" : "100%"}}>
           <Container maxWidth="lg" style={{height: "100%"}}>
             <Grid 
@@ -26,7 +27,7 @@ function Home() {
                 <PrimaryButton 
                   size="large" 
                   variant="contained"
-                  endIcon={<FontAwesomeIcon icon={faArrowAltCircleRight}></FontAwesomeIcon>}>
+                  endIcon={<i class="fas fa-angle-double-right"></i>}>
                     Start Listening
                 </PrimaryButton>
               </Grid>

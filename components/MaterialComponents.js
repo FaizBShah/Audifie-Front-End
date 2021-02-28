@@ -4,10 +4,12 @@ import { withStyles } from "@material-ui/core/styles";
 // The primary button component
 export const PrimaryButton = withStyles({
   root: {
-    width: "100%",
+    // width: "100%",
     backgroundColor: "#fd5457",
-    borderColor: "#fd5457",
-    borderRadius: "20px",
+    fontFamily: "'Comfortaa', cursive",
+    fontWeight: "500",
+    // borderColor: "#fd5457",
+    borderRadius: "50px",
     color: "#fff",
     fontSize: "1rem",
     display: "flex",

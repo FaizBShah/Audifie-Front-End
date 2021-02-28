@@ -2,6 +2,7 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../theme/theme';
+//import * from '../public/plugins/fontawesome/js';
 
 export default class MyDocument extends Document {
   render() {
@@ -10,10 +11,12 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&family=Josefin+Sans:ital,wght@0,600;1,400&display=swap"
           />
+          <script defer src="plugins/fontawesome/js/all.js" />
         </Head>
         <body>
           <Main />
