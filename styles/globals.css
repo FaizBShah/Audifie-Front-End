@@ -23,11 +23,10 @@ a {
   background-repeat: no-repeat;
 }
 
-@media (max-width:769px) {
+@media (max-width: 769px) {
   #showcaseImage {
     background-size: 250% auto;
     height: 75vh;
     background-position-x: 82%;
   }
-  
 }
