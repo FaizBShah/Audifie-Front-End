@@ -1,33 +1,27 @@
-import navStyles from '../styles/Navbar.module.css';
-import Link from 'next/link';
 import { Container } from '@material-ui/core';
+import { App_Bar, Tool_Bar, Link } from '../components/MaterialComponents';
 
-// import nav_logo from '../public/assets/kit/logo_linear.png';
+import styles from '../styles/Navbar.module.css';
 const Navbar = () => {
   return (
-    <nav className={navStyles.nav}>
-      <Container maxWidth="lg">
-        <div className={navStyles.navbarInner}>
+    <App_Bar title='My App'>
+      <Container maxWidth='lg'>
+        <Tool_Bar>
           <img
             src='/assets/kit/logo_linear.png'
             alt=''
             style={{
-              height: '75px',
-              width: '175px',
+              height: '3rem',
+              width: '10rem',
             }}
           ></img>
-          <ul>
-            <li>
-              <Link href='#'>Sign Up</Link>
-            </li>
-            <li>
-              <Link href='#'>Sign In</Link>
-            </li>
-          </ul>
-        </div>
+          <div>
+            <Link label='&nbsp;Sign Up&nbsp;' />
+            <Link label='&nbsp;Sign In&nbsp;' />
+          </div>
+        </Tool_Bar>
       </Container>
-    </nav>
+    </App_Bar>
   );
 };
-
 export default Navbar;
