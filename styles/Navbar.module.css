@@ -10,7 +10,7 @@
   background-color: #141517;
   color: white;
 }
-.nav .container {
+.navbarInner {
   display: flex;
   justify-content: space-between;
   align-items: center;
