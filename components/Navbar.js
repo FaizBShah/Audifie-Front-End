@@ -6,23 +6,25 @@ import { Container } from '@material-ui/core';
 const Navbar = () => {
   return (
     <nav className={navStyles.nav}>
-      <Container className={navStyles.container}>
-        <img
-          src='/assets/kit/logo_linear.png'
-          alt=''
-          style={{
-            height: '75px',
-            width: '175px',
-          }}
-        ></img>
-        <ul>
-          <li>
-            <Link href='#'>Sign Up</Link>
-          </li>
-          <li>
-            <Link href='#'>Sign In</Link>
-          </li>
-        </ul>
+      <Container maxWidth="lg">
+        <div className={navStyles.navbarInner}>
+          <img
+            src='/assets/kit/logo_linear.png'
+            alt=''
+            style={{
+              height: '75px',
+              width: '175px',
+            }}
+          ></img>
+          <ul>
+            <li>
+              <Link href='#'>Sign Up</Link>
+            </li>
+            <li>
+              <Link href='#'>Sign In</Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     </nav>
   );
