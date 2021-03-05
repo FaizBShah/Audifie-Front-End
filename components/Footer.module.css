@@ -1,0 +1,9 @@
+.footerInner {
+  background-color: #1d1d1d;
+  border-top: 1px solid #00000098;
+}
+.footerOuter {
+  height: 1.5rem;
+  background-color: #ff5454;
+  border-bottom: 1.2px solid black;
+}

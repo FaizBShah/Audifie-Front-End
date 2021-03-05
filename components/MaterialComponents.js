@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Tab } from '@material-ui/core';
-
+import Icon from '@material-ui/core/Icon';
 // The primary button component
 export const PrimaryButton = withStyles({
   root: {
@@ -52,6 +52,33 @@ export const Link = withStyles({
     '&:hover': {
       color: '#b92e31',
       opacity: '0.9',
+    },
+  },
+})(Tab);
+
+// ICONS
+
+export const Icons = withStyles({
+  root: {
+    color: '#cfd0d0',
+    margin: '1.2rem .6rem 0.5rem',
+    '&:hover': {
+      opacity: '0.8',
+    },
+  },
+})(Icon);
+
+// TERMS & CONDITION
+export const FooterLink = withStyles({
+  root: {
+    padding: '0',
+    marginRight: '1.5rem',
+    minWidth: '0',
+    textTransform: 'capitalize',
+    color: '#cfd0d0',
+    opacity: '1',
+    '&:hover': {
+      opacity: '0.8',
     },
   },
 })(Tab);
