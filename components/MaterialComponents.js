@@ -31,7 +31,7 @@ export const PrimaryButton = withStyles({
 export const App_Bar = withStyles({
   root: {
     position: 'sticky',
-    backgroundColor: '#141517',
+    backgroundColor: '#1d1d1d',
     boxShadow: ' 0 8px 6px -6px black',
   },
 })(AppBar);

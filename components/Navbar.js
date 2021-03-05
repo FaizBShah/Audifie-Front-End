@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core';
 import { App_Bar, Tool_Bar, Link } from '../components/MaterialComponents';
 
-import styles from '../styles/Navbar.module.css';
+// import styles from '../styles/Navbar.module.css';
 const Navbar = () => {
   return (
     <App_Bar title='My App'>
@@ -12,10 +12,10 @@ const Navbar = () => {
             alt=''
             style={{
               height: '3rem',
-              width: '10rem',
+              // width: '10rem',
             }}
           ></img>
-          <div>
+          <div className="nav-links">
             <Link label='&nbsp;Sign Up&nbsp;' />
             <Link label='&nbsp;Sign In&nbsp;' />
           </div>
