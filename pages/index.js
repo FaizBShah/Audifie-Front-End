@@ -7,6 +7,7 @@ import { PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../common/windowUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
+import Footer from '../components/Footer';
 
 function Home() {
   const { width } = useWindowDimensions();
@@ -42,6 +43,7 @@ function Home() {
           </Container>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
