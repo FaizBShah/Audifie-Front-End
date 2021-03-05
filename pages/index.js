@@ -30,7 +30,7 @@ function Home() {
               alignItems='flex-end'
               style={{ height: '100%' }}
             >
-              <Grid item xs={9} sm={4}>
+              <Grid item>
                 <PrimaryButton
                   size='large'
                   variant='contained'
