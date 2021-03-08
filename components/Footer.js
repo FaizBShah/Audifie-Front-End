@@ -1,7 +1,7 @@
 import { Container, Link } from '@material-ui/core';
-import { Icons, FooterLink } from './MaterialComponents';
+import { FooterIcon, FooterLink } from './MaterialComponents';
+import styles from '../styles/Footer.module.css';
 
-import styles from './Footer.module.css';
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
@@ -10,18 +10,18 @@ const Footer = () => {
         <Container maxWidth='lg' spacing='2'>
           <div className='footer-logo' style={{ paddingTop: '1rem' }}>
             <Link href='#' color=' #1d1d1d'>
-              <Icons className='fab fa-facebook fa-2x'></Icons>
+              <FooterIcon className='fab fa-facebook fa-2x'></FooterIcon>
             </Link>
             <Link href='#' color=' #1d1d1d'>
               {' '}
-              <Icons className='fab fa-instagram fa-2x'></Icons>
+              <FooterIcon className='fab fa-instagram fa-2x'></FooterIcon>
             </Link>
             <Link href='#' color=' #1d1d1d'>
               {' '}
-              <Icons className='fab fa-twitter fa-2x'></Icons>
+              <FooterIcon className='fab fa-twitter fa-2x'></FooterIcon>
             </Link>
             <Link href='#' color=' #1d1d1d'>
-              <Icons className='fas fa-envelope fa-2x'></Icons>
+              <FooterIcon className='fas fa-envelope fa-2x'></FooterIcon>
             </Link>
           </div>
           <div className='Company'>

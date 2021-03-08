@@ -13,9 +13,80 @@
   z-index: 1;
 }
 
+#mainBody {
+  background-color: #141517;
+  padding: 1.5rem;
+}
+
+.mainText {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.howTitle {
+  color: #fd5457;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 2rem;
+  margin-top: 5rem;
+}
+
+.steps {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  flex: 1;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.stepIcon {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fd5457;
+  color: #fff;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stepTitle {
+  color: #fd5457;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.stepText {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 @media (max-width: 769px) {
   #showcase {
     position: relative;
     height: 75vh;
+  }
+
+  .steps {
+    display: block;
+  }
+
+  .step {
+    margin-top: 4rem;
   }
 }

@@ -16,7 +16,8 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&family=Josefin+Sans:ital,wght@0,600;1,400&display=swap"
           />
-          <script defer src="plugins/fontawesome/js/all.js" />
+          {/* <script defer src="plugins/fontawesome/js/all.js" /> */}
+          <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet"></link>
         </Head>
         <body>
           <Main />

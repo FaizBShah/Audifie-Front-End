@@ -2,7 +2,10 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Tab } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
-// The primary button component
+
+//  <---------------------------------------------------------UTILITY COMPONENTS------------------------------------------------------------------->
+
+// PRIMARY BUTTON
 export const PrimaryButton = withStyles({
   root: {
     // width: "100%",
@@ -26,9 +29,10 @@ export const PrimaryButton = withStyles({
   },
 })(Button);
 
-//  <---------------------------------------------------------RESPONSIVE NAVBAR------------------------------------------------------------------->
+//  <---------------------------------------------------------NAVBAR------------------------------------------------------------------->
 
-export const App_Bar = withStyles({
+// MAIN NAVBAR
+export const NavAppBar = withStyles({
   root: {
     position: 'sticky',
     backgroundColor: '#1d1d1d',
@@ -36,14 +40,14 @@ export const App_Bar = withStyles({
   },
 })(AppBar);
 
-export const Tool_Bar = withStyles({
+export const NavToolBar = withStyles({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
   },
 })(Toolbar);
 
-export const Link = withStyles({
+export const NavLink = withStyles({
   root: {
     padding: '0',
     textTransform: 'capitalize',
@@ -56,14 +60,15 @@ export const Link = withStyles({
   },
 })(Tab);
 
-// ICONS
+//  <---------------------------------------------------------FOOTER------------------------------------------------------------------->
 
-export const Icons = withStyles({
+// FOOTER ICONS
+export const FooterIcon = withStyles({
   root: {
     color: '#cfd0d0',
     margin: '1.2rem .6rem 0.5rem',
     '&:hover': {
-      opacity: '0.8',
+      opacity: '0.8'
     },
   },
 })(Icon);

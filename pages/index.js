@@ -20,7 +20,7 @@ function Home() {
         {/* <img src="./assets/kit/coverAsset@10x.png" id={styles.showcaseImage}></img> */}
         <div
           id={styles.innerShowcase}
-          style={{ height: width >= 600 ? '85%' : '100%' }}
+          style={{ height: width >= 600 ? '85%' : '95%' }}
         >
           <Container maxWidth='lg' style={{ height: '100%' }}>
             <Grid
@@ -30,11 +30,11 @@ function Home() {
               alignItems='flex-end'
               style={{ height: '100%' }}
             >
-              <Grid item xs={9} sm={4}>
+              <Grid item>
                 <PrimaryButton
                   size='large'
                   variant='contained'
-                  endIcon={<i class='fas fa-angle-double-right'></i>}
+                  endIcon={<i className='fas fa-angle-double-right'></i>}
                 >
                   Start Listening
                 </PrimaryButton>
@@ -42,6 +42,35 @@ function Home() {
             </Grid>
           </Container>
         </div>
+      </div>
+      <div id={styles.mainBody}>
+        <Container maxWidth='lg'>
+          <p className={styles.mainText}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum deleniti dolorem iste accusamus, nulla reiciendis. Blanditiis fuga dolorem eveniet nisi. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+          <h2 className={styles.howTitle}>How it works</h2>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <div className={styles.stepIcon}>
+                <i className="fas fa-user fa-5x"></i>
+              </div>
+              <h5 className={styles.stepTitle}>Sign In</h5>
+              <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepIcon}>
+                <i className="fas fa-upload fa-5x"></i>
+              </div>
+              <h5 className={styles.stepTitle}>Upload</h5>
+              <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepIcon}>
+                <i className="fas fa-headphones fa-5x"></i>
+              </div>
+              <h5 className={styles.stepTitle}>Listen</h5>
+              <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
+            </div>
+          </div>
+        </Container>
       </div>
       <Footer />
     </>

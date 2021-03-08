@@ -1,12 +1,12 @@
-import { Container } from '@material-ui/core';
-import { App_Bar, Tool_Bar, Link } from '../components/MaterialComponents';
+import { Container, Link } from '@material-ui/core';
+import { NavAppBar, NavToolBar, NavLink } from '../components/MaterialComponents';
 
 // import styles from '../styles/Navbar.module.css';
 const Navbar = () => {
   return (
-    <App_Bar title='My App'>
+    <NavAppBar title='My App'>
       <Container maxWidth='lg'>
-        <Tool_Bar>
+        <NavToolBar>
           <img
             src='/assets/kit/logo_linear.png'
             alt=''
@@ -19,9 +19,9 @@ const Navbar = () => {
             <Link href='#' label='&nbsp;Sign Up&nbsp;' />
             <Link href='#' label='&nbsp;Sign In&nbsp;' />
           </div>
-        </Tool_Bar>
+        </NavToolBar>
       </Container>
-    </App_Bar>
+    </NavAppBar>
   );
 };
 export default Navbar;
