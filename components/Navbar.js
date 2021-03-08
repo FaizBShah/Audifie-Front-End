@@ -1,7 +1,6 @@
 import { Container, Link } from '@material-ui/core';
-import { NavAppBar, NavToolBar, NavLink } from '../components/MaterialComponents';
-
-// import styles from '../styles/Navbar.module.css';
+import { NavAppBar, NavToolBar } from '../components/MaterialComponents';
+import styles from '../styles/Navbar.module.css';
 const Navbar = () => {
   return (
     <NavAppBar title='My App'>
@@ -15,9 +14,9 @@ const Navbar = () => {
               // width: '10rem',
             }}
           ></img>
-          <div className='nav-links'>
-            <NavLink href='#' label='&nbsp;Sign Up&nbsp;' />
-            <NavLink href='#' label='&nbsp;Sign In&nbsp;' />
+          <div className={styles.navLink}>
+            <Link href='/'>Sign Up</Link>
+            <Link href='/'>Sign In</Link>
           </div>
         </NavToolBar>
       </Container>

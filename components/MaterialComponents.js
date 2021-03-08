@@ -47,43 +47,15 @@ export const NavToolBar = withStyles({
   },
 })(Toolbar);
 
-export const NavLink = withStyles({
-  root: {
-    padding: '0',
-    textTransform: 'capitalize',
-    color: '#fd5457',
-    opacity: '1',
-    '&:hover': {
-      color: '#b92e31',
-      opacity: '0.9',
-    },
-  },
-})(Tab);
-
 //  <---------------------------------------------------------FOOTER------------------------------------------------------------------->
 
 // FOOTER ICONS
 export const FooterIcon = withStyles({
   root: {
     color: '#cfd0d0',
-    margin: '1.2rem .6rem 0.5rem',
-    '&:hover': {
-      opacity: '0.8'
-    },
-  },
-})(Icon);
-
-// TERMS & CONDITION
-export const FooterLink = withStyles({
-  root: {
-    padding: '0',
-    marginRight: '1.5rem',
-    minWidth: '0',
-    textTransform: 'capitalize',
-    color: '#cfd0d0',
-    opacity: '1',
+    margin: '1.2rem .6rem 1rem',
     '&:hover': {
       opacity: '0.8',
     },
   },
-})(Tab);
+})(Icon);
