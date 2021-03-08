@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Container, Link } from '@material-ui/core';
 import { NavAppBar, NavToolBar, NavLink } from '../components/MaterialComponents';
 
 // import styles from '../styles/Navbar.module.css';
@@ -15,9 +15,9 @@ const Navbar = () => {
               // width: '10rem',
             }}
           ></img>
-          <div className="nav-links">
-            <NavLink label='&nbsp;Sign Up&nbsp;' />
-            <NavLink label='&nbsp;Sign In&nbsp;' />
+          <div className='nav-links'>
+            <Link href='#' label='&nbsp;Sign Up&nbsp;' />
+            <Link href='#' label='&nbsp;Sign In&nbsp;' />
           </div>
         </NavToolBar>
       </Container>
