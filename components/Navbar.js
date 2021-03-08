@@ -16,8 +16,8 @@ const Navbar = () => {
             }}
           ></img>
           <div className='nav-links'>
-            <Link href='#' label='&nbsp;Sign Up&nbsp;' />
-            <Link href='#' label='&nbsp;Sign In&nbsp;' />
+            <NavLink href='#' label='&nbsp;Sign Up&nbsp;' />
+            <NavLink href='#' label='&nbsp;Sign In&nbsp;' />
           </div>
         </NavToolBar>
       </Container>
