@@ -15,9 +15,9 @@ const Navbar = () => {
               // width: '10rem',
             }}
           ></img>
-          <div className="nav-links">
-            <Link label='&nbsp;Sign Up&nbsp;' />
-            <Link label='&nbsp;Sign In&nbsp;' />
+          <div className='nav-links'>
+            <Link href='#' label='&nbsp;Sign Up&nbsp;' />
+            <Link href='#' label='&nbsp;Sign In&nbsp;' />
           </div>
         </Tool_Bar>
       </Container>
