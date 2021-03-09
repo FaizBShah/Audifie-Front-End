@@ -52,21 +52,21 @@ function Home() {
           <div className={styles.steps}>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i class="fal fa-user-alt fa-5x"></i>
+              <i className="fal fa-user-alt fa-5x"></i>
               </div>
               <h5 className={styles.stepTitle}>Sign In</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i class="fal fa-folder-upload fa-5x"></i>
+              <i className="fal fa-folder-upload fa-5x"></i>
               </div>
               <h5 className={styles.stepTitle}>Upload</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i class="fad fa-waveform fa-5x"></i>
+              <i className="fad fa-waveform fa-5x"></i>
               </div>
               <h5 className={styles.stepTitle}>Listen</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
