@@ -35,12 +35,13 @@ const Footer = () => {
           <Container maxWidth='lg'>
             <h5
               style={{
-                color: '#fed4dc',
+                color: '#fefefe',
                 textAlign: 'right',
                 lineHeight: '2',
+                fontFamily: "'Comfortaa', cursive"
               }}
             >
-              &copy; {year}
+              Copyright &copy; {year} audifie
             </h5>
           </Container>
         </div>

@@ -12,10 +12,7 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&family=Josefin+Sans:ital,wght@0,600;1,400&display=swap"
-          />
+          <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Josefin+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet" />
           {/* <script defer src="plugins/fontawesome/js/all.js" /> */}
           <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet"></link>
         </Head>

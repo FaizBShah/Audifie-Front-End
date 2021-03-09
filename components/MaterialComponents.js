@@ -11,17 +11,17 @@ export const PrimaryButton = withStyles({
     // width: "100%",
     backgroundColor: '#fd5457',
     fontFamily: "'Comfortaa', cursive",
-    fontWeight: '500',
+    fontWeight: '600',
     // borderColor: "#fd5457",
+    border: '2px solid #FD5457',
     borderRadius: '50px',
-    color: '#fff',
-    fontSize: '1rem',
+    color: '#fefefe',
+    fontSize: '1.15rem',
     display: 'flex',
+    boxShadow: ' 0 8px 6px -6px black',
     justifyContent: 'space-around',
     '&:hover': {
-      backgroundColor: '#fd5457',
-      color: '#fff',
-      opacity: '0.9',
+      backgroundColor: '#FD545705'
     },
   },
   label: {
@@ -35,7 +35,7 @@ export const PrimaryButton = withStyles({
 export const NavAppBar = withStyles({
   root: {
     position: 'sticky',
-    backgroundColor: '#1d1d1d',
+    backgroundColor: '#141517',
     boxShadow: ' 0 8px 6px -6px black',
   },
 })(AppBar);
@@ -76,6 +76,8 @@ export const FooterIcon = withStyles({
 // TERMS & CONDITION
 export const FooterLink = withStyles({
   root: {
+    fontSize: '1rem',
+    fontFamily: '"Josefin Sans", sans-serif',
     padding: '0',
     marginRight: '1.5rem',
     minWidth: '0',
