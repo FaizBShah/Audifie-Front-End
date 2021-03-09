@@ -1,5 +1,6 @@
-import { Container, Link } from '@material-ui/core';
-import { FooterIcon, FooterLink } from './MaterialComponents';
+import { Container } from '@material-ui/core';
+import Link from 'next/link';
+import { FooterIcon } from './MaterialComponents';
 import styles from '../styles/Footer.module.css';
 
 const Footer = () => {
@@ -9,26 +10,26 @@ const Footer = () => {
       <div className={styles.footerInner}>
         <Container maxWidth='lg' spacing='2'>
           <div className='footer-logo' style={{ paddingTop: '1rem' }}>
-            <Link href='#' color=' #1d1d1d'>
+            <a href='#' target='_blank' color=' #1d1d1d'>
               <FooterIcon className='fab fa-facebook fa-2x'></FooterIcon>
-            </Link>
-            <Link href='#' color=' #1d1d1d'>
+            </a>
+            <a href='#' target='_blank' color=' #1d1d1d'>
               {' '}
               <FooterIcon className='fab fa-instagram fa-2x'></FooterIcon>
-            </Link>
-            <Link href='#' color=' #1d1d1d'>
+            </a>
+            <a href='#' target='_blank' color=' #1d1d1d'>
               {' '}
               <FooterIcon className='fab fa-twitter fa-2x'></FooterIcon>
-            </Link>
-            <Link href='#' color=' #1d1d1d'>
+            </a>
+            <a href='#' target='_blank' color=' #1d1d1d'>
               <FooterIcon className='fas fa-envelope fa-2x'></FooterIcon>
-            </Link>
+            </a>
           </div>
-          <div className='Company'>
-            <FooterLink href='#' label='&nbsp;Privacy Policy&nbsp;' />
-            <FooterLink href='#' label='&nbsp;Terms & Conditions &nbsp;' />
-            <FooterLink href='#' label='&nbsp;Support&nbsp;' />
-            <FooterLink href='#' label='&nbsp;About&nbsp;' />
+          <div className={styles.company}>
+            <Link href='/'>Privacy Policy</Link>
+            <Link href='/'>Terms & Conditions</Link>
+            <Link href='/'>Support</Link>
+            <Link href='/'>About</Link>
           </div>
         </Container>
         <div className={styles.footerOuter}>

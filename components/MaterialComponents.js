@@ -47,19 +47,6 @@ export const NavToolBar = withStyles({
   },
 })(Toolbar);
 
-export const NavLink = withStyles({
-  root: {
-    padding: '0',
-    textTransform: 'capitalize',
-    color: '#fd5457',
-    opacity: '1',
-    '&:hover': {
-      color: '#b92e31',
-      opacity: '0.9',
-    },
-  },
-})(Tab);
-
 //  <---------------------------------------------------------FOOTER------------------------------------------------------------------->
 
 // FOOTER ICONS
@@ -88,4 +75,4 @@ export const FooterLink = withStyles({
       opacity: '0.8',
     },
   },
-})(Tab);
+})(Icon);

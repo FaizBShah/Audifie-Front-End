@@ -8,3 +8,17 @@
   border-bottom: 1.2px solid black;
 }
 
+.company {
+  margin-bottom: 1.5rem;
+}
+
+.company a {
+  display: inline-block;
+  color: #cfd0d0;
+  padding: 0;
+  margin-right: 1rem;
+}
+.company a:hover {
+  color: '#cfd0d0';
+  opacity: 0.8;
+}
