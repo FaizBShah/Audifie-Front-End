@@ -7,8 +7,19 @@
   margin-right: 1.2rem;
   opacity: 1;
 }
+
 .navLink a:hover {
   color: #b92e31;
   text-decoration: none;
   opacity: 0.9;
+}
+
+@media(max-width: 768px) {
+  .navLink a {
+    display: block;
+    margin-right: 0;
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }

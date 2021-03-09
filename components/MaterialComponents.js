@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Tab } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 //  <---------------------------------------------------------UTILITY COMPONENTS------------------------------------------------------------------->
@@ -46,6 +46,17 @@ export const NavToolBar = withStyles({
     justifyContent: 'space-between',
   },
 })(Toolbar);
+
+// NAVBAR DRAWER
+export const NavDrawer = withStyles({
+  root: {
+    width: '250px'
+  },
+  paper: {
+    backgroundColor: '#141517',
+    width: '200px'
+  }
+})(Drawer);
 
 //  <---------------------------------------------------------FOOTER------------------------------------------------------------------->
 
