@@ -15,11 +15,34 @@ a {
   box-sizing: border-box;
 }
 
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #141517;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #fd5457;
+}
+
 #showcaseImage {
-  background-image: url('/assets/kit/coverAsset@10x.png');
+  background-image: url('/assets/svg/coverAsset.svg');
   background-size: 100% auto;
   height: inherit;
   background-repeat: no-repeat;
+}
+
+#showcaseImage h1 {
+    position: absolute;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    color: #fefefe;
+    margin-left: 9%;
+    margin-top: 12%;
 }
 
 .nav-links span {
@@ -27,10 +50,38 @@ a {
   font-size: 1.25rem;
 }
 
-@media (max-width: 769px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   #showcaseImage {
     background-size: 250% auto;
     height: 75vh;
     background-position-x: 82%;
+    background-position-y: -120%;
+  }
+
+  #showcaseImage h1 {
+    font-size: 3rem;
+    margin-top: 10%;
+    margin-left: 30%;
+  }
+
+  PrimaryButton {
+    text-align: center;
   }
 }
+
+@media (max-width: 767px) {
+  #showcaseImage {
+    background-size: 250% auto;
+    height: 75vh;
+    background-position-x: 82%;
+    background-position-y: 100%;
+  }
+
+  #showcaseImage h1 {
+    font-size: 3rem;
+    margin-top: 15%;
+    margin-left: 11%;
+  }
+}
+
+

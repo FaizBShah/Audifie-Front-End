@@ -16,13 +16,16 @@
 #mainBody {
   background-color: #141517;
   padding: 1.5rem;
+  padding-top: 5rem;
 }
 
 .mainText {
   margin: 0;
+  padding: 0 7.5rem;
   color: #fff;
   font-size: 1.25rem;
   text-align: center;
+  font-weight: 400;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -30,7 +33,7 @@
   color: #fd5457;
   text-align: center;
   font-family: 'Comfortaa', cursive;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-top: 5rem;
 }
 
@@ -74,12 +77,38 @@
   font-size: 1rem;
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
 }
 
-@media (max-width: 769px) {
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
   #showcase {
     position: relative;
     height: 75vh;
+  }
+
+  .mainText {
+    padding: 0;
+  }
+
+  .steps {
+    display: block;
+  }
+
+  .step {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #showcase {
+    position: relative;
+    height: 75vh;
+  }
+
+  .mainText {
+    padding: 0;
   }
 
   .steps {
