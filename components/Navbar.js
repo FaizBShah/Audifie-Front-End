@@ -19,7 +19,7 @@ const Navbar = () => {
           <img
             src='/assets/kit/logo_linear.png'
             alt=''
-            className='brand-logo'
+            className={styles.brandLogo}
             style={{
               height: '3rem',
               margin: width <= 768 ? '1.25rem auto' : '0',
