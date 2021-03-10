@@ -106,6 +106,8 @@
 
   .step {
     margin-top: 4rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
