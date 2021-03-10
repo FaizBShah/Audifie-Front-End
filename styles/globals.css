@@ -75,12 +75,31 @@ body::-webkit-scrollbar-thumb {
     height: 75vh;
     background-position-x: 82%;
     background-position-y: 100%;
+    background-color: #141517;
   }
 
   #showcaseImage h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-top: 15%;
-    margin-left: 11%;
+    text-align: center;
+    margin-left: 9%;
+  }
+}
+
+@media (max-width: 400px) {
+
+  /* #showcaseImage {
+    background-size: 250% auto;
+    height: 75vh;
+    background-position-x: 82%;
+    background-position-y: 102%;
+  } */
+
+  #showcaseImage h1 {
+    font-size: 2.5rem;
+    margin-top: 15%;
+    text-align: center;
+    margin-left: 2%;
   }
 }
 

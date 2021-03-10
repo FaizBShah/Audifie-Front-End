@@ -19,9 +19,10 @@ const Navbar = () => {
           <img
             src='/assets/kit/logo_linear.png'
             alt=''
+            className='brand-logo'
             style={{
               height: '3rem',
-              // width: '10rem',
+              margin: width <= 768 ? '1.25rem auto' : '0',
             }}
           ></img>
           {width >= 769 ? (
@@ -31,9 +32,9 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <i className="fas fa-bars fa-2x" style={{color: "#fd5457"}} onClick={() => toggleDrawer(true)}></i>
+              <img src="/assets/svg/menu-bars.svg" style={{color: "#fd5457", height: '1.25rem'}} onClick={() => toggleDrawer(true)}></img>
               <NavDrawer 
-                anchor={'right'} 
+                anchor={'bottom'} 
                 open={isDrawerOpen} 
                 onClose={() => toggleDrawer(false)}>
                   <div

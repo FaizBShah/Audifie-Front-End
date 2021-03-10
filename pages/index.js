@@ -17,7 +17,7 @@ function Home() {
       <Navbar />
       <div id={styles.showcase}>
         <div id='showcaseImage'>
-          <h1>Listen to <br></br>&emsp;&ensp;your Docs</h1>
+          <h1>Listen to <br></br>&emsp;&emsp;your Docs</h1>
         </div>
         {/* <img src="./assets/kit/coverAsset@10x.png" id={styles.showcaseImage}></img> */}
         <div

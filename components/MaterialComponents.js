@@ -36,7 +36,11 @@ export const NavAppBar = withStyles({
   root: {
     position: 'sticky',
     backgroundColor: '#141517',
-    boxShadow: ' 0 8px 6px -6px black',
+    boxShadow: '0 8px 6px -6px black',
+    ['@media (max-width:768px)']: {
+      position: 'relative',
+      boxShadow: 'none',
+    }
   },
 })(AppBar);
 
@@ -50,11 +54,14 @@ export const NavToolBar = withStyles({
 // NAVBAR DRAWER
 export const NavDrawer = withStyles({
   root: {
-    width: '250px'
+    width: '100vw',
+    textAlign: 'center'
   },
   paper: {
-    backgroundColor: '#141517',
-    width: '200px'
+    backgroundColor: '#1d1d1d',
+    width: '100vw',
+    borderRadius: '20px 20px 0 0',
+    boxShadow: ' 0 8px 6px -6px black'
   }
 })(Drawer);
 
@@ -63,7 +70,7 @@ export const NavDrawer = withStyles({
 // FOOTER ICONS
 export const FooterIcon = withStyles({
   root: {
-    color: '#cfd0d0',
+    color: '#c4c4c4',
     margin: '1.2rem .6rem 0.5rem',
     '&:hover': {
       opacity: '0.8'
@@ -80,7 +87,7 @@ export const FooterLink = withStyles({
     marginRight: '1.5rem',
     minWidth: '0',
     textTransform: 'capitalize',
-    color: '#cfd0d0',
+    color: '#c4c4c4',
     opacity: '1',
     '&:hover': {
       opacity: '0.8',
