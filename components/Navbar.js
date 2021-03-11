@@ -13,7 +13,7 @@ const Navbar = () => {
   }
 
   return (
-    <NavAppBar title='My App'>
+    <NavAppBar>
       <Container maxWidth='lg'>
         <NavToolBar>
           <img
