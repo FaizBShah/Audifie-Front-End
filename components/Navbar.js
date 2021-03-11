@@ -27,8 +27,8 @@ const Navbar = () => {
           ></img>
           {width >= 769 ? (
             <div className={styles.navLink}>
-              <Link href='/'>Sign Up</Link>
-              <Link href='/'>Sign In</Link>
+              <Link href='/signup'>Sign Up</Link>
+              <Link href='/login'>Sign In</Link>
             </div>
           ) : (
             <div>
@@ -41,8 +41,8 @@ const Navbar = () => {
                     role="presentation"
                     onClick={() => toggleDrawer(false)}>
                       <div className={styles.navLink}>
-                        <Link href='/'>Sign Up</Link>
-                        <Link href='/'>Sign In</Link>
+                        <Link href='/signup'>Sign Up</Link>
+                        <Link href='/login'>Sign In</Link>
                       </div>
                   </div>
               </NavDrawer>
