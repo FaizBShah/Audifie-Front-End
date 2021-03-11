@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Link, Drawer } from '@material-ui/core';
+import { Container, Link } from '@material-ui/core';
 import { NavAppBar, NavToolBar, NavDrawer } from '../components/MaterialComponents';
 import styles from '../styles/Navbar.module.css';
 import { useWindowDimensions } from '../common/windowUtils';

@@ -1,0 +1,23 @@
+.mainBody {
+  padding: 4rem 0;
+  background-color: #141517;
+}
+
+.innerBody {
+  width: 100%;
+}
+
+.brandLogo {
+  display: block;
+  height: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.formBody {
+  width: 100%;
+  height: 200px;
+  border: 1px #fd5457 solid;
+  border-radius: 10px;
+}
