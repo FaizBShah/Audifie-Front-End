@@ -20,7 +20,7 @@ const Navbar = () => {
     <NavAppBar>
       <Container maxWidth='lg'>
         <NavToolBar>
-          <Link href='/'>
+          <Link href='/' style={{display: 'flex', alignItems: 'center'}}>
             <img
               src='/assets/kit/logo_linear.png'
               alt=''
