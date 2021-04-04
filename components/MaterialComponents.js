@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Drawer } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer, TextField } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 //  <---------------------------------------------------------UTILITY COMPONENTS------------------------------------------------------------------->
@@ -28,6 +28,37 @@ export const PrimaryButton = withStyles({
     textTransform: 'capitalize',
   },
 })(Button);
+
+// FORM INPUTS
+export const PrimaryInput = withStyles({
+  root: {
+    width: "100%",
+    '& .MuiInputBase-input': {
+      color: "#fff",
+    },
+    '& label': {
+      color: "#fd5457",
+    },
+    '& label.Mui-focused': {
+      color: '#fd5457',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#fd5457',
+    },
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '10px',
+      '& fieldset': {
+        borderColor: '#fd5457',
+      },
+      '&:hover fieldset': {
+        borderColor: '#fd5457',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#fd5457',
+      },
+    },
+  }
+})(TextField);
 
 //  <---------------------------------------------------------NAVBAR------------------------------------------------------------------->
 
