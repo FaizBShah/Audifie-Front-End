@@ -1,6 +1,7 @@
 .mainBody {
-  padding: 4rem 0;
+  padding: 2rem 0;
   background-color: #141517;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .innerBody {
@@ -22,7 +23,7 @@
 }
 
 .form {
-  margin: 2rem auto;
+  margin: 3rem auto;
   width: 80%;
 }
 
@@ -51,6 +52,30 @@
   width: 80%;
   margin: 2rem auto;
   justify-content: space-between;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color: var(--color-primary);
+  box-shadow: none;
+  border-bottom: 2px solid var(--color-primary)
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+select:focus:not([readonly])
+textarea.materialize-textarea:focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label{
+  border-color: var(--color-secondary) !important;
+}
+
+input[type=text]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=password]:not(.browser-default){
+  border: 2px solid var(--color-secondary);
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {

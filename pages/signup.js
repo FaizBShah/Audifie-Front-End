@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/Auth.module.css'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Link } from '@material-ui/core';
 import { PrimaryInput, PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../common/windowUtils';
 
@@ -11,7 +11,7 @@ function Signup() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={styles.mainBody}>
         <Container maxWidth="lg" style={{height: "100%"}}>
           <Grid
@@ -48,7 +48,7 @@ function Signup() {
                           variant="outlined"
                           style={{marginBottom: "2rem"}}/>
                         <PrimaryButton
-                          size="large"
+                          size="medium"
                           type="contained"
                           style={{width: "100%"}}>
                           Sign Up
@@ -63,18 +63,19 @@ function Signup() {
                       </div>
                       <div className={styles.federatedArea}>
                         <PrimaryButton
-                          size="large"
+                          size="medium"
                           type="contained"
                           style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "1rem" : "0"}}>
                             Google
                         </PrimaryButton>
                         <PrimaryButton
-                          size="large"
+                          size="medium"
                           type="contained"
                           style={{width: "100%", flex: "1", marginBottom: "1rem"}}>
                             Facebook
                         </PrimaryButton>
                       </div>
+                      <div style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#fdfdfd', fontSize: '1rem'}}>Don't have an account? <Link href='/login' style={{textDecoration: 'none'}}>Sign In here</Link></div>
                     </div>
                   </div>
               </Grid>

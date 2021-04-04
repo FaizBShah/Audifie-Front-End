@@ -3,17 +3,26 @@ import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Drawer, TextField } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
+// <======== Root Colors ========>
+const backgroundPrimary = '#141517';
+const backgroundSecondary = '#1D1D1D';
+const colorBranding = '#FD5457';
+const textPrimary = '#FDFDFD';
+const textHeading = '#FD5457';
+
+
+
 //  <---------------------------------------------------------UTILITY COMPONENTS------------------------------------------------------------------->
 
 // PRIMARY BUTTON
 export const PrimaryButton = withStyles({
   root: {
     // width: "100%",
-    backgroundColor: '#fd5457',
+    backgroundColor: colorBranding,
     fontFamily: "'Comfortaa', cursive",
     fontWeight: '600',
     // borderColor: "#fd5457",
-    border: '2px solid #FD5457',
+    border: '2px solid ' + colorBranding,
     borderRadius: '50px',
     color: '#fefefe',
     fontSize: '1.15rem',
@@ -21,7 +30,7 @@ export const PrimaryButton = withStyles({
     boxShadow: ' 0 8px 6px -6px black',
     justifyContent: 'space-around',
     '&:hover': {
-      backgroundColor: '#FD545705'
+      backgroundColor: colorBranding + '05'
     },
   },
   label: {
@@ -34,27 +43,29 @@ export const PrimaryInput = withStyles({
   root: {
     width: "100%",
     '& .MuiInputBase-input': {
-      color: "#fff",
+      color: textPrimary,
     },
     '& label': {
-      color: "#fd5457",
+      color: textPrimary,
+      paddingLeft: '1rem',
     },
     '& label.Mui-focused': {
-      color: '#fd5457',
+      color: textPrimary,
+      paddingLeft: '0.25rem',
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: '#fd5457',
+      borderBottomColor: colorBranding,
     },
     '& .MuiOutlinedInput-root': {
-      borderRadius: '10px',
+      borderRadius: '100px',
       '& fieldset': {
-        borderColor: '#fd5457',
+        borderColor: colorBranding,
       },
       '&:hover fieldset': {
-        borderColor: '#fd5457',
+        borderColor: colorBranding,
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#fd5457',
+        borderColor: colorBranding,
       },
     },
   }
@@ -66,7 +77,7 @@ export const PrimaryInput = withStyles({
 export const NavAppBar = withStyles({
   root: {
     position: 'sticky',
-    backgroundColor: '#141517',
+    backgroundColor: backgroundPrimary,
     boxShadow: '0 8px 6px -6px black',
     ['@media (max-width:768px)']: {
       position: 'relative',
@@ -89,7 +100,7 @@ export const NavDrawer = withStyles({
     textAlign: 'center'
   },
   paper: {
-    backgroundColor: '#1d1d1d',
+    backgroundColor: backgroundSecondary,
     width: '100vw',
     borderRadius: '20px 20px 0 0',
     boxShadow: ' 0 8px 6px -6px black'
@@ -101,7 +112,7 @@ export const NavDrawer = withStyles({
 // FOOTER ICONS
 export const FooterIcon = withStyles({
   root: {
-    color: '#c4c4c4',
+    color: textPrimary,
     margin: '1.2rem .6rem 0.5rem',
     '&:hover': {
       opacity: '0.8'
@@ -118,7 +129,7 @@ export const FooterLink = withStyles({
     marginRight: '1.5rem',
     minWidth: '0',
     textTransform: 'capitalize',
-    color: '#c4c4c4',
+    color: textPrimary,
     opacity: '1',
     '&:hover': {
       opacity: '0.8',
