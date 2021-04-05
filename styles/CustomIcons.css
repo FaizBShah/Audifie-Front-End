@@ -1,0 +1,25 @@
+#arrowRight,
+#arrowLeftBottom,
+#arrowLeftTop {
+    transition: all 0.8s ease;
+}
+
+#arrowLeftTop {
+    transform: translateX(-100%);
+}
+button:hover #arrowLeftBottom {
+    transform: translateX(20%);
+    opacity: 0;
+}
+
+button:hover #arrowLeftTop {
+    transform: translateX(0%);
+}
+
+button:hover #arrowLeftBottom {
+    transform: translateX(40%);
+}
+
+svg #goForward {
+    fill: #fdfdfd;
+}

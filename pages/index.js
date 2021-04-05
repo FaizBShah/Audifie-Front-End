@@ -8,6 +8,7 @@ import { useWindowDimensions } from '../common/windowUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import Footer from '../components/Footer';
+import {GoForward} from '../components/CustomIcons';
 
 function Home() {
   const { width } = useWindowDimensions();
@@ -36,7 +37,7 @@ function Home() {
                 <PrimaryButton
                   size='large'
                   variant='contained'
-                  endIcon={<i className='fas fa-angle-double-right'></i>}
+                  endIcon={<i className=''><GoForward width="1.15rem"/></i>}
                 >
                   Start Listening
                 </PrimaryButton>
