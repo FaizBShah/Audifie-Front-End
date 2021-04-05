@@ -4,14 +4,13 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
 import { PrimaryInput, PrimaryButton } from '../components/MaterialComponents';
-import { useWindowDimensions } from '../common/windowUtils';
+import { useWindowDimensions } from '../utils/windowUtils';
 
 function Login() {
   const { width } = useWindowDimensions();
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className={styles.mainBody}>
         <Container maxWidth="lg" style={{height: "100%"}}>
           <Grid

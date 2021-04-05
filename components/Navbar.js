@@ -6,7 +6,7 @@ import {
   NavDrawer,
 } from '../components/MaterialComponents';
 import styles from '../styles/Navbar.module.css';
-import { useWindowDimensions } from '../common/windowUtils';
+import { useWindowDimensions } from '../utils/windowUtils';
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

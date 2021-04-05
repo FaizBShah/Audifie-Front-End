@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import { Grid, Container, Button } from '@material-ui/core';
 import { PrimaryButton } from '../components/MaterialComponents';
-import { useWindowDimensions } from '../common/windowUtils';
+import { useWindowDimensions } from '../utils/windowUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import Footer from '../components/Footer';
