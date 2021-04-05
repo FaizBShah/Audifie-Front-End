@@ -24,7 +24,9 @@ function Signup() {
                 xs={10}
                 sm={4}>
                   <div className={styles.innerBody}>
-                    <img src='/assets/kit/logo_linear.png' className={styles.brandLogo}/>
+                    <Link href='/'>
+                      <img src='/assets/kit/logo_linear.png' className={styles.brandLogo}/>
+                    </Link>
                     <div className={styles.formBody}>
                       <form className={styles.form}>
                         <PrimaryInput  
@@ -75,7 +77,9 @@ function Signup() {
                             Facebook
                         </PrimaryButton>
                       </div>
-                      <div style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#fdfdfd', fontSize: '1rem'}}>Don't have an account? <Link href='/login' style={{textDecoration: 'none'}}>Sign In here</Link></div>
+                      <div className={styles.bottomText}>
+                        Don't have an account? <Link href='/login'>Sign In here</Link>
+                      </div>
                     </div>
                   </div>
               </Grid>
