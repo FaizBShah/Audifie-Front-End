@@ -1,13 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/Auth.module.css'
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
 import { PrimaryInput, PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
+import { validateSignUpInput } from '../utils/validation/validateUtils';
 
 function Signup() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const { width } = useWindowDimensions();
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+
+    setErrors({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    })
+
+    const data = {
+      name,
+      email,
+      password,
+      confirmPassword
+    }
+    setErrors(validateSignUpInput(data));
+  }
 
   return (
     <>
@@ -32,26 +61,39 @@ function Signup() {
                           type="text" 
                           label="Name" 
                           variant="outlined"
-                          style={{marginBottom: "2rem"}}/>
+                          style={{marginBottom: "2rem"}}
+                          value={name}
+                          helperText={errors.name}
+                          onChange={(e) => setName(e.target.value)}/>
                         <PrimaryInput  
                           type="email" 
                           label="Email" 
                           variant="outlined"
-                          style={{marginBottom: "2rem"}}/>
+                          style={{marginBottom: "2rem"}}
+                          value={email}
+                          helperText={errors.email}
+                          onChange={(e) => setEmail(e.target.value)}/>
                         <PrimaryInput  
                           type="password" 
                           label="Password" 
                           variant="outlined"
-                          style={{marginBottom: "2rem"}}/>
+                          style={{marginBottom: "2rem"}}
+                          value={password}
+                          helperText={errors.password}
+                          onChange={(e) => setPassword(e.target.value)}/>
                         <PrimaryInput  
                           type="password" 
                           label="Confirm Password" 
                           variant="outlined"
-                          style={{marginBottom: "2rem"}}/>
+                          style={{marginBottom: "2rem"}}
+                          value={confirmPassword}
+                          helperText={errors.confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}/>
                         <PrimaryButton
                           size="medium"
-                          type="contained"
-                          style={{width: "100%"}}>
+                          variant="contained"
+                          style={{width: "100%"}}
+                          onClick={handleSignUp}>
                           Sign Up
                         </PrimaryButton>
                       </form>

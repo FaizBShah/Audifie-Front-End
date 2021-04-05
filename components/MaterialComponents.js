@@ -68,6 +68,9 @@ export const PrimaryInput = withStyles({
         borderColor: colorBranding,
       },
     },
+    '& .MuiFormHelperText-root': {
+      color: textHeading,
+    },
   }
 })(TextField);
 

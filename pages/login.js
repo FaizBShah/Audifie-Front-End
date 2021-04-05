@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/Auth.module.css'
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
 import { PrimaryInput, PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
+import { validateSignInInput } from '../utils/validation/validateUtils';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  });
   const { width } = useWindowDimensions();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    setErrors({
+      email: '',
+      password: ''
+    })
+
+    const data = {
+      email,
+      password
+    }
+    setErrors(validateSignInInput(data));
+  }
 
   return (
     <>
@@ -32,16 +53,23 @@ function Login() {
                             type="email" 
                             label="Email" 
                             variant="outlined"
-                            style={{marginBottom: "3rem"}}/>
+                            style={{marginBottom: "3rem"}}
+                            value={email}
+                            helperText={errors.email}
+                            onChange={(e) => setEmail(e.target.value)}/>
                           <PrimaryInput  
                             type="password" 
                             label="Password" 
                             variant="outlined"
-                            style={{marginBottom: "3rem"}}/>
+                            style={{marginBottom: "3rem"}}
+                            value={password}
+                            helperText={errors.password}
+                            onChange={(e) => setPassword(e.target.value)}/>
                           <PrimaryButton
                             size="medium"
-                            type="contained"
-                            style={{width: "100%"}}>
+                            variant="contained"
+                            style={{width: "100%"}}
+                            onClick={handleSignIn}>
                             Sign In
                           </PrimaryButton>
                         </form>
