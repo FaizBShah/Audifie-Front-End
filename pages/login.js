@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
-import { PrimaryInput, PrimaryButton } from '../components/MaterialComponents';
+import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignInInput } from '../utils/validation/validateUtils';
 
@@ -81,18 +81,20 @@ function Login() {
                           <div className={styles.divider}></div>
                         </div>
                         <div className={styles.federatedArea}>
-                          <PrimaryButton
+                          <GoogleButton
+                            startIcon={<img src="/assets/Icons/google.svg" style={{height:'1.15rem'}}/>}
                             size="medium"
                             type="contained"
-                            style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "1rem" : "0"}}>
+                            style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}>
                               Google
-                          </PrimaryButton>
-                          <PrimaryButton
+                          </GoogleButton>
+                          <FacebookButton
+                            startIcon={<i className="fab fa-facebook"></i>}
                             size="medium"
                             type="contained"
                             style={{width: "100%", flex: "1", marginBottom: "1rem"}}>
                               Facebook
-                          </PrimaryButton>
+                          </FacebookButton>
                         </div>
                         <div className={styles.bottomText}>
                           Don't have an account? <Link href='/signup'>Sign Up here</Link>

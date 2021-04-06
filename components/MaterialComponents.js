@@ -38,16 +38,65 @@ export const PrimaryButton = withStyles({
   },
 })(Button);
 
+// Google BUTTON
+export const GoogleButton = withStyles({
+  root: {
+    // width: "100%",
+    backgroundColor:'white',
+    borderRadius: '50px',
+    color: 'black',
+    fontSize: '1rem',
+    display: 'flex',
+    boxShadow: ' 0 8px 6px -6px black',
+    justifyContent: 'space-around',
+    padding: '0.5rem 1rem',
+    '&:hover': {
+      backgroundColor: 'white',
+      boxShadow: 'none'
+    },
+  },
+  label: {
+    textTransform: 'capitalize',
+    justifyContent: 'center'
+  },
+})(Button);
+
+// Facebook BUTTON
+export const FacebookButton = withStyles({
+  root: {
+    // width: "100%",
+    backgroundColor:'#1877F2',
+    borderRadius: '50px',
+    color: 'white',
+    fontSize: '1rem',
+    display: 'flex',
+    boxShadow: ' 0 8px 6px -6px black',
+    justifyContent: 'space-around',
+    padding: '0.5rem 1rem',
+    '&:hover': {
+      backgroundColor: '#1877F2',
+      boxShadow: 'none'
+    },
+  },
+  label: {
+    textTransform: 'capitalize',
+    justifyContent: 'center'
+  },
+})(Button);
+
 // FORM INPUTS
 export const PrimaryInput = withStyles({
   root: {
     width: "100%",
     '& .MuiInputBase-input': {
       color: textPrimary,
+      fontFamily: "'Josefin Sans', sans-serif"
     },
     '& label': {
-      color: textPrimary,
-      paddingLeft: '1rem',
+      color: textPrimary + 'FD',
+      padding: '0 0.75rem',
+      backgroundColor : backgroundPrimary,
+      fontFamily: "'Josefin Sans', sans-serif"
     },
     '& label.Mui-focused': {
       color: textPrimary,
