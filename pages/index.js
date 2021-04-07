@@ -35,6 +35,7 @@ function Home() {
             >
               <Grid item>
                 <PrimaryButton
+                  href='/signup'
                   size='large'
                   variant='contained'
                   endIcon={<i><GoForward width="1.15rem"/></i>}
