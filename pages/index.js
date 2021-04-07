@@ -37,7 +37,7 @@ function Home() {
                 <PrimaryButton
                   size='large'
                   variant='contained'
-                  endIcon={<i className=''><GoForward width="1.15rem"/></i>}
+                  endIcon={<i><GoForward width="1.15rem"/></i>}
                 >
                   Start Listening
                 </PrimaryButton>

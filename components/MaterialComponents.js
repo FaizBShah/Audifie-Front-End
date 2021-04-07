@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Drawer, TextField } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer, TextField, Snackbar } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 // <======== Root Colors ========>
@@ -122,6 +122,16 @@ export const PrimaryInput = withStyles({
     },
   }
 })(TextField);
+
+// ERROR NOTIFICATION
+export const ErrorNotification = withStyles({
+  root: {
+    '& .MuiSnackbarContent-root': {
+      backgroundColor: backgroundSecondary,
+      borderLeft: '5px #fd5457 solid'
+    }
+  }
+})(Snackbar);
 
 //  <---------------------------------------------------------NAVBAR------------------------------------------------------------------->
 

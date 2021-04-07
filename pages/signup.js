@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
-import { Container, Grid, Link } from '@material-ui/core';
-import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton } from '../components/MaterialComponents';
+import { Container, Grid, Link} from '@material-ui/core';
+import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput } from '../utils/validation/validateUtils';
 
@@ -11,6 +11,8 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState({
     name: '',
     email: '',
@@ -36,6 +38,14 @@ function Signup() {
       confirmPassword
     }
     setErrors(validateSignUpInput(data));
+  }
+
+  const handleErrorClose = (e, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setIsErrorVisible(false);
   }
 
   return (
@@ -129,6 +139,20 @@ function Signup() {
           </Grid>
         </Container>
       </div>
+      <ErrorNotification
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right'
+        }}
+        open={isErrorVisible}
+        autoHideDuration={6000}
+        onClose={handleErrorClose}
+        message={errorMessage}
+        action={
+          <>
+            <i className="far fa-times-circle" onClick={handleErrorClose}></i>
+          </>
+        }/>
       <Footer />
     </>
   )
