@@ -64,6 +64,13 @@
   font-size: 1rem;
 }
 
+.codeHeading {
+  width: 80%;
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  color: #ccc;
+}
+
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
