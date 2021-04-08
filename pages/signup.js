@@ -1,16 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
 import { Container, Grid, Link} from '@material-ui/core';
 import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput } from '../utils/validation/validateUtils';
+import { Auth } from 'aws-amplify';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isCodeWaiting, setIsCodeWaiting] = useState(false);
@@ -20,7 +23,9 @@ function Signup() {
     password: '',
     confirmPassword: ''
   });
+
   const { width } = useWindowDimensions();
+  const router = useRouter();
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -39,6 +44,47 @@ function Signup() {
       confirmPassword
     }
     setErrors(validateSignUpInput(data));
+
+    Auth.signUp({username: email, password, attributes: {email, name}})
+      .then((data) => {
+        console.log(data);
+        setIsCodeWaiting(true);
+        setPassword("");
+        setConfirmPassword("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const confirmSignUp = (e) => {
+    e.preventDefault();
+
+    Auth.confirmSignUp(email, verificationCode)
+      .then((data) => {
+        console.log(data);
+        setIsCodeWaiting(false);
+        setEmail("");
+        setName("");
+        setVerificationCode("");
+
+        router.push('/login');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const resendCode = (e) => {
+    e.preventDefault();
+
+    Auth.resendSignUp(email)
+      .then(() => {
+        console.log("code resent successfully");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   const handleErrorClose = (e, reason) => {
@@ -147,19 +193,23 @@ function Signup() {
                             <PrimaryInput  
                                 type="text" 
                                 label="Verfication Code" 
-                                variant="outlined"/>
+                                variant="outlined"
+                                value={verificationCode}
+                                onChange={(e) => setVerificationCode(e.target.value)}/>
                           </form>
                           <div className={styles.federatedArea} style={{display: 'block'}}>
                             <PrimaryButton
                               size="medium"
                               type="contained"
-                              style={{width: "100%", marginBottom: "1rem"}}>
+                              style={{width: "100%", marginBottom: "1rem"}}
+                              onClick={confirmSignUp}>
                                 Submit
                             </PrimaryButton>
                             <PrimaryButton
                               size="medium"
                               type="contained"
-                              style={{width: "100%", marginBottom: "1rem"}}>
+                              style={{width: "100%", marginBottom: "1rem"}}
+                              onClick={resendCode}>
                                 Resend Code
                             </PrimaryButton>
                           </div>

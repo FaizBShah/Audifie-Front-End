@@ -5,6 +5,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme/theme';
 import '../styles/CustomIcons.css'
+import Amplify from 'aws-amplify';
+import awsExports from '../aws-exports';
 
 function MyApp(props) {
   const { Component, pageProps } = props;
@@ -15,6 +17,9 @@ function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    // Setting up configuration for Amplify
+    Amplify.configure(awsExports);
   }, []);
 
   return (
