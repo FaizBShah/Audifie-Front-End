@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { Container, Grid, Link} from '@material-ui/core';
 import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
-import { validateSignUpInput } from '../utils/validation/validateUtils';
+import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
 import { Auth } from 'aws-amplify';
 
 function Signup() {
@@ -25,12 +25,7 @@ function Signup() {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    setErrors({
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    })
+    setErrors({});
 
     const data = {
       name,
@@ -62,6 +57,15 @@ function Signup() {
 
   const confirmSignUp = (e) => {
     e.preventDefault();
+
+    setErrors({});
+
+    const errorResult = validateCodeInput(verificationCode);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
 
     Auth.confirmSignUp(email, verificationCode)
       .then((data) => {
@@ -219,6 +223,7 @@ function Signup() {
                                 label="Verfication Code" 
                                 variant="outlined"
                                 value={verificationCode}
+                                helperText={errors.code}
                                 onChange={(e) => setVerificationCode(e.target.value)}/>
                           </form>
                           <div className={styles.federatedArea} style={{display: 'block'}}>

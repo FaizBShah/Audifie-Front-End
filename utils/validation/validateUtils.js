@@ -70,3 +70,18 @@ export const validateSignInInput = (data) => {
     isValid: isEmpty(errors)
   };
 }
+
+export const validateCodeInput = (code) => {
+  let errors = {};
+
+  code = !isEmpty(code) ? code : '';
+
+  if (Validator.isEmpty(code)) {
+    errors.code = 'Code field is required';
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  }
+}
