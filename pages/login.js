@@ -29,7 +29,13 @@ function Login() {
       email,
       password
     }
-    setErrors(validateSignInInput(data));
+    
+    const errorResult = validateSignInInput(data);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
   }
 
   const handleErrorClose = (e, reason) => {

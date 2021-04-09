@@ -17,12 +17,7 @@ function Signup() {
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isCodeWaiting, setIsCodeWaiting] = useState(false);
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [errors, setErrors] = useState({});
 
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -43,7 +38,13 @@ function Signup() {
       password,
       confirmPassword
     }
-    setErrors(validateSignUpInput(data));
+
+    const errorResult = validateSignUpInput(data);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
 
     Auth.signUp({username: email, password, attributes: {email, name}})
       .then((data) => {
@@ -54,6 +55,8 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
       });
   }
 
@@ -72,6 +75,8 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
       });
   }
 
@@ -84,6 +89,22 @@ function Signup() {
       })
       .catch((e) => {
         console.log(e);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+      });
+  }
+
+  const handleFederatedSignIn = (e, provider) => {
+    e.preventDefault();
+
+    Auth.federatedSignIn({provider})
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
       });
   }
 
@@ -93,6 +114,7 @@ function Signup() {
     }
 
     setIsErrorVisible(false);
+    setErrorMessage("");
   }
 
   return (
@@ -168,14 +190,16 @@ function Signup() {
                               startIcon={<img src="/assets/Icons/google.svg" style={{height:'1.15rem'}}/>}
                               size="medium"
                               type="contained"
-                              style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}>
+                              style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}
+                              onClick={(e) => handleFederatedSignIn(e, 'Google')}>
                                 Google
                             </GoogleButton>
                             <FacebookButton
                               startIcon={<i className="fab fa-facebook"></i>}
                               size="medium"
                               type="contained"
-                              style={{width: "100%", flex: "1", marginBottom: "1rem"}}>
+                              style={{width: "100%", flex: "1", marginBottom: "1rem"}}
+                              onClick={(e) => handleFederatedSignIn(e, 'Facebook')}>
                                 Facebook
                             </FacebookButton>
                           </div>

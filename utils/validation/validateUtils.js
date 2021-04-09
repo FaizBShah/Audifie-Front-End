@@ -41,7 +41,10 @@ export const validateSignUpInput = (data) => {
     errors.confirmPassword = 'Confirm Passsword field is required';
   }
 
-  return errors;
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  };
 }
 
 export const validateSignInInput = (data) => {
@@ -62,5 +65,8 @@ export const validateSignInInput = (data) => {
     errors.password = 'Password field is required';
   }
 
-  return errors
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  };
 }
