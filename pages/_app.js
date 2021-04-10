@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme/theme';
 import '../styles/CustomIcons.css'
 import Amplify from 'aws-amplify';
-import awsExports from '../aws-exports';
+import awsmobile from '../aws-exports';
 
 function MyApp(props) {
   const { Component, pageProps } = props;
@@ -19,7 +19,7 @@ function MyApp(props) {
     }
 
     // Setting up configuration for Amplify
-    Amplify.configure(awsExports);
+    Amplify.configure(awsmobile);
   }, []);
 
   return (
