@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
-import { Container, Grid, Link} from '@material-ui/core';
-import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification } from '../components/MaterialComponents';
+import { Container, Grid, Link } from '@material-ui/core';
+import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification, LoaderBackdrop } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
 import { Auth } from 'aws-amplify';
+import { Loader } from '../components/CustomIcons';
 
 function Signup() {
   const [name, setName] = useState('');
@@ -18,6 +19,7 @@ function Signup() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isCodeWaiting, setIsCodeWaiting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -41,12 +43,15 @@ function Signup() {
       return;
     }
 
+    setLoading(true);
+
     Auth.signUp({username: email, password, attributes: {email, name}})
       .then((data) => {
         console.log(data);
         setIsCodeWaiting(true);
         setPassword("");
         setConfirmPassword("");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -67,6 +72,8 @@ function Signup() {
       return;
     }
 
+    setLoading(true);
+
     Auth.confirmSignUp(email, verificationCode)
       .then((data) => {
         console.log(data);
@@ -75,7 +82,13 @@ function Signup() {
         setName("");
         setVerificationCode("");
 
-        router.push('/login');
+        router.push('/login')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -264,6 +277,9 @@ function Signup() {
             <i className="far fa-times-circle" onClick={handleErrorClose}></i>
           </>
         }/>
+        <LoaderBackdrop open={loading}>
+          <Loader />
+        </LoaderBackdrop>
       <Footer />
     </>
   )
