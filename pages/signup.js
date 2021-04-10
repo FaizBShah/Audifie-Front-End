@@ -57,6 +57,7 @@ function Signup() {
         console.log(err);
         setErrorMessage(err.message);
         setIsErrorVisible(true);
+        setLoading(false);
       });
   }
 
@@ -88,12 +89,14 @@ function Signup() {
           })
           .catch((e) => {
             console.log(e);
+            setLoading(false);
           });
       })
       .catch((err) => {
         console.log(err);
         setErrorMessage(err.message);
         setIsErrorVisible(true);
+        setLoading(false);
       });
   }
 
