@@ -7,9 +7,7 @@ export const validateSignUpInput = (data) => {
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
-  data.confirmPassword = !isEmpty(data.confirmPassword)
-    ? data.confirmPassword
-    : '';
+  data.confirmPassword = !isEmpty(data.confirmPassword) ? data.confirmPassword : '';
 
   if (!Validator.isLength(data.name, { min: 2 })) {
     errors.name = 'Name must be at least 2 characters long';
@@ -27,7 +25,7 @@ export const validateSignUpInput = (data) => {
     errors.email = 'Email field is required';
   }
 
-  if (!Validator.isLength(data.password, { min: 8, max: 30 })) {
+  if (!Validator.isLength(data.password, { min: 8 })) {
     errors.password = 'Password must be at least 8 characters';
   }
 

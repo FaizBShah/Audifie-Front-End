@@ -3,7 +3,14 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
-import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification, LoaderBackdrop } from '../components/MaterialComponents';
+import {
+  PrimaryInput,
+  PrimaryButton,
+  GoogleButton,
+  FacebookButton,
+  ErrorNotification,
+  LoaderBackdrop,
+} from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignInInput } from '../utils/validation/validateUtils';
 import { Auth } from 'aws-amplify';

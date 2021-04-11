@@ -12,10 +12,7 @@ import {
   LoaderBackdrop,
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
-import {
-  validateSignUpInput,
-  validateCodeInput,
-} from '../utils/validation/validateUtils';
+import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
 import { Auth } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
 
@@ -69,7 +66,7 @@ function Signup() {
         setIsErrorVisible(true);
         setLoading(false);
       });
-  };
+  }
 
   const confirmSignUp = (e) => {
     e.preventDefault();
@@ -109,7 +106,7 @@ function Signup() {
         setIsErrorVisible(true);
         setLoading(false);
       });
-  };
+  }
 
   const resendCode = (e) => {
     e.preventDefault();
@@ -123,7 +120,7 @@ function Signup() {
         setErrorMessage(err.message);
         setIsErrorVisible(true);
       });
-  };
+  }
 
   const handleFederatedSignIn = (e, provider) => {
     e.preventDefault();
@@ -137,7 +134,7 @@ function Signup() {
         setErrorMessage(err.message);
         setIsErrorVisible(true);
       });
-  };
+  }
 
   const handleErrorClose = (e, reason) => {
     if (reason === 'clickaway') {
@@ -146,70 +143,70 @@ function Signup() {
 
     setIsErrorVisible(false);
     setErrorMessage('');
-  };
+  }
 
   return (
     <>
       <div className={styles.mainBody}>
-        <Container maxWidth='lg' style={{ height: '100%' }}>
+        <Container maxWidth="lg" style={{ height: "100%" }}>
           <Grid
             container
-            direction='row'
-            justify='center'
-            style={{ height: '100%' }}
+            direction="row"
+            justify="center"
+            style={{ height: "100%" }}
           >
-            <Grid item xs={10} sm={4}>
+            <Grid 
+              item 
+              xs={10} 
+              sm={4}>
               <div className={styles.innerBody}>
-                <Link href='/'>
-                  <img
-                    src='/assets/kit/logo_linear.png'
-                    className={styles.brandLogo}
-                  />
+                <Link href="/">
+                  <img src="/assets/kit/logo_linear.png" className={styles.brandLogo}/>
                 </Link>
                 <div className={styles.formBody}>
                   {!isCodeWaiting ? (
                     <>
                       <form className={styles.form}>
                         <PrimaryInput
-                          type='text'
-                          label='Name'
-                          variant='outlined'
-                          style={{ marginBottom: '2rem' }}
+                          type="text"
+                          label="Name"
+                          variant="outlined"
+                          style={{ marginBottom: "2rem" }}
                           value={name}
                           helperText={errors.name}
                           onChange={(e) => setName(e.target.value)}
                         />
                         <PrimaryInput
-                          type='email'
-                          label='Email'
-                          variant='outlined'
-                          style={{ marginBottom: '2rem' }}
+                          type="email"
+                          label="Email"
+                          variant="outlined"
+                          style={{ marginBottom: "2rem" }}
                           value={email}
                           helperText={errors.email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
                         <PrimaryInput
-                          type='password'
-                          label='Password'
-                          variant='outlined'
-                          style={{ marginBottom: '2rem' }}
+                          type="password"
+                          label="Password"
+                          variant="outlined"
+                          style={{ marginBottom: "2rem" }}
                           value={password}
                           helperText={errors.password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
                         <PrimaryInput
-                          type='password'
-                          label='Confirm Password'
-                          variant='outlined'
-                          style={{ marginBottom: '2rem' }}
+                          type="password"
+                          label="Confirm Password"
+                          variant="outlined"
+                          style={{ marginBottom: "2rem" }}
                           value={confirmPassword}
                           helperText={errors.confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <PrimaryButton
-                          size='medium'
-                          variant='contained'
-                          style={{ width: '100%' }}
+                          size="medium"
+                          variant="contained"
+                          style={{ width: "100%" }}
                           onClick={handleSignUp}
                         >
                           Sign Up
@@ -224,32 +221,27 @@ function Signup() {
                       </div>
                       <div className={styles.federatedArea}>
                         <GoogleButton
-                          startIcon={
-                            <img
-                              src='/assets/Icons/google.svg'
-                              style={{ height: '1.15rem' }}
-                            />
-                          }
-                          size='medium'
-                          type='contained'
+                          startIcon={<img src="/assets/Icons/google.svg" style={{ height: "1.15rem" }}/>}
+                          size="medium"
+                          type="contained"
                           style={{
-                            width: '100%',
-                            flex: '1',
-                            marginBottom: '1rem',
-                            marginRight: width > 768 ? '0.5rem' : '0',
+                            width: "100%",
+                            flex: "1",
+                            marginBottom: "1rem",
+                            marginRight: width > 768 ? "0.5rem" : "0",
                           }}
                           onClick={(e) => handleFederatedSignIn(e, 'Google')}
                         >
                           Google
                         </GoogleButton>
                         <FacebookButton
-                          startIcon={<i className='fab fa-facebook'></i>}
-                          size='medium'
-                          type='contained'
+                          startIcon={<i className="fab fa-facebook"></i>}
+                          size="medium"
+                          type="contained"
                           style={{
-                            width: '100%',
-                            flex: '1',
-                            marginBottom: '1rem',
+                            width: "100%",
+                            flex: "1",
+                            marginBottom: "1rem",
                           }}
                           onClick={(e) => handleFederatedSignIn(e, 'Facebook')}
                         >
@@ -257,8 +249,7 @@ function Signup() {
                         </FacebookButton>
                       </div>
                       <div className={styles.bottomText}>
-                        Don't have an account?{' '}
-                        <Link href='/login'>Sign In here</Link>
+                        Don't have an account? <Link href='/login'>Sign In here</Link>
                       </div>
                     </>
                   ) : (
@@ -267,32 +258,29 @@ function Signup() {
                         <h4>OTP has been sent to your email.</h4>
                         <h4>Enter OTP</h4>
                       </div>
-                      <form className={styles.form} style={{ marginTop: '0' }}>
+                      <form className={styles.form} style={{ marginTop: "0" }}>
                         <PrimaryInput
-                          type='text'
-                          label='Verfication Code'
-                          variant='outlined'
+                          type="text"
+                          label="Verfication Code"
+                          variant="outlined"
                           value={verificationCode}
                           helperText={errors.code}
                           onChange={(e) => setVerificationCode(e.target.value)}
                         />
                       </form>
-                      <div
-                        className={styles.federatedArea}
-                        style={{ display: 'block' }}
-                      >
+                      <div className={styles.federatedArea} style={{ display: "block" }}>
                         <PrimaryButton
-                          size='medium'
-                          type='contained'
-                          style={{ width: '100%', marginBottom: '1rem' }}
+                          size="medium"
+                          type="contained"
+                          style={{ width: "100%", marginBottom: "1rem" }}
                           onClick={confirmSignUp}
                         >
                           Submit
                         </PrimaryButton>
                         <PrimaryButton
-                          size='medium'
-                          type='contained'
-                          style={{ width: '100%', marginBottom: '1rem' }}
+                          size="medium"
+                          type="contained"
+                          style={{ width: "100%", marginBottom: "1rem" }}
                           onClick={resendCode}
                         >
                           Resend Code
@@ -309,7 +297,7 @@ function Signup() {
       <ErrorNotification
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'center',
+          horizontal: 'right',
         }}
         open={isErrorVisible}
         autoHideDuration={6000}
@@ -317,7 +305,7 @@ function Signup() {
         message={errorMessage}
         action={
           <>
-            <i className='far fa-times-circle' onClick={handleErrorClose}></i>
+            <i className="far fa-times-circle" onClick={handleErrorClose}></i>
           </>
         }
       />
@@ -326,7 +314,7 @@ function Signup() {
       </LoaderBackdrop>
       <Footer />
     </>
-  );
+  )
 }
 
 export default Signup;
