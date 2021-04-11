@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Drawer, TextField, Snackbar } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer, TextField, Snackbar, Backdrop } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 // <======== Root Colors ========>
@@ -132,6 +132,13 @@ export const ErrorNotification = withStyles({
     }
   }
 })(Snackbar);
+
+// LOADER BACKDROP
+export const LoaderBackdrop = withStyles({
+  root: {
+    zIndex: '1201',
+  }
+})(Backdrop);
 
 //  <---------------------------------------------------------NAVBAR------------------------------------------------------------------->
 

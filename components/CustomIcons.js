@@ -25,3 +25,18 @@ export const GoForward = ({ width }) => {
 		</svg>
 	)
 }
+
+// Loader Icon
+export const Loader = () => {
+	return (
+		<div className="loader">
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+			<span className="stroke"></span>
+  	</div>
+	)
+}

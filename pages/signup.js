@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css';
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
@@ -8,35 +9,35 @@ import {
   GoogleButton,
   FacebookButton,
   ErrorNotification,
+  LoaderBackdrop,
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
-import { validateSignUpInput } from '../utils/validation/validateUtils';
+import {
+  validateSignUpInput,
+  validateCodeInput,
+} from '../utils/validation/validateUtils';
+import { Auth } from 'aws-amplify';
+import { Loader } from '../components/CustomIcons';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isCodeWaiting, setIsCodeWaiting] = useState(false);
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const { width } = useWindowDimensions();
+  const router = useRouter();
 
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    setErrors({
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    });
+    setErrors({});
 
     const data = {
       name,
@@ -44,7 +45,98 @@ function Signup() {
       password,
       confirmPassword,
     };
-    setErrors(validateSignUpInput(data));
+
+    const errorResult = validateSignUpInput(data);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
+
+    setLoading(true);
+
+    Auth.signUp({ username: email, password, attributes: { email, name } })
+      .then((data) => {
+        console.log(data);
+        setIsCodeWaiting(true);
+        setPassword('');
+        setConfirmPassword('');
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+        setLoading(false);
+      });
+  };
+
+  const confirmSignUp = (e) => {
+    e.preventDefault();
+
+    setErrors({});
+
+    const errorResult = validateCodeInput(verificationCode);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
+
+    setLoading(true);
+
+    Auth.confirmSignUp(email, verificationCode)
+      .then((data) => {
+        console.log(data);
+        setIsCodeWaiting(false);
+        setEmail('');
+        setName('');
+        setVerificationCode('');
+
+        router
+          .push('/login')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((e) => {
+            console.log(e);
+            setLoading(false);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+        setLoading(false);
+      });
+  };
+
+  const resendCode = (e) => {
+    e.preventDefault();
+
+    Auth.resendSignUp(email)
+      .then(() => {
+        console.log('code resent successfully');
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+      });
+  };
+
+  const handleFederatedSignIn = (e, provider) => {
+    e.preventDefault();
+
+    Auth.federatedSignIn({ provider })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+      });
   };
 
   const handleErrorClose = (e, reason) => {
@@ -53,6 +145,7 @@ function Signup() {
     }
 
     setIsErrorVisible(false);
+    setErrorMessage('');
   };
 
   return (
@@ -145,6 +238,7 @@ function Signup() {
                             marginBottom: '1rem',
                             marginRight: width > 768 ? '0.5rem' : '0',
                           }}
+                          onClick={(e) => handleFederatedSignIn(e, 'Google')}
                         >
                           Google
                         </GoogleButton>
@@ -157,6 +251,7 @@ function Signup() {
                             flex: '1',
                             marginBottom: '1rem',
                           }}
+                          onClick={(e) => handleFederatedSignIn(e, 'Facebook')}
                         >
                           Facebook
                         </FacebookButton>
@@ -177,6 +272,9 @@ function Signup() {
                           type='text'
                           label='Verfication Code'
                           variant='outlined'
+                          value={verificationCode}
+                          helperText={errors.code}
+                          onChange={(e) => setVerificationCode(e.target.value)}
                         />
                       </form>
                       <div
@@ -187,6 +285,7 @@ function Signup() {
                           size='medium'
                           type='contained'
                           style={{ width: '100%', marginBottom: '1rem' }}
+                          onClick={confirmSignUp}
                         >
                           Submit
                         </PrimaryButton>
@@ -194,6 +293,7 @@ function Signup() {
                           size='medium'
                           type='contained'
                           style={{ width: '100%', marginBottom: '1rem' }}
+                          onClick={resendCode}
                         >
                           Resend Code
                         </PrimaryButton>
@@ -209,7 +309,7 @@ function Signup() {
       <ErrorNotification
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'right',
+          horizontal: 'center',
         }}
         open={isErrorVisible}
         autoHideDuration={6000}
@@ -221,6 +321,9 @@ function Signup() {
           </>
         }
       />
+      <LoaderBackdrop open={loading}>
+        <Loader />
+      </LoaderBackdrop>
       <Footer />
     </>
   );
