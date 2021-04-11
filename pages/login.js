@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
-import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification } from '../components/MaterialComponents';
+import { PrimaryInput, PrimaryButton, GoogleButton, FacebookButton, ErrorNotification, LoaderBackdrop } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignInInput } from '../utils/validation/validateUtils';
+import { Auth } from 'aws-amplify';
+import { Loader } from '../components/CustomIcons';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,7 +18,10 @@ function Login() {
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
+
   const { width } = useWindowDimensions();
+  const router = useRouter();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -36,6 +42,36 @@ function Login() {
       setErrors(errorResult.errors);
       return;
     }
+
+    setLoading(true);
+
+    Auth.signIn(email, password)
+      .then((data) => {
+        console.log(data);
+        setEmail('');
+        setPassword('');
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+        setLoading(false);
+      });
+  }
+
+  const handleFederatedSignIn = (e, provider) => {
+    e.preventDefault();
+
+    Auth.federatedSignIn({provider})
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+      });
   }
 
   const handleErrorClose = (e, reason) => {
@@ -101,14 +137,16 @@ function Login() {
                             startIcon={<img src="/assets/Icons/google.svg" style={{height:'1.15rem'}}/>}
                             size="medium"
                             type="contained"
-                            style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}>
+                            style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}
+                            onClick={(e) => handleFederatedSignIn(e, 'Google')}>
                               Google
                           </GoogleButton>
                           <FacebookButton
                             startIcon={<i className="fab fa-facebook"></i>}
                             size="medium"
                             type="contained"
-                            style={{width: "100%", flex: "1", marginBottom: "1rem"}}>
+                            style={{width: "100%", flex: "1", marginBottom: "1rem"}}
+                            onClick={(e) => handleFederatedSignIn(e, 'Facebook')}>
                               Facebook
                           </FacebookButton>
                         </div>
@@ -135,6 +173,9 @@ function Login() {
             <i className="far fa-times-circle" onClick={handleErrorClose}></i>
           </>
         }/>
+        <LoaderBackdrop open={loading}>
+          <Loader />
+        </LoaderBackdrop>
       <Footer />
     </>
   )
