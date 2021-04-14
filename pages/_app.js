@@ -37,4 +37,4 @@ function MyApp(props) {
   );
 }
 
-export default MyApp
+export default MyApp;

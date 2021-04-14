@@ -61,6 +61,7 @@ const Navbar = () => {
         </NavToolBar>
       </Container>
     </NavAppBar>
-  );
-};
+  )
+}
+
 export default Navbar;
