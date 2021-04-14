@@ -7,14 +7,28 @@ import {
 } from '../components/MaterialComponents';
 import styles from '../styles/Navbar.module.css';
 import { useWindowDimensions } from '../utils/windowUtils';
+import { Auth } from 'aws-amplify';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { width } = useWindowDimensions();
+  const { authenticated } = props;
 
   const toggleDrawer = (open) => {
     setIsDrawerOpen(open);
   };
+
+  const signOut = (e) => {
+    e.preventDefault();
+
+    Auth.signOut()
+      .then(() => {
+        console.log("Signed Out");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   return (
     <NavAppBar>
@@ -34,8 +48,14 @@ const Navbar = () => {
 
           {width >= 769 ? (
             <div className={styles.navLink}>
-              <Link href='/signup'>Sign Up</Link>
-              <Link href='/login'>Sign In</Link>
+              {!authenticated ? (
+                <>
+                  <Link href='/signup'>Sign Up</Link>
+                  <Link href='/login'>Sign In</Link>
+                </>
+              ) : (
+                <Link onClick={signOut}>Sign Out</Link>
+              )}
             </div>
           ) : (
             <div>
@@ -51,8 +71,14 @@ const Navbar = () => {
               >
                 <div role='presentation' onClick={() => toggleDrawer(false)}>
                   <div className={styles.navLink}>
-                    <Link href='/signup'>Sign Up</Link>
-                    <Link href='/login'>Sign In</Link>
+                  {!authenticated ? (
+                    <>
+                      <Link href='/signup'>Sign Up</Link>
+                      <Link href='/login'>Sign In</Link>
+                    </>
+                  ) : (
+                    <Link onClick={signOut}>Sign Out</Link>
+                  )}
                   </div>
                 </div>
               </NavDrawer>

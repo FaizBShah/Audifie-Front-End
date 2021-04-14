@@ -57,7 +57,16 @@ function Login() {
         console.log(data);
         setEmail('');
         setPassword('');
-        setLoading(false);
+        
+        router
+          .push('/dashboard')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((e) => {
+            console.log(e);
+            setLoading(false);
+          })
       })
       .catch((err) => {
         console.log(err);

@@ -8,6 +8,12 @@ import '../styles/CustomIcons.css'
 import Amplify from 'aws-amplify';
 import awsmobile from '../aws-exports';
 
+// Setting up configuration for Amplify
+Amplify.configure({
+  ...awsmobile,
+  ssr: true
+});
+
 function MyApp(props) {
   const { Component, pageProps } = props;
 
@@ -17,9 +23,6 @@ function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-
-    // Setting up configuration for Amplify
-    Amplify.configure(awsmobile);
   }, []);
 
   return (
