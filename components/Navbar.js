@@ -8,17 +8,23 @@ import {
 import styles from '../styles/Navbar.module.css';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { Auth } from 'aws-amplify';
+import { Router } from 'next/router';
+import { useRouter } from 'next/router'
 
 const Navbar = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { width } = useWindowDimensions();
   const { authenticated } = props;
 
+  const router = useRouter()
+
+
   const toggleDrawer = (open) => {
     setIsDrawerOpen(open);
   };
 
   const signOut = (e) => {
+    
     e.preventDefault();
 
     Auth.signOut()
@@ -28,6 +34,7 @@ const Navbar = (props) => {
       .catch((err) => {
         console.log(err);
       })
+      router.push('/')
   }
 
   return (
@@ -54,7 +61,9 @@ const Navbar = (props) => {
                   <Link href='/login'>Sign In</Link>
                 </>
               ) : (
-                <Link onClick={signOut}>Sign Out</Link>
+                <Link style={{
+                  cursor:"pointer"
+                }} onClick={signOut}>Sign Out</Link>
               )}
             </div>
           ) : (
