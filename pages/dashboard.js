@@ -15,13 +15,12 @@ function Dashboard(props) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { Auth } = withSSRContext(context);
+export async function getServerSideProps({req, res}) {
+  const { Auth } = withSSRContext({ req });
 
   try {
     const user = await Auth.currentAuthenticatedUser();
     console.log(user);
-
     return {
       props: {
         authenticated: true
@@ -29,11 +28,12 @@ export async function getServerSideProps(context) {
     }
   } catch (err) {
     console.log(err);
-
-    return {
-      props: {
-        authenticated: false
-      }
+    res.writeHead(302, {Location: '/'});
+    res.end();
+  }
+  return {
+    props: {
+      authenticated: false
     }
   }
 }

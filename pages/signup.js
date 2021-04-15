@@ -13,7 +13,7 @@ import {
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
-import { Auth } from 'aws-amplify';
+import { Auth, withSSRContext } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
 
 function Signup() {
@@ -315,6 +315,22 @@ function Signup() {
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps({req, res}) {
+  const { Auth } = withSSRContext({ req });
+
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    console.log(user);
+    res.writeHead(302, {Location: '/dashboard'});
+    res.end();
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    props: {}
+  }
 }
 
 export default Signup;

@@ -9,13 +9,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import Footer from '../components/Footer';
 import {GoForward} from '../components/CustomIcons';
+import { withSSRContext } from 'aws-amplify';
 
-function Home() {
+function Home(props) {
   const { width } = useWindowDimensions();
+  const { authenticated } = props;
 
   return (
     <>
-      <Navbar />
+      <Navbar authenticated={authenticated}/>
       <div id={styles.showcase}>
         <div id='showcaseImage'>
           <h1>Listen to <br></br>&emsp;&emsp;your Docs</h1>
@@ -35,12 +37,12 @@ function Home() {
             >
               <Grid item>
                 <PrimaryButton
-                  href='/signup'
+                  href={!authenticated ? '/signup' : '/dashboard'}
                   size='large'
                   variant='contained'
                   endIcon={<i><GoForward width="1.15rem"/></i>}
                 >
-                  Start Listening
+                  {!authenticated ? 'Start Listening' : 'Go to Dashboard'}
                 </PrimaryButton>
               </Grid>
             </Grid>
@@ -79,6 +81,27 @@ function Home() {
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { Auth } = withSSRContext(context);
+
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    console.log(user);
+    return {
+      props: {
+        authenticated: true
+      }
+    }
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {
+        authenticated: false
+      }
+    }
+  }
 }
 
 export default Home;
