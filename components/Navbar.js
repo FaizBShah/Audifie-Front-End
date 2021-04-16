@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Container, Link } from '@material-ui/core';
 import {
   NavAppBar,
@@ -8,33 +9,29 @@ import {
 import styles from '../styles/Navbar.module.css';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { Auth } from 'aws-amplify';
-import { Router } from 'next/router';
-import { useRouter } from 'next/router'
 
 const Navbar = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  
   const { width } = useWindowDimensions();
+  const router = useRouter();
   const { authenticated } = props;
-
-  const router = useRouter()
-
 
   const toggleDrawer = (open) => {
     setIsDrawerOpen(open);
   };
 
   const signOut = (e) => {
-    
     e.preventDefault();
 
     Auth.signOut()
       .then(() => {
         console.log("Signed Out");
+        router.push('/');
       })
       .catch((err) => {
         console.log(err);
       })
-      router.push('/')
   }
 
   return (
