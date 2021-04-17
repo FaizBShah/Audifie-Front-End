@@ -5,13 +5,16 @@ import {
   NavAppBar,
   NavToolBar,
   NavDrawer,
+  LoaderBackdrop
 } from '../components/MaterialComponents';
 import styles from '../styles/Navbar.module.css';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { Auth } from 'aws-amplify';
+import { Loader } from './CustomIcons';
 
 const Navbar = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -24,10 +27,19 @@ const Navbar = (props) => {
   const signOut = (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     Auth.signOut()
       .then(() => {
         console.log("Signed Out");
-        router.push('/');
+        router
+          .push('/')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((err) => {
+            setLoading(false);
+          })
       })
       .catch((err) => {
         console.log(err);
@@ -58,9 +70,7 @@ const Navbar = (props) => {
                   <Link href='/login'>Sign In</Link>
                 </>
               ) : (
-                <Link style={{
-                  cursor:"pointer"
-                }} onClick={signOut}>Sign Out</Link>
+                <Link onClick={signOut}>Sign Out</Link>
               )}
             </div>
           ) : (
@@ -92,6 +102,9 @@ const Navbar = (props) => {
           )}
         </NavToolBar>
       </Container>
+      <LoaderBackdrop open={loading}>
+        <Loader />
+      </LoaderBackdrop>
     </NavAppBar>
   )
 }

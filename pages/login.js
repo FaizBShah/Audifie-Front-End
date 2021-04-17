@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
 import Footer from '../components/Footer';
@@ -29,6 +29,25 @@ function Login() {
 
   const { width } = useWindowDimensions();
   const router = useRouter();
+
+  useEffect(() => {
+    setLoading(true);
+
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        router
+          .push('/dashboard')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((err) => {
+            setLoading(false);
+          });
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }, [])
 
   const handleSignIn = (e) => {
     e.preventDefault();
