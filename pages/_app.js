@@ -6,11 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme/theme';
 import '../styles/CustomIcons.css'
 import Amplify from 'aws-amplify';
-import awsmobile from '../aws-exports';
+import awsConfig from '../config/awsConfig';
 
 // Setting up configuration for Amplify
 Amplify.configure({
-  ...awsmobile,
+  ...awsConfig,
   ssr: true
 });
 
