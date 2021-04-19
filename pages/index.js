@@ -8,7 +8,7 @@ import { useWindowDimensions } from '../utils/windowUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import Footer from '../components/Footer';
-import {GoForward} from '../components/CustomIcons';
+import { GoForward, ProfileBordered, FileUploadBordered, WaveDuotone } from '../components/CustomIcons';
 import { withSSRContext } from 'aws-amplify';
 
 function Home(props) {
@@ -56,21 +56,21 @@ function Home(props) {
           <div className={styles.steps}>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i className="fal fa-user-alt fa-5x"></i>
+              <i><ProfileBordered width="5rem"/></i>
               </div>
               <h5 className={styles.stepTitle}>Sign In</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i className="fal fa-folder-upload fa-5x"></i>
+              <i><FileUploadBordered width="5rem"/></i>
               </div>
               <h5 className={styles.stepTitle}>Upload</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepIcon}>
-              <i className="fad fa-waveform fa-5x"></i>
+              <i><WaveDuotone width="5rem"/></i>
               </div>
               <h5 className={styles.stepTitle}>Listen</h5>
               <p className={styles.stepText}>Lorem ipsum dolor sit amut, conqueringser endur ispin go lutat.</p>
