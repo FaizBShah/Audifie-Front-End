@@ -51,11 +51,11 @@ export const WaveDuotone = ({ width }) => {
 	return (
 		<svg width={width} height="" viewBox="0 0 142 142" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect y="66" width="10" height="14" rx="4" fill="white" />
-			<rect x="22" y="54" width="13" height="34" rx="4" fill="white" fill-opacity="0.45" />
+			<rect x="22" y="54" width="13" height="34" rx="4" fill="white" fillPpacity="0.45" />
 			<rect x="44" y="28" width="13" height="86" rx="4" fill="white" />
-			<rect x="66" width="13" height="142" rx="4" fill="white" fill-opacity="0.45" />
+			<rect x="66" width="13" height="142" rx="4" fill="white" fillOpacity="0.45" />
 			<rect x="88" y="47" width="13" height="48" rx="4" fill="white" />
-			<rect x="110" y="37" width="13" height="68" rx="4" fill="white" fill-opacity="0.45" />
+			<rect x="110" y="37" width="13" height="68" rx="4" fill="white" fillOpacity="0.45" />
 			<rect x="132" y="66" width="13" height="14" rx="4" fill="white" />
 		</svg>
 
