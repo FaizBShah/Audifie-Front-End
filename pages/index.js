@@ -51,7 +51,7 @@ function Home(props) {
       </div>
       <div id={styles.mainBody}>
         <Container maxWidth='lg'>
-          <p className={styles.mainText}>Dorem ipsum dolor sit amet consectetur, adipisicing elit. Earum deleniti dolorem iste accusamus, nulla reiciendis. Blanditiis fuga dolorem eveniet nisi. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+          <p className={styles.mainText}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum deleniti dolorem iste accusamus, nulla reiciendis. Blanditiis fuga dolorem eveniet nisi. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
           <h2 className={styles.howTitle}>How it works</h2>
           <div className={styles.steps}>
             <div className={styles.step}>
