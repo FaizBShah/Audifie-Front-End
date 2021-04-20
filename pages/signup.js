@@ -249,7 +249,7 @@ function Signup() {
                         </FacebookButton>
                       </div>
                       <div className={styles.bottomText}>
-                        Don't have an account? <Link href='/login'>Sign In here</Link>
+                        Already have an account? <Link href='/login'>Sign In here</Link>
                       </div>
                     </>
                   ) : (
