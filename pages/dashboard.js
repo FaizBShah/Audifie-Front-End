@@ -22,7 +22,7 @@ function Dashboard(props) {
           >
             <Grid
               item
-              xs={10}
+              xs={9}
               sm={4}
             >
               <PrimaryButton
@@ -34,6 +34,16 @@ function Dashboard(props) {
               </PrimaryButton>
             </Grid>
           </Grid>
+        </Container>
+      </div>
+      <div className={styles.mainSection}>
+        <Container maxWidth="lg" style={{height: "100%"}}>
+          <div className={styles.headingSection}>
+            <h3 className={styles.heading}>Your Books</h3>
+            <div className={styles.divider}></div>
+          </div>
+          <img className={styles.uploadImage} src="/assets/kit/uploadAsset@10x.png" />
+          <p className={styles.uploadText}>Upload Documents to listen</p>
         </Container>
       </div>
       <Footer/>

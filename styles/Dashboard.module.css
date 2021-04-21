@@ -2,3 +2,53 @@
   padding: 3rem 0;
   background: #1d1d1d;
 }
+
+.mainSection {
+  padding: 1rem 0;
+  background: #141517;
+}
+
+.headingSection {
+  margin-bottom: 2rem;
+}
+
+.heading {
+  text-align: center;
+  color: #ccc;
+  margin-top: 0;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+}
+
+.uploadImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.uploadText {
+  text-align: center;
+  color: #fd5457;
+  margin-bottom: 2rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .uploadText {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .uploadImage {
+    width: 80%;
+  }
+}
