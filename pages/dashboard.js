@@ -1,17 +1,43 @@
 import React from 'react';
+import styles from '../styles/Dashboard.module.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { withSSRContext } from 'aws-amplify';
+import { Container, Grid } from '@material-ui/core';
+import { PrimaryButton } from '../components/MaterialComponents';
 
 function Dashboard(props) {
   const { authenticated } = props;
 
   return (
-    <div>
+    <>
       <Navbar authenticated={authenticated}/>
-      <h1>Dashboard</h1>
+      <div className={styles.uploadSection}>
+        <Container maxWidth="lg" style={{height: "100%"}}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            style={{height: "100%"}}
+          >
+            <Grid
+              item
+              xs={10}
+              sm={4}
+            >
+              <PrimaryButton
+                size="medium"
+                variant="contained"
+                style={{width: "100%"}}
+              >
+                Upload Docs
+              </PrimaryButton>
+            </Grid>
+          </Grid>
+        </Container>
+      </div>
       <Footer/>
-    </div>
+    </>
   )
 }
 
