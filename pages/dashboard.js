@@ -45,7 +45,7 @@ function Dashboard(props) {
           </div>
           <img className={styles.uploadImage} src="/assets/kit/uploadAsset@10x.png" />
           <p className={styles.uploadText}>Upload Documents to listen</p>
-          <PrimaryCard defaultCard={true}/>
+          <PrimaryCard defaultCard={false}/>
         </Container>
       </div>
       <Footer/>

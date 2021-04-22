@@ -1,18 +1,19 @@
 import React from 'react';
-import { Card, CardContent, Grid, Container, Slider } from '@material-ui/core';
+import { Grid, Slider } from '@material-ui/core';
 import {
   PrimaryCard,
   PrimaryCardContent,
 } from '../components/MaterialComponents';
 import styles from './../styles/Card.module.css';
-export default function defaultCard({ defaultCard }) {
-  const [value, setValue] = React.useState(50);
+
+ function Card({ defaultCard }) {
+const [value, setValue] = React.useState(50);
   return (
     <React.Fragment>
       {defaultCard ? (
         <div>
           <Grid container justify='center' style={{ height: '100%' }}>
-            <Grid item xs={12} sm={6} md={5}>
+            <Grid item xs={10} sm={7} md={5} lg={5}>
               <PrimaryCard className={styles.card}>
                 <PrimaryCardContent>
                   <img
@@ -20,13 +21,13 @@ export default function defaultCard({ defaultCard }) {
                     src='/assets/svg/referAsset.svg'
                     alt=''
                   />
-                  <div className={styles.text}>
-                    <h3 className={styles.inviteText}>
+                  <div className={styles.inviteSection}>
+                    <h3 className={styles.inviteHeading}>
                       Invite your friends to use
                     </h3>
-                    <p style={{ marginBottom: '0' }}>
+                    <p className={styles.invitePara}>
                       You'll get to listen{' '}
-                      <span className={styles.refer}>1 more book </span>
+                      <span className={styles.highlightedText}>1 more book </span>
                       when a new friend signup
                     </p>
                   </div>
@@ -38,27 +39,31 @@ export default function defaultCard({ defaultCard }) {
       ) : (
         <div>
           <Grid container justify='center' style={{ height: '100%' }}>
-            <Grid item xs={12} sm={6} md={5}>
+            <Grid item xs={10} sm={7} md={5} lg={5}>
               <PrimaryCard className={styles.card}>
-                <PrimaryCardContent>
+                <PrimaryCardContent style={{ position: 'relative' }}>
                   <img
-                    className={styles.referImage}
+                    className={styles.bookImage}
                     src='/assets/kit/harryPotter.jpg'
                     alt=''
                   />
-                  <div className={styles.text}>
-                    <h3 className={styles.title}>
+                  <div className={styles.bookDetails}>
+                    <h3 className={styles.bookTitle}>
                       Harry Potter : Goblet of Fire
                     </h3>
                     <div className={styles.slider}>
                       <Slider
+                      style={{padding:'0'}}
                         value={value}
                         aria-labelledby='continuous-slider'
                       />
                     </div>
+
                     <div className={styles.textIcon}>
-                      <p style={{ margin: '0' }}>Last Played : 1 Day Ago</p>
-                      <i class='fas fa-trash'></i>
+                      <p className={styles.bookHistory}>Last Played : 1 Day Ago</p>
+                      <div className={styles.deleteIcon}>
+                      <i class='fas fa-trash '></i>
+                      </div>
                     </div>
                   </div>
                 </PrimaryCardContent>
@@ -70,3 +75,4 @@ export default function defaultCard({ defaultCard }) {
     </React.Fragment>
   );
 }
+export default Card
