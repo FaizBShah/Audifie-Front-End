@@ -1,0 +1,23 @@
+.card {
+  background-color: #1d1d1d;
+}
+.cardContent {
+  color: #ccc;
+  display: flex;
+  /* justify-content: space-between; */
+}
+.referImage {
+  height: 100%;
+  width: 9rem;
+}
+.text {
+  padding-left: 2rem;
+  font-size: 1rem;
+}
+.inviteText {
+  padding-bottom: 1rem;
+  font-size: 1.25rem;
+}
+.refer {
+  color: #fd5457;
+}
