@@ -208,10 +208,23 @@ export const FooterLink = withStyles({
   },
 })(Icon);
 
-// CARD
+
+//< -------------------------------------------------------------CARD ---------------------------------------------------------------------------------------------->
 export const PrimaryCard = withStyles({
   root: {
     background: backgroundSecondary,
     boxShadow: ' 0 8px 6px -6px black',
+    borderRadius:'10px'
   },
 })(Card);
+
+export const PrimaryCardContent = withStyles({
+  root: {
+   padding:'0',
+   color: '#ccc',
+   display: 'flex',
+   '&:last-child':{
+    paddingBottom:'0'
+   },
+  },
+})(CardContent);

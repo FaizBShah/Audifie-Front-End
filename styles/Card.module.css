@@ -1,23 +1,68 @@
 .card {
   background-color: #1d1d1d;
 }
-.cardContent {
-  color: #ccc;
-  display: flex;
-  /* justify-content: space-between; */
-}
+
 .referImage {
   height: 100%;
   width: 9rem;
 }
+
 .text {
   padding-left: 2rem;
   font-size: 1rem;
+  margin-top: 1rem;
 }
+
+.text p {
+  font-size: 0.8rem;
+}
+
 .inviteText {
   padding-bottom: 1rem;
   font-size: 1.25rem;
 }
+
 .refer {
   color: #fd5457;
+}
+
+.textIcon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.slider {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+
+  .referImage {
+    width: 7rem;
+  }
+
+  .text {
+    padding-left: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .inviteText {
+    padding-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+  }
+
+  .slider {
+    margin: 1rem;
+  }
+  
 }
