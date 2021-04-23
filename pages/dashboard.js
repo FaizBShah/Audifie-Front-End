@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { withSSRContext } from 'aws-amplify';
 import { Container, Grid } from '@material-ui/core';
 import { PrimaryButton } from '../components/MaterialComponents';
-import PrimaryCard from '../components/Card';
+import Card from '../components/Card';
 
 function Dashboard(props) {
   const { authenticated } = props;
@@ -43,9 +43,23 @@ function Dashboard(props) {
             <h3 className={styles.heading}>Your Books</h3>
             <div className={styles.divider}></div>
           </div>
-          <img className={styles.uploadImage} src="/assets/kit/uploadAsset@10x.png" />
+          <img className={styles.uploadImage} src="/assets/svg/uploadAsset.svg" />
           <p className={styles.uploadText}>Upload Documents to listen</p>
-          <PrimaryCard defaultCard={false}/>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            spacing={5}
+            style={{height: "100%"}}
+          >
+            <Grid
+              item
+              xs={10}
+              sm={6}
+            >
+              <Card defaultCard={true}></Card>
+            </Grid>
+          </Grid>
         </Container>
       </div>
       <Footer/>
