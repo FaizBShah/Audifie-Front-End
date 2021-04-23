@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Drawer, TextField, Snackbar, Backdrop } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer, TextField, Snackbar, Backdrop,Card,CardContent} from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 // <======== Root Colors ========>
@@ -140,6 +140,8 @@ export const LoaderBackdrop = withStyles({
   }
 })(Backdrop);
 
+
+
 //  <---------------------------------------------------------NAVBAR------------------------------------------------------------------->
 
 // MAIN NAVBAR
@@ -205,3 +207,24 @@ export const FooterLink = withStyles({
     },
   },
 })(Icon);
+
+
+//< -------------------------------------------------------------CARD ---------------------------------------------------------------------------------------------->
+export const PrimaryCard = withStyles({
+  root: {
+    background: backgroundSecondary,
+    boxShadow: ' 0 8px 6px -6px black',
+    borderRadius:'10px'
+  },
+})(Card);
+
+export const PrimaryCardContent = withStyles({
+  root: {
+   padding:'0',
+   color: '#ccc',
+   display: 'flex',
+   '&:last-child':{
+    paddingBottom:'0'
+   },
+  },
+})(CardContent);
