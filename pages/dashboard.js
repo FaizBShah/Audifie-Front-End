@@ -1,68 +1,100 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/Dashboard.module.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { withSSRContext } from 'aws-amplify';
-import { Container, Grid } from '@material-ui/core';
-import { PrimaryButton } from '../components/MaterialComponents';
+import { withSSRContext, Auth } from 'aws-amplify';
+import { Container, Grid, Link } from '@material-ui/core';
+import { PrimaryButton, MainDrawer, LoaderBackdrop } from '../components/MaterialComponents';
 import Card from '../components/Card';
+import { Loader } from '../components/CustomIcons';
 
-function Dashboard(props) {
-  const { authenticated } = props;
+function Dashboard() {
+  const [loading, setLoading] = useState(false);
+
+  const signOut = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    Auth.signOut()
+      .then(() => {
+        console.log("Signed Out");
+        router
+          .push('/')
+          .then(() => {
+            setLoading(false);
+          })
+          .catch((err) => {
+            setLoading(false);
+          })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   return (
     <>
-      <Navbar authenticated={authenticated}/>
-      <div className={styles.uploadSection}>
-        <Container maxWidth="lg" style={{height: "100%"}}>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            style={{height: "100%"}}
+      <MainDrawer
+        variant={"permanent"}
+        anchor={"left"}
+      >
+        <Link href="/">
+          <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo}></img>
+        </Link>
+        <div className={styles.uploadContainer}>
+          <PrimaryButton
+            size="small"
+            variant="contained"
+            style={{width: "100%"}}
           >
-            <Grid
-              item
-              xs={9}
-              sm={4}
-            >
-              <PrimaryButton
-                size="medium"
-                variant="contained"
-                style={{width: "100%"}}
-              >
-                Upload Docs
-              </PrimaryButton>
-            </Grid>
-          </Grid>
-        </Container>
-      </div>
-      <div className={styles.mainSection}>
-        <Container maxWidth="lg" style={{height: "100%"}}>
-          <div className={styles.headingSection}>
-            <h3 className={styles.heading}>Your Books</h3>
-            <div className={styles.divider}></div>
+            Upload
+          </PrimaryButton>
+        </div>
+        <div className={styles.menu}>
+          <div className={styles.menuItem}>
+            <i className="fas fa-home"></i>
+            &nbsp;
+            &nbsp;
+            <a>Home</a>
           </div>
-          <img className={styles.uploadImage} src="/assets/svg/uploadAsset.svg" />
-          <p className={styles.uploadText}>Upload Documents to listen</p>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            spacing={5}
-            style={{height: "100%"}}
-          >
-            <Grid
-              item
-              xs={10}
-              sm={6}
-            >
-              <Card defaultCard={true}></Card>
-            </Grid>
-          </Grid>
-        </Container>
-      </div>
-      <Footer/>
+          <div className={styles.menuItem}>
+            <i className="fas fa-book"></i>
+            &nbsp;
+            &nbsp;
+            <a>Library</a>
+          </div>
+          <div className={styles.menuItem}>
+            <i className="fas fa-dollar-sign"></i>
+            &nbsp;
+            &nbsp;
+            <a>Upgrade</a>
+          </div>
+          <div className={styles.menuItem}>
+            <i className="fas fa-cog"></i>
+            &nbsp;
+            &nbsp;
+            <a>Settings</a>
+          </div>
+        </div>
+        <div className={styles.otherItems}>
+          <div className={styles.menuItem}>
+            <i className="fas fa-share-alt"></i>
+            &nbsp;
+            &nbsp;
+            <a>Refer & Earn</a>
+          </div>
+          <div className={styles.menuItem}>
+            <i className="fas fa-sign-out-alt"></i>
+            &nbsp;
+            &nbsp;
+            <a onClick={signOut}>Logout</a>
+          </div>
+        </div>
+      </MainDrawer>
+      <LoaderBackdrop open={loading}>
+        <Loader />
+      </LoaderBackdrop>
     </>
   )
 }
@@ -73,20 +105,13 @@ export async function getServerSideProps({req, res}) {
   try {
     const user = await Auth.currentAuthenticatedUser();
     console.log(user);
-    return {
-      props: {
-        authenticated: true
-      }
-    }
   } catch (err) {
     console.log(err);
     res.writeHead(302, {Location: '/signup'});
     res.end();
   }
   return {
-    props: {
-      authenticated: false
-    }
+    props: {}
   }
 }
 

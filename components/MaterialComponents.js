@@ -211,6 +211,17 @@ export const FooterLink = withStyles({
 
 //  < -------------------------------------------------------------DASHBOARD---------------------------------------------------------------------------------------------->
 
+// DRAWER
+export const MainDrawer = withStyles({
+  root: {
+    width: '240px'
+  },
+  paper: {
+    backgroundColor: backgroundSecondary,
+    width: '240px'
+  }
+})(Drawer);
+
 // CARD
 export const PrimaryCard = withStyles({
   root: {

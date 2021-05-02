@@ -1,54 +1,43 @@
-.uploadSection {
-  padding: 3rem 0;
-  background: #1d1d1d;
-}
-
-.mainSection {
-  padding: 1rem 0;
-  background: #141517;
-}
-
-.headingSection {
-  margin-bottom: 2rem;
-}
-
-.heading {
-  text-align: center;
-  color: #ccc;
-  margin-top: 0;
-}
-
-.divider {
-  width: 100%;
-  height: 2px;
-  background: #ccc;
-}
-
-.uploadImage {
+.brandLogo {
+  width: 60%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.uploadContainer {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2rem;
 }
 
-.uploadText {
-  text-align: center;
-  color: #fd5457;
-  margin-bottom: 2rem;
+.menu {
+  color: #ccc;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 2rem;
 }
 
-@media (max-width: 768px) {
-  .uploadText {
-    font-size: 1.4rem;
-  }
+.menuItem {
+  width: 95%;
+  margin-bottom: 1rem;
+  padding-left: 25%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .uploadImage {
-    width: 80%;
-  }
+.menuItem:hover {
+  background-color: rgba(255, 243, 243, 0.15);
+  color: #fd5457;
+}
+
+.otherItems {
+  color: #ccc;
+  margin-top: auto;
+  margin-bottom: 2rem;
 }
