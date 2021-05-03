@@ -35,6 +35,16 @@ function Dashboard() {
 
   return (
     <>
+      <div className={styles.mainArea}>
+        <div className={styles.innerArea}>
+          <div className={styles.emptyArea}>
+            <div className={styles.emptyInnerArea}>
+              <img src="/assets/svg/uploadAsset.svg" className={styles.uploadImage}></img>
+              <p className={styles.uploadText}>Upload Your Documents</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <MainDrawer
         variant={"permanent"}
         anchor={"left"}

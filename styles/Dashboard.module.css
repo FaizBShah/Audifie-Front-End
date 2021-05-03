@@ -42,3 +42,34 @@
   margin-bottom: 2rem;
   font-family: 'Josefin Sans', sans-serif;
 }
+
+.mainArea {
+  background: #141517;
+}
+
+.innerArea {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+}
+
+.emptyArea {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyInnerArea {
+  width: 25%;
+}
+
+.uploadImage {
+  width: 100%;
+}
+
+.uploadText {
+  color: #ccc;
+  font-size: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
