@@ -1,6 +1,18 @@
-import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Drawer, TextField, Snackbar, Backdrop, Card, CardContent, Slider} from '@material-ui/core';
+import { 
+  AppBar, 
+  Toolbar, 
+  Button,
+  Drawer, 
+  TextField, 
+  Snackbar, 
+  Backdrop, 
+  Card, 
+  CardContent, 
+  Slider, 
+  BottomNavigation, 
+  BottomNavigationAction,
+} from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
 // <======== Root Colors ========>
@@ -9,6 +21,7 @@ const backgroundSecondary = '#1D1D1D';
 const colorBranding = '#FD5457';
 const textPrimary = '#FDFDFD';
 const textHeading = '#FD5457';
+const textSecondary = "#CCCCCC";
 
 
 
@@ -221,6 +234,27 @@ export const MainDrawer = withStyles({
     width: '240px'
   }
 })(Drawer);
+
+// BOTTOM NAVIGATION
+export const PrimaryBottomNavigation = withStyles({
+  root: {
+    position: 'fixed',
+    bottom: '0',
+    width: '100%',
+    height: '10%',
+    background: backgroundSecondary
+  }
+})(BottomNavigation);
+
+// BOTTOM NAVIGATION ACTION
+export const PrimaryBottomNavigationAction = withStyles({
+  root: {
+    color: textSecondary
+  },
+  label: {
+    marginTop: '5px'
+  }
+})(BottomNavigationAction);
 
 // CARD
 export const PrimaryCard = withStyles({
