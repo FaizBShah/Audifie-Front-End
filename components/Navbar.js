@@ -57,6 +57,7 @@ const Navbar = (props) => {
               className={styles.brandLogo}
               style={{
                 height: '3rem',
+                width: '150px',
                 margin: width <= 768 ? '1.25rem auto' : '0',
               }}
             ></img>
