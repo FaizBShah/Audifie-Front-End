@@ -52,12 +52,11 @@ const Navbar = (props) => {
         <NavToolBar>
           <Link href='/' style={{display: 'flex', alignItems: 'center'}}>
             <img
-              src='/assets/svg/logo_linear.svg'
+              src='/assets/kit/logo_linear.png'
               alt=''
               className={styles.brandLogo}
               style={{
                 height: '3rem',
-                width: '150px',
                 margin: width <= 768 ? '1.25rem auto' : '0',
               }}
             ></img>
