@@ -56,25 +56,25 @@ function Dashboard() {
             <i className="fas fa-home"></i>
             &nbsp;
             &nbsp;
-            <a>Home</a>
+            Home
           </div>
           <div className={styles.menuItem}>
             <i className="fas fa-book"></i>
             &nbsp;
             &nbsp;
-            <a>Library</a>
+            Library
           </div>
           <div className={styles.menuItem}>
             <i className="fas fa-dollar-sign"></i>
             &nbsp;
             &nbsp;
-            <a>Upgrade</a>
+            Upgrade
           </div>
           <div className={styles.menuItem}>
             <i className="fas fa-cog"></i>
             &nbsp;
             &nbsp;
-            <a>Settings</a>
+            Settings
           </div>
         </div>
         <div className={styles.otherItems}>
@@ -82,13 +82,13 @@ function Dashboard() {
             <i className="fas fa-share-alt"></i>
             &nbsp;
             &nbsp;
-            <a>Refer & Earn</a>
+            Refer & Earn
           </div>
-          <div className={styles.menuItem}>
+          <div className={styles.menuItem} onClick={signOut}>
             <i className="fas fa-sign-out-alt"></i>
             &nbsp;
             &nbsp;
-            <a onClick={signOut}>Logout</a>
+            Logout
           </div>
         </div>
       </MainDrawer>
