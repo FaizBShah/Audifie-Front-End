@@ -23,8 +23,8 @@
   width: 95%;
   margin-bottom: 1rem;
   padding-left: 25%;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   font-size: 1rem;
@@ -33,7 +33,6 @@
 
 .menuItem:hover {
   background-color: rgba(255, 243, 243, 0.15);
-  color: #fd5457;
 }
 
 .otherItems {
@@ -41,6 +40,10 @@
   margin-top: auto;
   margin-bottom: 2rem;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+.otherItems .menuItem:active {
+  color: #fd5457;
 }
 
 .mainArea {

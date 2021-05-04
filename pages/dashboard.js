@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
 import styles from '../styles/Dashboard.module.css';
 import { withSSRContext, Auth } from 'aws-amplify';
-import { Container, Grid, Link, BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import { PrimaryButton, MainDrawer, LoaderBackdrop, PrimaryBottomNavigation, PrimaryBottomNavigationAction } from '../components/MaterialComponents';
 import { Loader } from '../components/CustomIcons';
 import { useWindowDimensions } from '../utils/windowUtils';
 
+const menuConstants = {
+  HOME: 'home',
+  LIBRARY: 'library',
+  UPGRADE: 'upgrade',
+  SETTINGS: 'settings'
+};
+
 function Dashboard() {
+  const { HOME, LIBRARY, UPGRADE, SETTINGS } = menuConstants;
   const [loading, setLoading] = useState(false);
-  const [tabPos, setTabPos] = useState(0);
+  const [menu, setMenu] = useState(HOME);
   const { width } = useWindowDimensions();
 
   const signOut = (e) => {
@@ -31,6 +39,10 @@ function Dashboard() {
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  const handleMenuChange = (value) => {
+    setMenu(value);
   }
 
   return (
@@ -77,25 +89,41 @@ function Dashboard() {
             </PrimaryButton>
           </div>
           <div className={styles.menu}>
-            <div className={styles.menuItem}>
+            <div
+              className={styles.menuItem}
+              style={menu === HOME ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              onClick={() => handleMenuChange(HOME)}
+            >
               <i className="fas fa-home"></i>
               &nbsp;
               &nbsp;
               Home
             </div>
-            <div className={styles.menuItem}>
+            <div
+              className={styles.menuItem}
+              style={menu === LIBRARY ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              onClick={() => handleMenuChange(LIBRARY)}
+            >
               <i className="fas fa-book"></i>
               &nbsp;
               &nbsp;
               Library
             </div>
-            <div className={styles.menuItem}>
+            <div
+              className={styles.menuItem}
+              style={menu === UPGRADE ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              onClick={() => handleMenuChange(UPGRADE)}
+            >
               <i className="fas fa-dollar-sign"></i>
               &nbsp;
               &nbsp;
               Upgrade
             </div>
-            <div className={styles.menuItem}>
+            <div
+              className={styles.menuItem}
+              style={menu === SETTINGS ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              onClick={() => handleMenuChange(SETTINGS)}
+            >
               <i className="fas fa-cog"></i>
               &nbsp;
               &nbsp;
@@ -118,11 +146,11 @@ function Dashboard() {
           </div>
         </MainDrawer>
       ) : (
-        <PrimaryBottomNavigation showLabels value={tabPos} onChange={(e, newVal) => setTabPos(newVal)}>
-          <PrimaryBottomNavigationAction label="Home" icon={<i className="fas fa-home"></i>} />
-          <PrimaryBottomNavigationAction label="Library" icon={<i className="fas fa-book"></i>} />
-          <PrimaryBottomNavigationAction label="Upgrade" icon={<i className="fas fa-dollar-sign"></i>} />
-          <PrimaryBottomNavigationAction label="Settings" icon={<i className="fas fa-cog"></i>} />
+        <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
+          <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i className="fas fa-home"></i>} />
+          <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i className="fas fa-book"></i>} />
+          <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i className="fas fa-dollar-sign"></i>} />
+          <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i className="fas fa-cog"></i>} />
         </PrimaryBottomNavigation>
       )}
       <LoaderBackdrop open={loading}>
