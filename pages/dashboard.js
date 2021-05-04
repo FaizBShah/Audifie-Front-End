@@ -37,6 +37,20 @@ function Dashboard() {
     <>
       <div className={styles.mainArea}>
         <div className={styles.innerArea}>
+          {width <= 768 ? (
+            <>
+              <Link href="/">
+                <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo}></img>
+              </Link>
+              <PrimaryButton
+                size="small"
+                variant="contained"
+                style={{width: width > 425 ? '30%' : '60%', margin: '0 auto'}}
+              >
+                Upload
+              </PrimaryButton>
+            </>
+          ) : null}
           <div className={styles.emptyArea}>
             <div className={styles.emptyInnerArea}>
               <img src="/assets/svg/uploadAsset.svg" className={styles.uploadImage}></img>

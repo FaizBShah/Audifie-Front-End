@@ -74,15 +74,36 @@
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .emptyInnerArea {
+    width: 40%;
+  }
+}
+
 @media (max-width: 768px) {
+  .brandLogo {
+    width: 30%;
+    margin-bottom: 5rem;
+  }
+
   .innerArea {
     width: 100%;
     margin-left: 0;
+  }
+
+  .emptyArea {
+    height: 80vh;
   }
 }
 
 @media (max-width: 578px) {
   .emptyInnerArea {
+    width: 60%;
+  }
+}
+
+@media (max-width: 425px) {
+  .brandLogo {
     width: 60%;
   }
 }
