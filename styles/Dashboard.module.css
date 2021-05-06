@@ -32,7 +32,7 @@
 }
 
 .menuItem:hover {
-  background-color: rgba(255, 243, 243, 0.15);
+  color: #fd5457;
 }
 
 .otherItems {
