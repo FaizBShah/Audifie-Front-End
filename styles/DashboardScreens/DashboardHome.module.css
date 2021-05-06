@@ -1,0 +1,13 @@
+.mainArea {
+  padding: 2rem 2rem;
+}
+
+.mainHeading {
+  color: #ccc;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.cardsSection {
+  padding-top: 2rem;
+  padding-bottom: 10vh;
+}

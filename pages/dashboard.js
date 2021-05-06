@@ -5,6 +5,7 @@ import { Link } from '@material-ui/core';
 import { PrimaryButton, MainDrawer, LoaderBackdrop, PrimaryBottomNavigation, PrimaryBottomNavigationAction } from '../components/MaterialComponents';
 import { Loader } from '../components/CustomIcons';
 import { useWindowDimensions } from '../utils/windowUtils';
+import DashboardHome from '../components/dashboard/sections/DashboardHome';
 
 const menuConstants = {
   HOME: 'home',
@@ -16,8 +17,26 @@ const menuConstants = {
 function Dashboard() {
   const { HOME, LIBRARY, UPGRADE, SETTINGS } = menuConstants;
   const [loading, setLoading] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const [menu, setMenu] = useState(HOME);
   const { width } = useWindowDimensions();
+
+  // Function to render different menu screens
+  const renderMenu = (value) => {
+    switch (value) {
+      case HOME:
+        return !isEmpty ? (<DashboardHome />) : (
+          <div className={styles.emptyArea}>
+            <div className={styles.emptyInnerArea}>
+              <img src="/assets/svg/uploadAsset.svg" className={styles.uploadImage}></img>
+              <p className={styles.uploadText}>Upload Your Documents</p>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  }
 
   const signOut = (e) => {
     e.preventDefault();
@@ -63,12 +82,7 @@ function Dashboard() {
               </PrimaryButton>
             </>
           ) : null}
-          <div className={styles.emptyArea}>
-            <div className={styles.emptyInnerArea}>
-              <img src="/assets/svg/uploadAsset.svg" className={styles.uploadImage}></img>
-              <p className={styles.uploadText}>Upload Your Documents</p>
-            </div>
-          </div>
+          {renderMenu(menu)} 
         </div>
       </div>
       {width > 768 ? (
