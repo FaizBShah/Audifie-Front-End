@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css'
-import Footer from '../components/Footer';
+import Footer from '../components/commons/Footer';
 import { Container, Grid, Link } from '@material-ui/core';
 import {
   PrimaryInput,

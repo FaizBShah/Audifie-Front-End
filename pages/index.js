@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/commons/Navbar';
 import styles from '../styles/Home.module.css';
 import { Grid, Container, Button } from '@material-ui/core';
 import { PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
-import Footer from '../components/Footer';
+import Footer from '../components/commons/Footer';
 import { GoForward, ProfileBordered, FileUploadBordered, WaveDuotone } from '../components/CustomIcons';
 import { withSSRContext } from 'aws-amplify';
 

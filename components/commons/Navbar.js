@@ -6,11 +6,11 @@ import {
   NavToolBar,
   NavDrawer,
   LoaderBackdrop
-} from '../components/MaterialComponents';
-import styles from '../styles/Navbar.module.css';
-import { useWindowDimensions } from '../utils/windowUtils';
+} from '../MaterialComponents';
+import styles from '../../styles/Navbar.module.css';
+import { useWindowDimensions } from '../../utils/windowUtils';
 import { Auth } from 'aws-amplify';
-import { Loader } from './CustomIcons';
+import { Loader } from '../CustomIcons';
 
 const Navbar = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

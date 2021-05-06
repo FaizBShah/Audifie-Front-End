@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core';
 import Link from 'next/link';
-import { FooterIcon } from './MaterialComponents';
-import styles from '../styles/Footer.module.css';
+import { FooterIcon } from '../MaterialComponents';
+import styles from '../../styles/Footer.module.css';
 
 const Footer = () => {
   const year = new Date().getFullYear();
