@@ -9,7 +9,6 @@ import {
   Backdrop, 
   Card, 
   CardContent, 
-  Slider, 
   BottomNavigation, 
   BottomNavigationAction,
 } from '@material-ui/core';
@@ -261,26 +260,21 @@ export const PrimaryCard = withStyles({
   root: {
     background: backgroundSecondary,
     boxShadow: ' 0 8px 6px -6px black',
-    borderRadius:'10px',
+    borderRadius:'5px',
     width: '100%',
+    height: '15rem',
   },
 })(Card);
 
 // CARD BODY
 export const PrimaryCardContent = withStyles({
   root: {
-   padding:'0',
+   padding: '0',
    color: '#ccc',
    display: 'flex',
+   height: '100%',
    '&:last-child':{
     paddingBottom:'0'
    },
   },
 })(CardContent);
-
-// CARD SLIDER
-export const CardSlider = withStyles({
-  thumb: {
-    display: 'none',
-  }
-})(Slider);

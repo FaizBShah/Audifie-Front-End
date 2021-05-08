@@ -2,36 +2,20 @@ import React from 'react';
 import {
   PrimaryCard,
   PrimaryCardContent,
-  CardSlider
 } from '../MaterialComponents';
 import styles from '../../styles/Card.module.css';
+import { useWindowDimensions } from '../../utils/windowUtils';
 
-function Card({ defaultCard }) {
+function Card() {
+  const { width } = useWindowDimensions();
 
   return (
     <>
-      <PrimaryCard>
+      <PrimaryCard style={{height: width <= 425 ? '10rem' : '15rem'}}>
         <PrimaryCardContent>
-          <img
-            className={styles.bookImage}
-            src='/assets/kit/harryPotter.jpg'
-            alt=''
-          />
-          <div className={styles.bookDetails}>
-            <h3 className={styles.bookTitle}>Harry Potter : Goblet of Fire</h3>
-            <div className={styles.slider}>
-              <CardSlider
-                style={{padding:'0'}}
-                value={50}
-                aria-labelledby='continuous-slider'
-              />
-            </div>
-            <div className={styles.bottomText}>
-              <p className={styles.bookHistory}>Last Played : 1 Day Ago</p>
-              <div className={styles.delete}>
-                <i className='fas fa-trash' style={{cursor: 'pointer'}}></i>
-              </div>
-            </div>
+          <div className={styles.cardImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}}></div>
+          <div className={styles.mainContent}>
+
           </div>
         </PrimaryCardContent>
       </PrimaryCard>

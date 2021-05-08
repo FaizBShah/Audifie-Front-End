@@ -24,6 +24,7 @@ function DashboardHome() {
               lg={4}
               md={6}
               sm={10}
+              xs={12}
             >
               <Card />
             </Grid>
@@ -32,6 +33,7 @@ function DashboardHome() {
               lg={4}
               md={6}
               sm={10}
+              xs={12}
             >
               <Card />
             </Grid>
@@ -40,6 +42,7 @@ function DashboardHome() {
               lg={4}
               md={6}
               sm={10}
+              xs={12}
             >
               <Card />
             </Grid>

@@ -1,68 +1,8 @@
-.bookImage {
-  width: 40%;
-} 
-
-.bookDetails {
-  margin: 1rem;
-  margin-left: 2rem;
-  margin-bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.cardImage {
+  flex: 2;
+  height: 100%;
 }
 
-.bookTitle {
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-.slider {
-  width: 80%;
-}
-
-.bottomText {
-  display: flex;
-  justify-content: space-between;
-}
-
-.delete {
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .bookImage {
-    width: 33%;
-  }
-
-  .bookTitle {
-    font-size: 1rem;
-  }
-
-  .slider {
-    width: 90%;
-  }
-
-  .bottomText {
-    font-size: 0.6rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .bottomText {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 440px) {
-  .bottomText {
-    font-size: 0.6rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .bookTitle {
-    font-size: 0.8rem;
-  }
+.mainContent {
+  flex: 3;
 }
