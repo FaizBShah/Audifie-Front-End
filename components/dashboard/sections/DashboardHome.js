@@ -10,7 +10,7 @@ function DashboardHome() {
   return (
     <>
       <div className={styles.mainArea}>
-        {width > 768 ? (<h4 className={styles.mainHeading}>Your recent files</h4>) : null}
+        {width > 768 ? (<h3 className={styles.mainHeading}>Your recent files</h3>) : null}
         <div className={styles.cardsSection}>
           <Grid
             container

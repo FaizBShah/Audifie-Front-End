@@ -15,7 +15,22 @@ function Card() {
         <PrimaryCardContent>
           <div className={styles.cardImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}}></div>
           <div className={styles.mainContent}>
+            <div className={styles.innerContent}>
+              <div className={styles.cardInfo}>
+                <h3 className={styles.cardTitle}>Forever is a Lie</h3>
+                <div className={styles.info}>
+                  <div className={styles.remainingInfo}>
+                    <p className={styles.hoursText}>6 Hours Listen</p>
+                  </div>
+                  <div className={styles.favouriteCheckBox}>
+                    <i className="far fa-heart"></i>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.cardButtons}>
 
+              </div>
+            </div>
           </div>
         </PrimaryCardContent>
       </PrimaryCard>

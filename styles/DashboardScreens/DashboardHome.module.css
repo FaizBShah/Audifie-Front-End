@@ -5,6 +5,7 @@
 .mainHeading {
   color: #ccc;
   font-family: 'Josefin Sans', sans-serif;
+  margin-bottom: 0;
 }
 
 .cardsSection {

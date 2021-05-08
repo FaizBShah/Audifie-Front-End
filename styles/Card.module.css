@@ -5,4 +5,58 @@
 
 .mainContent {
   flex: 3;
+  color: #ccc;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.innerContent {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  margin-top: 0;
+}
+
+.info {
+  display: flex;
+  font-size: 1rem;
+}
+
+.remainingInfo {
+  width: 75%;
+  border: 1px #ccc solid;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.hoursText {
+  margin: 0;
+  padding: 2px;
+}
+
+.favouriteCheckBox {
+  width: 25%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 380px) {
+  .info {
+    font-size: 0.6rem;
+  }
+
+  .cardTitle {
+    font-size: 0.8rem;
+  }
+
+  .favouriteCheckBox {
+    font-size: 0.8rem;
+  }
 }
