@@ -15,7 +15,7 @@
 }
 
 .menu {
-  color: #ccc;
+  color: #FEFEFE;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -32,13 +32,17 @@
 }
 
 .menuItem:hover {
-  color: #fd5457;
+  background-color: rgba(255, 227, 227, 0.15);
+}
+
+.menuItem i {
+  height: 14px;
 }
 
 .otherItems {
   color: #ccc;
   margin-top: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: 'Josefin Sans', sans-serif;
 }
 

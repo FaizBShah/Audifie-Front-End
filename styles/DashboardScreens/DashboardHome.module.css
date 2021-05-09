@@ -5,6 +5,8 @@
 .mainHeading {
   color: #ccc;
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
   margin-bottom: 0;
 }
 

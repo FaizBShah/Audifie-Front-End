@@ -29,18 +29,16 @@ const textSecondary = "#CCCCCC";
 // PRIMARY BUTTON
 export const PrimaryButton = withStyles({
   root: {
-    // width: "100%",
+    display: 'flex',
+    padding: '4px 32px',
     backgroundColor: colorBranding,
     fontFamily: "'Comfortaa', cursive",
     fontWeight: '600',
-    // borderColor: "#fd5457",
     border: '2px solid ' + colorBranding,
     borderRadius: '50px',
     color: '#fefefe',
-    fontSize: '1.15rem',
-    display: 'flex',
-    boxShadow: ' 0 8px 6px -6px black',
-    justifyContent: 'space-around',
+    fontSize: '1rem',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     '&:hover': {
       backgroundColor: colorBranding + '05'
     },
@@ -59,7 +57,7 @@ export const GoogleButton = withStyles({
     color: 'black',
     fontSize: '1rem',
     display: 'flex',
-    boxShadow: ' 0 8px 6px -6px black',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     justifyContent: 'space-around',
     padding: '0.5rem 1rem',
     '&:hover': {
@@ -82,7 +80,7 @@ export const FacebookButton = withStyles({
     color: 'white',
     fontSize: '1rem',
     display: 'flex',
-    boxShadow: ' 0 8px 6px -6px black',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     justifyContent: 'space-around',
     padding: '0.5rem 1rem',
     '&:hover': {
@@ -161,7 +159,7 @@ export const NavAppBar = withStyles({
   root: {
     position: 'sticky',
     backgroundColor: backgroundPrimary,
-    boxShadow: '0 8px 6px -6px black',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     ['@media (max-width:768px)']: {
       position: 'relative',
       boxShadow: 'none',
@@ -186,7 +184,7 @@ export const NavDrawer = withStyles({
     backgroundColor: backgroundSecondary,
     width: '100vw',
     borderRadius: '20px 20px 0 0',
-    boxShadow: ' 0 8px 6px -6px black'
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)'
   }
 })(Drawer);
 
@@ -251,7 +249,8 @@ export const PrimaryBottomNavigationAction = withStyles({
     color: textSecondary
   },
   label: {
-    marginTop: '5px'
+    marginTop: '5px',
+    fontFamily: '"Josefin Sans", sans-serif'
   }
 })(BottomNavigationAction);
 
@@ -259,7 +258,7 @@ export const PrimaryBottomNavigationAction = withStyles({
 export const PrimaryCard = withStyles({
   root: {
     background: backgroundSecondary,
-    boxShadow: ' 0 8px 6px -6px black',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     borderRadius:'5px',
     width: '100%',
     height: '15rem',
