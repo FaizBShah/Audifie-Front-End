@@ -20,7 +20,7 @@ function Card() {
                 <h3 className={styles.cardTitle}>Forever is a Lie</h3>
                 <div className={styles.info}>
                   <div className={styles.remainingInfo}>
-                    <p className={styles.hoursText}>6 Hours Listen</p>
+                    <span className={styles.hoursText}>6 Hours Listen</span>
                   </div>
                   <div className={styles.favouriteCheckBox}>
                     <i className="far fa-heart"></i>

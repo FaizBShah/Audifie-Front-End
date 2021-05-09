@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/Dashboard.module.css';
 import { withSSRContext, Auth } from 'aws-amplify';
 import { Link } from '@material-ui/core';
 import { PrimaryButton, MainDrawer, LoaderBackdrop, PrimaryBottomNavigation, PrimaryBottomNavigationAction } from '../components/MaterialComponents';
 import { Loader } from '../components/CustomIcons';
 import { useWindowDimensions } from '../utils/windowUtils';
+import { UploadIcon, HomeIcon, LibraryIcon, PremiumIcon, SettingsIcon, ShareIcon, LogoutIcon } from '../components/CustomIcons';
 import DashboardHome from '../components/dashboard/sections/DashboardHome';
 
 const menuConstants = {
@@ -76,13 +77,14 @@ function Dashboard() {
               <PrimaryButton
                 size="small"
                 variant="contained"
-                style={{width: width > 425 ? '30%' : '60%', margin: '0 auto'}}
+                style={{ margin: '0 auto' }}
+                startIcon={<i><UploadIcon width="1.125rem" /></i>}
               >
                 Upload
               </PrimaryButton>
             </>
           ) : null}
-          {renderMenu(menu)} 
+          {renderMenu(menu)}
         </div>
       </div>
       {width > 768 ? (
@@ -91,13 +93,14 @@ function Dashboard() {
           anchor={"left"}
         >
           <Link href="/">
-            <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo}></img>
+            <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo} style={{width:'40%'}}></img>
           </Link>
           <div className={styles.uploadContainer}>
             <PrimaryButton
               size="small"
               variant="contained"
-              style={{width: "100%"}}
+              style={{ marginLeft: "1.125rem" }}
+              startIcon={<i><UploadIcon width="1rem" /></i>}
             >
               Upload
             </PrimaryButton>
@@ -105,40 +108,40 @@ function Dashboard() {
           <div className={styles.menu}>
             <div
               className={styles.menuItem}
-              style={menu === HOME ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              style={menu === HOME ? { backgroundColor: 'rgba(255, 227, 227, 0.15)', color: '#FD5457' } : null}
               onClick={() => handleMenuChange(HOME)}
             >
-              <i className="fas fa-home"></i>
+              <i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>
               &nbsp;
               &nbsp;
               Home
             </div>
             <div
               className={styles.menuItem}
-              style={menu === LIBRARY ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              style={menu === LIBRARY ? { backgroundColor: 'rgba(255, 227, 227, 0.15)', color: '#fd5457' } : null}
               onClick={() => handleMenuChange(LIBRARY)}
             >
-              <i className="fas fa-book"></i>
+              <i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>
               &nbsp;
               &nbsp;
               Library
             </div>
             <div
               className={styles.menuItem}
-              style={menu === UPGRADE ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              style={menu === UPGRADE ? { backgroundColor: 'rgba(255, 227, 227, 0.15)', color: '#FFB8B8' } : null}
               onClick={() => handleMenuChange(UPGRADE)}
             >
-              <i className="fas fa-dollar-sign"></i>
+              <i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>
               &nbsp;
               &nbsp;
               Upgrade
             </div>
             <div
               className={styles.menuItem}
-              style={menu === SETTINGS ? {backgroundColor: 'rgba(255, 243, 243, 0.15)', color: '#fd5457'} : null}
+              style={menu === SETTINGS ? { backgroundColor: 'rgba(255, 227, 227, 0.15)', color: '#fd5457' } : null}
               onClick={() => handleMenuChange(SETTINGS)}
             >
-              <i className="fas fa-cog"></i>
+              <i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>
               &nbsp;
               &nbsp;
               Settings
@@ -146,13 +149,13 @@ function Dashboard() {
           </div>
           <div className={styles.otherItems}>
             <div className={styles.menuItem}>
-              <i className="fas fa-share-alt"></i>
+              <i><ShareIcon height="1rem" color='#CCCCCC' /></i>
               &nbsp;
               &nbsp;
               Refer & Earn
             </div>
             <div className={styles.menuItem} onClick={signOut}>
-              <i className="fas fa-sign-out-alt"></i>
+              <i><LogoutIcon height="1rem" color='#CCCCCC' /></i>
               &nbsp;
               &nbsp;
               Logout
@@ -161,10 +164,10 @@ function Dashboard() {
         </MainDrawer>
       ) : (
         <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
-          <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i className="fas fa-home"></i>} />
-          <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i className="fas fa-book"></i>} />
-          <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i className="fas fa-dollar-sign"></i>} />
-          <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i className="fas fa-cog"></i>} />
+          <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
+          <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
+          <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
+          <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
         </PrimaryBottomNavigation>
       )}
       <LoaderBackdrop open={loading}>
@@ -174,7 +177,7 @@ function Dashboard() {
   )
 }
 
-export async function getServerSideProps({req, res}) {
+export async function getServerSideProps({ req, res }) {
   const { Auth } = withSSRContext({ req });
 
   try {
@@ -182,7 +185,7 @@ export async function getServerSideProps({req, res}) {
     console.log(user);
   } catch (err) {
     console.log(err);
-    res.writeHead(302, {Location: '/signup'});
+    res.writeHead(302, { Location: '/signup' });
     res.end();
   }
   return {

@@ -47,7 +47,7 @@ body::-webkit-scrollbar-thumb {
 
 .nav-links span {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
