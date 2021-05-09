@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   PrimaryCard,
   PrimaryCardContent,
@@ -7,6 +7,7 @@ import styles from '../../styles/Card.module.css';
 import { useWindowDimensions } from '../../utils/windowUtils';
 
 function Card() {
+  const [isFavourite, setIsFavourite] = useState(false);
   const { width } = useWindowDimensions();
 
   return (
@@ -23,7 +24,7 @@ function Card() {
                     <span className={styles.hoursText}>6 Hours Listen</span>
                   </div>
                   <div className={styles.favouriteCheckBox}>
-                    <i className="far fa-heart"></i>
+                    <i className={isFavourite ? "fas fa-heart" : "far fa-heart"} onClick={() => setIsFavourite(!isFavourite)}></i>
                   </div>
                 </div>
               </div>

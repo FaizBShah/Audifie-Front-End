@@ -19,6 +19,9 @@
 
 .cardTitle {
   margin-top: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .info {
@@ -27,7 +30,7 @@
 }
 
 .remainingInfo {
-  width: 75%;
+  width: 60%;
   border: 1px #fefefe solid;
   border-radius: 50px;
   text-align: center;
@@ -36,10 +39,11 @@
 .hoursText {
   margin: 0;
   padding: 2px;
+  font-size: 0.75rem;
 }
 
 .favouriteCheckBox {
-  width: 25%;
+  width: 30%;
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
@@ -47,12 +51,16 @@
   margin-bottom: 2px;
 }
 
+.favouriteCheckBox i {
+  cursor: pointer;
+}
+
 .cardButtons {
   display: flex;
 }
 
 .playButton {
-  width: 75%;
+  width: 70%;
   background: #fefefe;
   border-radius: 50px;
   text-align: center;
@@ -69,7 +77,7 @@
 }
 
 .menuBar {
-  width: 25%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,5 +112,11 @@
 
   .menuBar {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hoursText {
+    font-size: 0.5rem;
   }
 }

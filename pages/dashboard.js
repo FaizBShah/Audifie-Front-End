@@ -74,14 +74,16 @@ function Dashboard() {
               <Link href="/">
                 <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo}></img>
               </Link>
-              <PrimaryButton
-                size="small"
-                variant="contained"
-                style={{ margin: '0 auto' }}
-                startIcon={<i><UploadIcon width="1.125rem" /></i>}
-              >
-                Upload
-              </PrimaryButton>
+              {menu === HOME ? (
+                <PrimaryButton
+                  size="small"
+                  variant="contained"
+                  style={{ margin: '0 auto' }}
+                  startIcon={<i><UploadIcon width="1.125rem" /></i>}
+                >
+                  Upload
+                </PrimaryButton>
+              ) : null}
             </>
           ) : null}
           {renderMenu(menu)}
@@ -93,7 +95,7 @@ function Dashboard() {
           anchor={"left"}
         >
           <Link href="/">
-            <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo} style={{width:'40%'}}></img>
+            <img src="/assets/svg/logo_linear.svg" className={styles.brandLogo}></img>
           </Link>
           <div className={styles.uploadContainer}>
             <PrimaryButton
