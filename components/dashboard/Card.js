@@ -11,7 +11,7 @@ function Card() {
 
   return (
     <>
-      <PrimaryCard style={{height: width <= 425 ? '10rem' : '15rem'}}>
+      <PrimaryCard style={{height: width <= 425 ? '10rem' : '14rem'}}>
         <PrimaryCardContent>
           <div className={styles.cardImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}}></div>
           <div className={styles.mainContent}>
@@ -28,7 +28,10 @@ function Card() {
                 </div>
               </div>
               <div className={styles.cardButtons}>
-
+                <a href="#" className={styles.playButton}><p className={styles.playText}>PLAY</p></a>
+                <div className={styles.menuBar}>
+                  <i className="fas fa-ellipsis-v"></i>
+                </div>
               </div>
             </div>
           </div>

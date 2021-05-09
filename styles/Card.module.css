@@ -5,7 +5,7 @@
 
 .mainContent {
   flex: 3;
-  color: #ccc;
+  color: #fefefe;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -28,7 +28,7 @@
 
 .remainingInfo {
   width: 75%;
-  border: 1px #ccc solid;
+  border: 1px #fefefe solid;
   border-radius: 50px;
   text-align: center;
 }
@@ -47,7 +47,45 @@
   margin-bottom: 2px;
 }
 
-@media (max-width: 380px) {
+.cardButtons {
+  display: flex;
+}
+
+.playButton {
+  width: 75%;
+  background: #fefefe;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.playButton:hover {
+  background: #ccc;
+}
+
+.playText {
+  color: #1d1d1d;
+  margin: 0;
+  padding: 6px;
+}
+
+.menuBar {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.menuBar:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.menuBar:active {
+  color: #ccc;
+}
+
+@media (max-width: 425px) {
   .info {
     font-size: 0.6rem;
   }
@@ -58,5 +96,13 @@
 
   .favouriteCheckBox {
     font-size: 0.8rem;
+  }
+
+  .playText {
+    font-size: 0.6rem;
+  }
+
+  .menuBar {
+    font-size: 1rem;
   }
 }

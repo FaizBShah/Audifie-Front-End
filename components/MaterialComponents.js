@@ -262,7 +262,7 @@ export const PrimaryCard = withStyles({
     boxShadow: ' 0 8px 6px -6px black',
     borderRadius:'5px',
     width: '100%',
-    height: '15rem',
+    height: '14rem',
   },
 })(Card);
 
