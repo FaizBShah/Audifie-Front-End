@@ -7,6 +7,7 @@ import { Loader } from '../components/CustomIcons';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { UploadIcon, HomeIcon, LibraryIcon, PremiumIcon, SettingsIcon, ShareIcon, LogoutIcon } from '../components/CustomIcons';
 import DashboardHome from '../components/dashboard/sections/DashboardHome';
+import Library from '../components/dashboard/sections/library/Library';
 
 const menuConstants = {
   HOME: 'home',
@@ -34,6 +35,8 @@ function Dashboard() {
             </div>
           </div>
         );
+      case LIBRARY:
+        return (<Library />);
       default:
         return null;
     }
