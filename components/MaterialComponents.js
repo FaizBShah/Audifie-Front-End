@@ -11,6 +11,8 @@ import {
   CardContent, 
   BottomNavigation, 
   BottomNavigationAction,
+  Tabs,
+  Tab
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
@@ -277,3 +279,22 @@ export const PrimaryCardContent = withStyles({
    },
   },
 })(CardContent);
+
+// PRIMARY TABS
+export const PrimaryTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: colorBranding,
+  }
+})(Tabs);
+
+// PRIMARY TAB
+export const PrimaryTab = withStyles({
+  root: {
+    textTransform: 'none',
+    color: '#FEFEFE',
+    fontFamily: '"Josefin Sans", sans-serif',
+    fontSize: '1rem',
+  }
+})(Tab);
