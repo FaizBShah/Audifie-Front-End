@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { PrimaryTabs, PrimaryTab } from '../../../MaterialComponents';
 import styles from '../../../../styles/DashboardScreens/Library.module.css';
 import { useWindowDimensions } from '../../../../utils/windowUtils';
+import AllDocuments from './AllDocuments';
+import Favourites from './Favourites';
 
 function Library() {
   const [tabValue, setTabValue] = useState(0);
@@ -24,6 +26,9 @@ function Library() {
           <PrimaryTab label="All documents" style={{marginRight: width > 768 ? '4rem' : 'auto'}} />
           <PrimaryTab label="Favourites" />
         </PrimaryTabs>
+      </div>
+      <div className={styles.mainArea}>
+        {tabValue === 0 ? <AllDocuments /> : <Favourites />}
       </div>
     </>
   )
