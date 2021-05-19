@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Dashboard.module.css';
 import { withSSRContext, Auth } from 'aws-amplify';
 import { Link } from '@material-ui/core';
@@ -22,7 +23,9 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [menu, setMenu] = useState(HOME);
+  
   const { width } = useWindowDimensions();
+  const router = useRouter();
 
   // Function to render different menu screens
   const renderMenu = (value) => {
