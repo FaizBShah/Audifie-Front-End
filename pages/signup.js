@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Auth.module.css';
 import Footer from '../components/commons/Footer';
@@ -30,6 +30,19 @@ function Signup() {
 
   const { width } = useWindowDimensions();
   const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.confirmSignUp !== null) {
+      setIsCodeWaiting(router.query.confirmSignUp);
+      setEmail(router.query.email);
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isCodeWaiting === true) {
+      router.push(`?confirmSignUp=${isCodeWaiting}&email=${email}`, undefined, { shallow: true });
+    }
+  }, [isCodeWaiting])
 
   const handleSignUp = (e) => {
     e.preventDefault();
