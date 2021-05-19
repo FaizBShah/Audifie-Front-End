@@ -59,34 +59,6 @@
   margin-left: 240px;
 }
 
-.emptyArea {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.emptyInnerArea {
-  width: 25%;
-}
-
-.uploadImage {
-  width: 100%;
-}
-
-.uploadText {
-  color: #ccc;
-  font-size: 1rem;
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: center;
-}
-
-@media (max-width: 1024px) {
-  .emptyInnerArea {
-    width: 40%;
-  }
-}
-
 @media (max-width: 768px) {
   .brandLogo {
     width: 30%;
@@ -96,16 +68,6 @@
   .innerArea {
     width: 100%;
     margin-left: 0;
-  }
-
-  .emptyArea {
-    height: 80vh;
-  }
-}
-
-@media (max-width: 578px) {
-  .emptyInnerArea {
-    width: 60%;
   }
 }
 

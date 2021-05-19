@@ -8,6 +8,7 @@ import { useWindowDimensions } from '../utils/windowUtils';
 import { UploadIcon, HomeIcon, LibraryIcon, PremiumIcon, SettingsIcon, ShareIcon, LogoutIcon } from '../components/CustomIcons';
 import DashboardHome from '../components/dashboard/sections/DashboardHome';
 import Library from '../components/dashboard/sections/library/Library';
+import EmptyArea from '../components/commons/EmptyArea';
 
 const menuConstants = {
   HOME: 'home',
@@ -27,14 +28,7 @@ function Dashboard() {
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
-        return !isEmpty ? (<DashboardHome />) : (
-          <div className={styles.emptyArea}>
-            <div className={styles.emptyInnerArea}>
-              <img src="/assets/svg/uploadAsset.svg" className={styles.uploadImage}></img>
-              <p className={styles.uploadText}>Upload Your Documents</p>
-            </div>
-          </div>
-        );
+        return !isEmpty ? (<DashboardHome />) : (<EmptyArea />);
       case LIBRARY:
         return (<Library />);
       default:

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cards from '../../Cards';
+import EmptyArea from '../../../commons/EmptyArea';
 
 function AllDocuments() {
+  const [isEmpty, setIsEmpty] = useState(true);
+
   return (
     <>
-      <Cards />
+      {isEmpty ? (<EmptyArea />) : <Cards />}
     </>
   )
 }
