@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Dashboard.module.css';
 import { withSSRContext, Auth } from 'aws-amplify';
@@ -26,6 +26,18 @@ function Dashboard() {
   
   const { width } = useWindowDimensions();
   const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.menu) {
+      setMenu(router.query.menu);
+    }
+  }, [])
+
+  useEffect(() => {
+    if (menu) {
+      router.push(`?menu=${menu}`, undefined, { shallow: true })
+    }
+  }, [menu])
 
   // Function to render different menu screens
   const renderMenu = (value) => {

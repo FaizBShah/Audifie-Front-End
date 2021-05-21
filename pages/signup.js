@@ -32,7 +32,7 @@ function Signup() {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query.confirmSignUp !== null) {
+    if (router.query.confirmSignUp) {
       setIsCodeWaiting(router.query.confirmSignUp);
       setEmail(router.query.email);
     }
