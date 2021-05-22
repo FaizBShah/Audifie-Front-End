@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../../../styles/DashboardScreens/DashboardHome.module.css';
-import { Grid } from '@material-ui/core';
 import { useWindowDimensions } from '../../../utils/windowUtils';
 import Cards from '../Cards';
 
