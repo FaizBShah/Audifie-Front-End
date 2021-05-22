@@ -10,6 +10,7 @@ import { UploadIcon, HomeIcon, LibraryIcon, PremiumIcon, SettingsIcon, ShareIcon
 import DashboardHome from '../components/dashboard/sections/DashboardHome';
 import Library from '../components/dashboard/sections/library/Library';
 import EmptyArea from '../components/commons/EmptyArea';
+import UploadModal from '../components/dashboard/UploadModal';
 
 const menuConstants = {
   HOME: 'home',
@@ -23,6 +24,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [menu, setMenu] = useState(HOME);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -92,6 +94,7 @@ function Dashboard() {
                   variant="contained"
                   style={{ margin: '0 auto' }}
                   startIcon={<i><UploadIcon width="1.125rem" /></i>}
+                  onClick={() => setIsModalOpen(true)}
                 >
                   Upload
                 </PrimaryButton>
@@ -115,6 +118,7 @@ function Dashboard() {
               variant="contained"
               style={{ marginLeft: "1.125rem" }}
               startIcon={<i><UploadIcon width="1rem" /></i>}
+              onClick={() => setIsModalOpen(true)}
             >
               Upload
             </PrimaryButton>
@@ -184,6 +188,7 @@ function Dashboard() {
           <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
         </PrimaryBottomNavigation>
       )}
+      <UploadModal open={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <LoaderBackdrop open={loading}>
         <Loader />
       </LoaderBackdrop>

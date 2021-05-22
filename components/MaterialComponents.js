@@ -12,7 +12,9 @@ import {
   BottomNavigation, 
   BottomNavigationAction,
   Tabs,
-  Tab
+  Tab,
+  Dialog,
+  DialogContent
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
@@ -43,6 +45,29 @@ export const PrimaryButton = withStyles({
     boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
     '&:hover': {
       backgroundColor: colorBranding + '05'
+    },
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
+// SECONDARY BUTTON
+export const SecondaryButton = withStyles({
+  root: {
+    display: 'flex',
+    padding: '4px 32px',
+    backgroundColor:'#fefefe',
+    fontFamily: "'Comfortaa', cursive",
+    fontWeight: '600',
+    border: '2px solid #fefefe',
+    borderRadius: '50px',
+    color: '#1d1d1d',
+    fontSize: '1rem',
+    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.4)',
+    '&:hover': {
+      backgroundColor: '#fefefe05',
+      color: '#fefefe'
     },
   },
   label: {
@@ -298,3 +323,31 @@ export const PrimaryTab = withStyles({
     fontSize: '1rem',
   }
 })(Tab);
+
+// PRIMARY DIALOG
+export const PrimaryDialog = withStyles({
+  container: {
+    width: 'calc(100% - 240px)',
+    marginLeft: '240px',
+    ['@media (max-width:768px)']: {
+      width: '100%',
+      marginLeft: '0'
+    }
+  },
+  paper: {
+    backgroundColor: backgroundSecondary,
+    borderRadius: '15px',
+    padding: '2rem 2rem',
+    marginTop: '-5rem'
+  }
+})(Dialog)
+
+// PRIMARY DIALOG CONTENT
+export const PrimaryDialogContent = withStyles({
+  root: {
+    padding: '0',
+    '&:first-child': {
+      paddingTop: '0'
+    }
+  }
+})(DialogContent)
