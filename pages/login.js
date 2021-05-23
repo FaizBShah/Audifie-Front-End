@@ -21,6 +21,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isCodeWaiting, setIsCodeWaiting] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
   const [errors, setErrors] = useState({
     email: '',
     password: ''
@@ -135,59 +137,125 @@ function Login() {
                       <img src='/assets/kit/logo_linear.png' className={styles.brandLogo}/>
                     </Link>
                     <div className={styles.formBody}>
-                      <form className={styles.form}>
-                          <PrimaryInput  
-                            type="email" 
-                            label="Email" 
-                            variant="outlined"
-                            style={{marginBottom: "3rem"}}
-                            value={email}
-                            helperText={errors.email}
-                            onChange={(e) => setEmail(e.target.value)}/>
-                          <PrimaryInput  
-                            type="password" 
-                            label="Password" 
-                            variant="outlined"
-                            style={{marginBottom: "3rem"}}
-                            value={password}
-                            helperText={errors.password}
-                            onChange={(e) => setPassword(e.target.value)}/>
-                          <PrimaryButton
-                            size="medium"
-                            variant="contained"
-                            style={{width: "100%"}}
-                            onClick={handleSignIn}>
-                            Sign In
-                          </PrimaryButton>
-                        </form>
-                        <div className={styles.dividerArea}>
-                          <div className={styles.divider}></div>
-                          <div className={styles.dividerText}>
-                            or Sign in with
+                      {!isCodeWaiting ? (
+                        <>
+                          <form className={styles.form} style={{marginBottom: "1.5rem"}}>
+                            <PrimaryInput  
+                              type="email" 
+                              label="Email" 
+                              variant="outlined"
+                              style={{marginBottom: "3rem"}}
+                              value={email}
+                              helperText={errors.email}
+                              onChange={(e) => setEmail(e.target.value)}/>
+                            <PrimaryInput  
+                              type="password" 
+                              label="Password" 
+                              variant="outlined"
+                              style={{marginBottom: "3rem"}}
+                              value={password}
+                              helperText={errors.password}
+                              onChange={(e) => setPassword(e.target.value)}/>
+                            <PrimaryButton
+                              size="medium"
+                              variant="contained"
+                              style={{width: "100%"}}
+                              onClick={handleSignIn}>
+                              Sign In
+                            </PrimaryButton>
+                          </form>
+                          <div className={styles.forgotText} onClick={() => setIsCodeWaiting(true)}>
+                            Forgot Password?
                           </div>
-                          <div className={styles.divider}></div>
-                        </div>
-                        <div className={styles.federatedArea}>
-                          <GoogleButton
-                            startIcon={<img src="/assets/Icons/google.svg" style={{height:'1.15rem'}}/>}
-                            size="medium"
-                            type="contained"
-                            style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}
-                            onClick={(e) => handleFederatedSignIn(e, 'Google')}>
-                              Google
-                          </GoogleButton>
-                          <FacebookButton
-                            startIcon={<i className="fab fa-facebook"></i>}
-                            size="medium"
-                            type="contained"
-                            style={{width: "100%", flex: "1", marginBottom: "1rem"}}
-                            onClick={(e) => handleFederatedSignIn(e, 'Facebook')}>
-                              Facebook
-                          </FacebookButton>
-                        </div>
-                        <div className={styles.bottomText}>
-                          Don't have an account? <Link href='/signup'>Sign Up here</Link>
-                        </div>
+                          <div className={styles.dividerArea}>
+                            <div className={styles.divider}></div>
+                            <div className={styles.dividerText}>
+                              or Sign in with
+                            </div>
+                            <div className={styles.divider}></div>
+                          </div>
+                          <div className={styles.federatedArea}>
+                            <GoogleButton
+                              startIcon={<img src="/assets/Icons/google.svg" style={{height:'1.15rem'}}/>}
+                              size="medium"
+                              type="contained"
+                              style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}
+                              onClick={(e) => handleFederatedSignIn(e, 'Google')}>
+                                Google
+                            </GoogleButton>
+                            <FacebookButton
+                              startIcon={<i className="fab fa-facebook"></i>}
+                              size="medium"
+                              type="contained"
+                              style={{width: "100%", flex: "1", marginBottom: "1rem"}}
+                              onClick={(e) => handleFederatedSignIn(e, 'Facebook')}>
+                                Facebook
+                            </FacebookButton>
+                          </div>
+                          <div className={styles.bottomText}>
+                            Don't have an account? <Link href='/signup'>Sign Up here</Link>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className={styles.codeHeading}>
+                            <h4>OTP has been sent to your email.</h4>
+                            <h4>Enter OTP</h4>
+                          </div>
+                          <form className={styles.form} style={{ marginTop: "0" }}>
+                            <PrimaryInput
+                              type="text"
+                              label="Verfication Code"
+                              variant="outlined"
+                              value={verificationCode}
+                              helperText={errors.code}
+                              onChange={(e) => setVerificationCode(e.target.value)}
+                            />
+                            <div className={styles.dividerArea}>
+                              <div className={styles.divider}></div>
+                              <div className={styles.dividerText}>
+                                Enter Email & New Password
+                              </div>
+                              <div className={styles.divider}></div>
+                            </div>
+                            <PrimaryInput  
+                              type="email" 
+                              label="Email" 
+                              variant="outlined"
+                              style={{marginBottom: "2rem"}}
+                              value={email}
+                              helperText={errors.email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <PrimaryInput  
+                              type="password" 
+                              label="New Password" 
+                              variant="outlined"
+                              value={password}
+                              helperText={errors.password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          </form>
+                          <div className={styles.federatedArea} style={{ display: "block" }}>
+                            <PrimaryButton
+                              size="medium"
+                              type="contained"
+                              style={{ width: "100%", marginBottom: "1rem" }}
+                              //onClick={confirmSignUp}
+                            >
+                              Submit
+                            </PrimaryButton>
+                            <PrimaryButton
+                              size="medium"
+                              type="contained"
+                              style={{ width: "100%", marginBottom: "1rem" }}
+                              //onClick={resendCode}
+                            >
+                              Resend Code
+                            </PrimaryButton>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
               </Grid>
