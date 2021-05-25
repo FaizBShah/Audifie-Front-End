@@ -85,3 +85,41 @@ export const validateCodeInput = (code) => {
     isValid: isEmpty(errors),
   };
 };
+
+export const validateEmail = (email) => {
+  let errors = {};
+
+  email = !isEmpty(email) ? email : '';
+
+  if (!Validator.isEmail(email)) {
+    errors.email = 'Email is invalid';
+  }
+
+  if (Validator.isEmpty(email)) {
+    errors.email = 'Email field is required';
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors),
+  };
+};
+
+export const validatePassword = (password) => {
+  let errors = {};
+
+  password = !isEmpty(password) ? password : '';
+
+  if (Validator.isEmpty(password)) {
+    errors.password = 'Password field is required';
+  }
+
+  if (!Validator.isLength(password, { min: 8 })) {
+    errors.password = 'Password must be at least 8 characters';
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors),
+  };
+};

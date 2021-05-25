@@ -12,7 +12,7 @@ import {
   LoaderBackdrop,
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
-import { validateSignInInput } from '../utils/validation/validateUtils';
+import { validateSignInInput, validateEmail, validatePassword, validateCodeInput } from '../utils/validation/validateUtils';
 import { Auth, withSSRContext } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
 
@@ -21,12 +21,10 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isEmailWaiting, setIsEmailWaiting] = useState(false);
   const [isCodeWaiting, setIsCodeWaiting] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
-  const [errors, setErrors] = useState({
-    email: '',
-    password: ''
-  });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const { width } = useWindowDimensions();
@@ -54,10 +52,7 @@ function Login() {
   const handleSignIn = (e) => {
     e.preventDefault();
 
-    setErrors({
-      email: '',
-      password: ''
-    })
+    setErrors({});
 
     const data = {
       email,
@@ -111,6 +106,70 @@ function Login() {
       });
   }
 
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+
+    setErrors({});
+
+    const errorResult = validateEmail(email);
+
+    if (!errorResult.isValid) {
+      setErrors(errorResult.errors);
+      return;
+    }
+
+    setLoading(true);
+
+    Auth.forgotPassword(email)
+      .then((data) => {
+        console.log(data);
+        setIsEmailWaiting(false);
+        setIsCodeWaiting(true);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+        setLoading(false);
+      })
+  }
+
+  const confirmNewPassword = (e) => {
+    e.preventDefault();
+
+    setErrors({});
+
+    const errorPasswordResult = validatePassword(password);
+    const errorCodeResult = validateCodeInput(verificationCode);
+
+    if (!errorPasswordResult.isValid || !errorCodeResult.isValid) {
+      setErrors({
+        password: errorPasswordResult.errors.password,
+        code: errorCodeResult.errors.code
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    Auth.forgotPasswordSubmit(email, verificationCode, password)
+      .then((data) => {
+        console.log(data);
+        setEmail('');
+        setPassword('');
+        setVerificationCode('');
+        setIsCodeWaiting(false);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err.message);
+        setIsErrorVisible(true);
+        setLoading(false);
+      })
+  }
+
   const handleErrorClose = (e, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -137,7 +196,7 @@ function Login() {
                       <img src='/assets/kit/logo_linear.png' className={styles.brandLogo}/>
                     </Link>
                     <div className={styles.formBody}>
-                      {!isCodeWaiting ? (
+                      {(!isCodeWaiting && !isEmailWaiting) ? (
                         <>
                           <form className={styles.form} style={{marginBottom: "1.5rem"}}>
                             <PrimaryInput  
@@ -164,7 +223,7 @@ function Login() {
                               Sign In
                             </PrimaryButton>
                           </form>
-                          <div className={styles.forgotText} onClick={() => setIsCodeWaiting(true)}>
+                          <div className={styles.forgotText} onClick={() => setIsEmailWaiting(true)}>
                             Forgot Password?
                           </div>
                           <div className={styles.dividerArea}>
@@ -196,36 +255,21 @@ function Login() {
                             Don't have an account? <Link href='/signup'>Sign Up here</Link>
                           </div>
                         </>
-                      ) : (
+                      ) : (isCodeWaiting) ? (
                         <>
                           <div className={styles.codeHeading}>
                             <h4>OTP has been sent to your email.</h4>
-                            <h4>Enter OTP</h4>
+                            <h4>Enter OTP and New Password</h4>
                           </div>
                           <form className={styles.form} style={{ marginTop: "0" }}>
                             <PrimaryInput
                               type="text"
                               label="Verfication Code"
                               variant="outlined"
+                              style={{marginBottom: "2rem"}}
                               value={verificationCode}
                               helperText={errors.code}
                               onChange={(e) => setVerificationCode(e.target.value)}
-                            />
-                            <div className={styles.dividerArea}>
-                              <div className={styles.divider}></div>
-                              <div className={styles.dividerText}>
-                                Enter Email & New Password
-                              </div>
-                              <div className={styles.divider}></div>
-                            </div>
-                            <PrimaryInput  
-                              type="email" 
-                              label="Email" 
-                              variant="outlined"
-                              style={{marginBottom: "2rem"}}
-                              value={email}
-                              helperText={errors.email}
-                              onChange={(e) => setEmail(e.target.value)}
                             />
                             <PrimaryInput  
                               type="password" 
@@ -241,17 +285,35 @@ function Login() {
                               size="medium"
                               type="contained"
                               style={{ width: "100%", marginBottom: "1rem" }}
-                              //onClick={confirmSignUp}
+                              onClick={confirmNewPassword}
                             >
                               Submit
                             </PrimaryButton>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className={styles.codeHeading}>
+                            <h4>Enter Email</h4>
+                          </div>
+                          <form className={styles.form} style={{ marginTop: "0" }}>
+                            <PrimaryInput  
+                              type="email" 
+                              label="Email" 
+                              variant="outlined"
+                              value={email}
+                              helperText={errors.email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                          </form>
+                          <div className={styles.federatedArea} style={{ display: "block" }}>
                             <PrimaryButton
                               size="medium"
                               type="contained"
                               style={{ width: "100%", marginBottom: "1rem" }}
-                              //onClick={resendCode}
+                              onClick={handleForgotPassword}
                             >
-                              Resend Code
+                              Submit
                             </PrimaryButton>
                           </div>
                         </>
