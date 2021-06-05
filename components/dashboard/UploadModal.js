@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton } from '../MaterialComponents';
+import React, { useState, useRef } from 'react';
+import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton, PrimaryProgressBar } from '../MaterialComponents';
 import styles from '../../styles/UploadModal.module.css';
 
 function UploadModal({ open, setIsModalOpen }) {
+  const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
 
   const onBrowseFiles = () => {
@@ -29,48 +30,66 @@ function UploadModal({ open, setIsModalOpen }) {
   const handleFile = (file) => {
     if (file.type === 'application/pdf') {
       console.log(file);
+      setLoading(true);
     }
+  }
+
+  const onCancel = () => {
+    setIsModalOpen(false);
+    setLoading(false);
   }
 
   return (
     <>
       <PrimaryDialog
         open={open} 
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setLoading(false);
+        }}
         maxWidth="md"
         fullWidth={true}
         disableBackdropClick={true}
         disableEscapeKeyDown={true}
       >
         <PrimaryDialogContent>
-          <div
-            className={styles.uploadArea} 
-            onDragEnter={onHandleDrag} 
-            onDragOver={onHandleDrag} 
-            onDrop={onHandleFileDrop}
-          >
-            <h4 className={styles.uploadText}>Drag & Drop your files here</h4>
-            <img src="/assets/svg/uploadFileLogo.svg" className={styles.uploadLogo}/>
-          </div>
-          <input
-            ref={fileRef} 
-            type="file" 
-            style={{display: 'none'}} 
-            onChange={(e) => handleFile(e.target.files[0])}
-          />
-          <PrimaryButton
-            size="small"
-            variant="contained"
-            style={{marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto'}}
-            onClick={onBrowseFiles}
-          >
-            Browse Files
-          </PrimaryButton>
+          {!loading ? (
+            <>
+              <div
+                className={styles.uploadArea} 
+                onDragEnter={onHandleDrag} 
+                onDragOver={onHandleDrag} 
+                onDrop={onHandleFileDrop}
+              >
+                <h4 className={styles.uploadText}>Drag & Drop your files here</h4>
+                <img src="/assets/svg/uploadFileLogo.svg" className={styles.uploadLogo}/>
+              </div>
+              <input
+                ref={fileRef} 
+                type="file" 
+                style={{display: 'none'}} 
+                onChange={(e) => handleFile(e.target.files[0])}
+              />
+              <PrimaryButton
+                size="small"
+                variant="contained"
+                style={{marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto'}}
+                onClick={onBrowseFiles}
+              >
+                Browse Files
+              </PrimaryButton>
+            </>
+          ) : (
+            <div style={{marginTop: '3rem', marginBottom: '4rem'}}>
+              <h3 className={styles.uploadText} style={{color: '#fefefe'}}>Uploading your document...</h3>
+              <PrimaryProgressBar />
+            </div>
+          )}
           <SecondaryButton
             size="small"
             variant="contained"
             style={{marginTop: '2rem', marginLeft: 'auto', marginRight: 'auto'}}
-            onClick={() => setIsModalOpen(false)}
+            onClick={onCancel}
           >
             &nbsp;&nbsp;&nbsp; Cancel &nbsp;&nbsp;&nbsp;
           </SecondaryButton>

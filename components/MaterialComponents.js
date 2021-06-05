@@ -14,7 +14,8 @@ import {
   Tabs,
   Tab,
   Dialog,
-  DialogContent
+  DialogContent,
+  LinearProgress
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
@@ -351,3 +352,20 @@ export const PrimaryDialogContent = withStyles({
     }
   }
 })(DialogContent)
+
+// PRIMARY PROGRESS BAR
+export const PrimaryProgressBar = withStyles({
+  root: {
+    height: '5px',
+    borderRadius: '10px'
+  },
+  bar: {
+    borderRadius: '10px'
+  },
+  colorPrimary: {
+    background: 'rgba(254, 254, 254, 0.1)'
+  },
+  barColorPrimary: {
+    background: colorBranding
+  }
+})(LinearProgress);
