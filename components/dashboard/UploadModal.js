@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton, PrimaryProgressBar } from '../MaterialComponents';
 import styles from '../../styles/UploadModal.module.css';
+import { Storage } from 'aws-amplify';
 
 function UploadModal({ user, open, setIsModalOpen }) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   const onBrowseFiles = () => {
     if (fileRef && fileRef.current) {
@@ -33,8 +30,19 @@ function UploadModal({ user, open, setIsModalOpen }) {
 
   const handleFile = (file) => {
     if (file.type === 'application/pdf') {
-      console.log(file);
       setLoading(true);
+
+      Storage.put(`${user.username}/` + file.name, file, {
+        level: "private",
+        contentType: file.type
+      })
+      .then((data) => {
+        console.log(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
   }
 
