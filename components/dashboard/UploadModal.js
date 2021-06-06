@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton, PrimaryProgressBar } from '../MaterialComponents';
 import styles from '../../styles/UploadModal.module.css';
 
-function UploadModal({ open, setIsModalOpen }) {
+function UploadModal({ user, open, setIsModalOpen }) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
 

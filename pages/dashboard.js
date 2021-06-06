@@ -19,7 +19,7 @@ const menuConstants = {
   SETTINGS: 'settings'
 };
 
-function Dashboard() {
+function Dashboard({ user }) {
   const { HOME, LIBRARY, UPGRADE, SETTINGS } = menuConstants;
   const [loading, setLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -45,9 +45,9 @@ function Dashboard() {
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
-        return !isEmpty ? (<DashboardHome />) : (<EmptyArea />);
+        return !isEmpty ? (<DashboardHome user={user} />) : (<EmptyArea />);
       case LIBRARY:
-        return (<Library />);
+        return (<Library user={user} />);
       default:
         return null;
     }
@@ -188,7 +188,7 @@ function Dashboard() {
           <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
         </PrimaryBottomNavigation>
       )}
-      <UploadModal open={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <LoaderBackdrop open={loading}>
         <Loader />
       </LoaderBackdrop>
@@ -202,6 +202,11 @@ export async function getServerSideProps({ req, res }) {
   try {
     const user = await Auth.currentAuthenticatedUser();
     console.log(user);
+    return {
+      props: {
+        user: user
+      }
+    }
   } catch (err) {
     console.log(err);
     res.writeHead(302, { Location: '/signup' });

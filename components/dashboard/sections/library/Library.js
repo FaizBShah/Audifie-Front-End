@@ -5,7 +5,7 @@ import { useWindowDimensions } from '../../../../utils/windowUtils';
 import AllDocuments from './AllDocuments';
 import Favourites from './Favourites';
 
-function Library() {
+function Library({ user }) {
   const [tabValue, setTabValue] = useState(0);
   const { width } = useWindowDimensions();
 

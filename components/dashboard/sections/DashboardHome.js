@@ -3,7 +3,7 @@ import styles from '../../../styles/DashboardScreens/DashboardHome.module.css';
 import { useWindowDimensions } from '../../../utils/windowUtils';
 import Cards from '../Cards';
 
-function DashboardHome() {
+function DashboardHome({ user }) {
   const { width } = useWindowDimensions();
 
   return (
