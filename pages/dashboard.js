@@ -204,7 +204,7 @@ export async function getServerSideProps({ req, res }) {
     console.log(user);
     return {
       props: {
-        user: user
+        user: JSON.parse(JSON.stringify(user))
       }
     }
   } catch (err) {

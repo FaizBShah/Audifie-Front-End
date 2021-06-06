@@ -1,10 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton, PrimaryProgressBar } from '../MaterialComponents';
 import styles from '../../styles/UploadModal.module.css';
 
 function UploadModal({ user, open, setIsModalOpen }) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   const onBrowseFiles = () => {
     if (fileRef && fileRef.current) {
