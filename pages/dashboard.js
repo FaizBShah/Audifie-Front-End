@@ -11,6 +11,8 @@ import DashboardHome from '../components/dashboard/sections/DashboardHome';
 import Library from '../components/dashboard/sections/library/Library';
 import EmptyArea from '../components/commons/EmptyArea';
 import UploadModal from '../components/dashboard/UploadModal';
+import axios from 'axios';
+import isEmpty from '../utils/validation/is-empty';
 
 const menuConstants = {
   HOME: 'home',
@@ -22,13 +24,38 @@ const menuConstants = {
 function Dashboard({ user }) {
   const { HOME, LIBRARY, UPGRADE, SETTINGS } = menuConstants;
   const [loading, setLoading] = useState(false);
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [empty, setEmpty] = useState(false);
   const [menu, setMenu] = useState(HOME);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploading, setIsUploading] = useState(false);
+  const [cards, setCards] = useState({});
   
   const { width } = useWindowDimensions();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!uploading) {
+      setLoading(true);
+
+      setTimeout(() => {
+        axios.get('https://gt8u1r94bf.execute-api.ap-south-1.amazonaws.com/dev/allfiles', {
+          headers: {
+            'Authorization': `Bearer ${user.signInUserSession.idToken.jwtToken}`
+          }
+        })
+        .then((res) => {
+          console.log(res);
+          setEmpty(isEmpty(res.data.body.Items));
+          setCards(res.data.body.Items);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        })
+      }, 2000);
+    }
+  }, [uploading]);
 
   useEffect(() => {
     if (router.query.menu) {
@@ -46,11 +73,11 @@ function Dashboard({ user }) {
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
-        return !isEmpty ? (
-          <DashboardHome user={user} uploading={uploading} setLoading={setLoading} setIsEmpty={setIsEmpty} />
+        return !empty ? (
+          <DashboardHome user={user} cards={cards.length > 6 ? cards.slice(0, 6) : cards} />
         ) : (<EmptyArea />);
       case LIBRARY:
-        return (<Library user={user} />);
+        return (<Library user={user} cards={cards} />);
       default:
         return null;
     }
