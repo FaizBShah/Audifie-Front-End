@@ -3,7 +3,7 @@ import { PrimaryDialog, PrimaryDialogContent, PrimaryButton, SecondaryButton, Pr
 import styles from '../../styles/UploadModal.module.css';
 import { Storage } from 'aws-amplify';
 
-function UploadModal({ user, open, setIsModalOpen }) {
+function UploadModal({ user, open, setIsModalOpen, setIsUploading }) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
 
@@ -31,6 +31,7 @@ function UploadModal({ user, open, setIsModalOpen }) {
   const handleFile = (file) => {
     if (file.type === 'application/pdf') {
       setLoading(true);
+      setIsUploading(true);
 
       Storage.put(`${user.username}/` + file.name, file, {
         level: "private",
@@ -39,9 +40,12 @@ function UploadModal({ user, open, setIsModalOpen }) {
       .then((data) => {
         console.log(data);
         setLoading(false);
+        setIsUploading(false);
+        setIsModalOpen(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsUploading(false)
       });
     }
   }

@@ -3,44 +3,24 @@ import styles from '../../styles/Cards.module.css';
 import { Grid } from '@material-ui/core';
 import Card from './Card';
 
-function Cards() {
+function Cards({ cards }) {
   return (
     <>
       <div className={styles.cardsSection}>
         <Grid
           container
           direction="row"
-          justify="space-around"
+          justify={cards.length < 3 ? "left" : "center"}
           spacing={4}
           style={{height: '100%'}}
         >
-          <Grid
-            item
-            lg={4}
-            md={6}
-            sm={10}
-            xs={12}
-          >
-            <Card />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            sm={10}
-            xs={12}
-          >
-            <Card />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            sm={10}
-            xs={12}
-          >
-            <Card />
-          </Grid>
+          {cards.map((card, index) => {
+            return (
+              <Grid item lg={4} md={6} sm={10} xs={12} key={index}>
+                <Card card={card} />
+              </Grid>
+            )
+          })}
         </Grid>
       </div>
     </>

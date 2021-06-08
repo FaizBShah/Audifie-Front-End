@@ -6,7 +6,7 @@ import {
 import styles from '../../styles/Card.module.css';
 import { useWindowDimensions } from '../../utils/windowUtils';
 
-function Card() {
+function Card({ card }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const { width } = useWindowDimensions();
 
@@ -18,7 +18,7 @@ function Card() {
           <div className={styles.mainContent}>
             <div className={styles.innerContent}>
               <div className={styles.cardInfo}>
-                <h3 className={styles.cardTitle}>Forever is a Lie</h3>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
                 <div className={styles.info}>
                   <div className={styles.remainingInfo}>
                     <span className={styles.hoursText}>6 Hours Listen</span>

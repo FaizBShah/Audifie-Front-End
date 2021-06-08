@@ -25,6 +25,7 @@ function Dashboard({ user }) {
   const [isEmpty, setIsEmpty] = useState(false);
   const [menu, setMenu] = useState(HOME);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [uploading, setIsUploading] = useState(false);
   
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -45,7 +46,9 @@ function Dashboard({ user }) {
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
-        return !isEmpty ? (<DashboardHome user={user} />) : (<EmptyArea />);
+        return !isEmpty ? (
+          <DashboardHome user={user} uploading={uploading} setLoading={setLoading} setIsEmpty={setIsEmpty} />
+        ) : (<EmptyArea />);
       case LIBRARY:
         return (<Library user={user} />);
       default:
@@ -188,7 +191,7 @@ function Dashboard({ user }) {
           <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
         </PrimaryBottomNavigation>
       )}
-      <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} setIsUploading={setIsUploading} />
       <LoaderBackdrop open={loading}>
         <Loader />
       </LoaderBackdrop>
