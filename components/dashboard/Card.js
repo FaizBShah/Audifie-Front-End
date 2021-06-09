@@ -4,6 +4,7 @@ import {
   PrimaryCardContent,
 } from '../MaterialComponents';
 import styles from '../../styles/Card.module.css';
+import { Link } from '@material-ui/core';
 import { useWindowDimensions } from '../../utils/windowUtils';
 
 function Card({ card }) {
@@ -29,7 +30,7 @@ function Card({ card }) {
                 </div>
               </div>
               <div className={styles.cardButtons}>
-                <a href="#" className={styles.playButton}><p className={styles.playText}>PLAY</p></a>
+                <a href={card.progress !== 'PROCESSING' ? `/player/${card.fileId}` : '#'} className={styles.playButton}><p className={styles.playText}>PLAY</p></a>
                 <div className={styles.menuBar}>
                   <i className="fas fa-ellipsis-v"></i>
                 </div>
