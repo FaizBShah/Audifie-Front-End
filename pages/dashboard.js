@@ -67,11 +67,18 @@ function Dashboard({ user }) {
     if (router.query.player) {
       setIsPlayerActive(router.query.player);
     }
+    if (router.query.small) {
+      setIsSmallPlayer(router.query.small);
+    }
   }, [])
 
   useEffect(() => {
     if (menu) {
-      router.push(isPlayerActive ? `?area=${menu}&player=${isPlayerActive}` : `?area=${menu}`, undefined, { shallow: true })
+      const routerUrl = isPlayerActive ? (
+          isSmallPlayer ? `?area=${menu}&player=${isPlayerActive}&small=${isSmallPlayer}` : 
+            `?area=${menu}&player=${isPlayerActive}`
+        ) : `?area=${menu}`;
+      router.push(routerUrl, undefined, { shallow: true })
     }
   }, [menu, isPlayerActive])
 
@@ -113,7 +120,9 @@ function Dashboard({ user }) {
 
   const handleMenuChange = (value) => {
     setMenu(value);
-    setIsPlayerActive(false);
+    if (isPlayerActive) {
+      setIsSmallPlayer(true);
+    }
   }
 
   return (
@@ -140,7 +149,7 @@ function Dashboard({ user }) {
           ) : null}
           {renderMenu(menu)}
           {isPlayerActive ? (
-            <div className={styles.playerArea}>
+            <div className={styles.playerArea} style={isSmallPlayer ? {height: '15vh', marginTop: '85vh'} : null}>
               <Player />
             </div>
           ) : null}
@@ -223,12 +232,14 @@ function Dashboard({ user }) {
           </div>
         </MainDrawer>
       ) : (
-        <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
-          <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
-          <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
-          <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
-          <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
-        </PrimaryBottomNavigation>
+        !isPlayerActive ? (
+          <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
+            <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
+            <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
+            <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
+            <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
+          </PrimaryBottomNavigation>
+        ) : null
       )}
       <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} setIsUploading={setIsUploading} />
       <LoaderBackdrop open={loading}>
