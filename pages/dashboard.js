@@ -149,7 +149,7 @@ function Dashboard({ user }) {
           ) : null}
           {renderMenu(menu)}
           {isPlayerActive ? (
-            <div className={styles.playerArea} style={isSmallPlayer ? {height: '15vh', marginTop: '85vh'} : null}>
+            <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
               <Player />
             </div>
           ) : null}
@@ -232,14 +232,12 @@ function Dashboard({ user }) {
           </div>
         </MainDrawer>
       ) : (
-        !isPlayerActive ? (
-          <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
-            <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
-            <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
-            <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
-            <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
-          </PrimaryBottomNavigation>
-        ) : null
+        <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
+          <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
+          <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
+          <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
+          <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
+        </PrimaryBottomNavigation>
       )}
       <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} setIsUploading={setIsUploading} />
       <LoaderBackdrop open={loading}>
