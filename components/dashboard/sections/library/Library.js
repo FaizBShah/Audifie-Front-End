@@ -5,7 +5,7 @@ import { useWindowDimensions } from '../../../../utils/windowUtils';
 import AllDocuments from './AllDocuments';
 import Favourites from './Favourites';
 
-function Library({ user, cards }) {
+function Library({ user, cards, setIsPlayerActive }) {
   const [tabValue, setTabValue] = useState(0);
   const { width } = useWindowDimensions();
 
@@ -28,7 +28,7 @@ function Library({ user, cards }) {
         </PrimaryTabs>
       </div>
       <div className={styles.mainArea}>
-        {tabValue === 0 ? <AllDocuments cards={cards} /> : <Favourites cards={cards} />}
+        {tabValue === 0 ? <AllDocuments cards={cards} setIsPlayerActive={setIsPlayerActive} /> : <Favourites cards={cards} setIsPlayerActive={setIsPlayerActive} />}
       </div>
     </>
   )

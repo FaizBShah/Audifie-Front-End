@@ -3,7 +3,7 @@ import styles from '../../styles/Cards.module.css';
 import { Grid } from '@material-ui/core';
 import Card from './Card';
 
-function Cards({ cards }) {
+function Cards({ cards, setIsPlayerActive }) {
   return (
     <>
       <div className={styles.cardsSection}>
@@ -17,7 +17,7 @@ function Cards({ cards }) {
           {cards.map((card, index) => {
             return (
               <Grid item lg={4} md={6} sm={10} xs={12} key={index}>
-                <Card card={card} />
+                <Card card={card} setIsPlayerActive={setIsPlayerActive} />
               </Grid>
             )
           })}

@@ -3,10 +3,10 @@ import Cards from '../../Cards';
 import EmptyArea from '../../../commons/EmptyArea';
 import isEmpty from '../../../../utils/validation/is-empty';
 
-function Favourites({ cards }) {
+function Favourites({ cards, setIsPlayerActive }) {
   return (
     <>
-      {isEmpty(cards.filter(card => card.favorite)) ? (<EmptyArea />) : <Cards cards={cards.filter(card => card.favorite)} />}
+      {isEmpty(cards.filter(card => card.favorite)) ? (<EmptyArea />) : <Cards cards={cards.filter(card => card.favorite)} setIsPlayerActive={setIsPlayerActive} />}
     </>
   )
 }

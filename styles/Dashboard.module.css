@@ -59,6 +59,15 @@
   margin-left: 240px;
 }
 
+.playerArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
 @media (max-width: 768px) {
   .brandLogo {
     width: 30%;

@@ -9,6 +9,7 @@ import { useWindowDimensions } from '../utils/windowUtils';
 import { UploadIcon, HomeIcon, LibraryIcon, PremiumIcon, SettingsIcon, ShareIcon, LogoutIcon } from '../components/CustomIcons';
 import DashboardHome from '../components/dashboard/sections/DashboardHome';
 import Library from '../components/dashboard/sections/library/Library';
+import Player from '../components/player/Player';
 import EmptyArea from '../components/commons/EmptyArea';
 import UploadModal from '../components/dashboard/UploadModal';
 import axios from 'axios';
@@ -29,6 +30,8 @@ function Dashboard({ user }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploading, setIsUploading] = useState(false);
   const [cards, setCards] = useState({});
+  const [isPlayerActive, setIsPlayerActive] = useState(false);
+  const [isSmallPlayer, setIsSmallPlayer] = useState(false);
   
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -58,26 +61,29 @@ function Dashboard({ user }) {
   }, [uploading]);
 
   useEffect(() => {
-    if (router.query.menu) {
-      setMenu(router.query.menu);
+    if (router.query.area) {
+      setMenu(router.query.area);
+    }
+    if (router.query.player) {
+      setIsPlayerActive(router.query.player);
     }
   }, [])
 
   useEffect(() => {
     if (menu) {
-      router.push(`?menu=${menu}`, undefined, { shallow: true })
+      router.push(isPlayerActive ? `?area=${menu}&player=${isPlayerActive}` : `?area=${menu}`, undefined, { shallow: true })
     }
-  }, [menu])
+  }, [menu, isPlayerActive])
 
   // Function to render different menu screens
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
         return !empty ? (
-          <DashboardHome user={user} cards={cards.length > 6 ? cards.slice(0, 6) : cards} />
+          <DashboardHome user={user} cards={cards.length > 6 ? cards.slice(0, 6) : cards} setIsPlayerActive={setIsPlayerActive} />
         ) : (<EmptyArea />);
       case LIBRARY:
-        return (<Library user={user} cards={cards} />);
+        return (<Library user={user} cards={cards} setIsPlayerActive={setIsPlayerActive} />);
       default:
         return null;
     }
@@ -107,6 +113,7 @@ function Dashboard({ user }) {
 
   const handleMenuChange = (value) => {
     setMenu(value);
+    setIsPlayerActive(false);
   }
 
   return (
@@ -132,6 +139,11 @@ function Dashboard({ user }) {
             </>
           ) : null}
           {renderMenu(menu)}
+          {isPlayerActive ? (
+            <div className={styles.playerArea}>
+              <Player />
+            </div>
+          ) : null}
         </div>
       </div>
       {width > 768 ? (
