@@ -3,7 +3,7 @@ import React from 'react';
 function Player() {
   return (
     <>
-      <div style={{background: 'red', height: '100%'}}></div>
+      <div style={{height: '100%'}}></div>
     </>
   )
 }
