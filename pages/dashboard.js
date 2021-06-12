@@ -148,13 +148,13 @@ function Dashboard({ user }) {
             </>
           ) : null}
           {renderMenu(menu)}
-          {isPlayerActive ? (
-            <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
-              <Player />
-            </div>
-          ) : null}
         </div>
       </div>
+      {isPlayerActive && (
+        <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
+          <Player />
+        </div>
+      )}
       {width > 768 ? (
         <MainDrawer
           variant={"permanent"}

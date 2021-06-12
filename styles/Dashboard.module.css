@@ -62,16 +62,19 @@
 .playerLargeArea {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  width: calc(100% - 240px);
   height: 100%;
+  margin-left: 240px;
   background: #141517;
 }
 
 .playerSmallArea {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: calc(100% - 240px);
   height: 15%;
+  margin-left: 240px;
   background: rgba(29, 29, 29, 0.85);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 }
@@ -87,8 +90,15 @@
     margin-left: 0;
   }
 
+  .playerLargeArea {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .playerSmallArea {
+    width: 100%;
     bottom: 9.9%;
+    margin-left: 0;
   }
 }
 
