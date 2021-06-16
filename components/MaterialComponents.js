@@ -15,7 +15,8 @@ import {
   Tab,
   Dialog,
   DialogContent,
-  LinearProgress
+  LinearProgress,
+  Slider
 } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 
@@ -369,3 +370,21 @@ export const PrimaryProgressBar = withStyles({
     background: colorBranding
   }
 })(LinearProgress);
+
+//  < -------------------------------------------------------------PLAYER---------------------------------------------------------------------------------------------->
+
+// PLAYER TRACK
+export const PlayerTrack = withStyles({
+  rail: {
+    backgroundColor: '#ccc',
+    height: '3px'
+  },
+  track: {
+    backgroundColor: colorBranding,
+    height: '5px'
+  },
+  thumb: {
+    backgroundColor: '#fefefe',
+    marginTop: '-4px',
+  }
+})(Slider);

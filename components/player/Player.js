@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../../styles/Player.module.css';
 import ReactPlayer from 'react-player';
 import { Container } from '@material-ui/core';
+import { PlayerTrack } from '../MaterialComponents';
 
 function Player() {
   return (
@@ -22,7 +23,9 @@ function Player() {
               <img className={styles.playerImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}} />
             </div>
             <div className={styles.controlArea}>
-
+              <div className={styles.track}>
+                <PlayerTrack defaultValue={20} />
+              </div>
             </div>
           </div>
         </Container>
