@@ -373,8 +373,8 @@ export const PrimaryProgressBar = withStyles({
 
 //  < -------------------------------------------------------------PLAYER---------------------------------------------------------------------------------------------->
 
-// PLAYER TRACK
-export const PlayerTrack = withStyles({
+// PRIMARY SLIDER
+export const PrimarySlider = withStyles({
   rail: {
     backgroundColor: '#ccc',
     height: '3px'

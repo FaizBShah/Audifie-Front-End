@@ -231,14 +231,14 @@ function Dashboard({ user }) {
             </div>
           </div>
         </MainDrawer>
-      ) : (
+      ) : !(isPlayerActive && !isSmallPlayer) ? (
         <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
           <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
           <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
           <PrimaryBottomNavigationAction label="Upgrade" value={UPGRADE} icon={<i><PremiumIcon height="1rem" color={menu === UPGRADE ? '#FD5457' : '#FFB8B8'} /></i>} />
           <PrimaryBottomNavigationAction label="Settings" value={SETTINGS} icon={<i><SettingsIcon height="1rem" color={menu === SETTINGS ? '#FD5457' : '#FEFEFE'} /></i>} />
         </PrimaryBottomNavigation>
-      )}
+      ) : null}
       <UploadModal user={user} open={isModalOpen} setIsModalOpen={setIsModalOpen} setIsUploading={setIsUploading} />
       <LoaderBackdrop open={loading}>
         <Loader />

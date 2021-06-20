@@ -34,9 +34,70 @@
 
 .controlArea {
   flex: 3;
-  padding-top: 1rem;
+  padding-top: 2rem;
   padding-left: 4rem;
   padding-right: 4rem;
+}
+
+.control {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0.4rem auto;
+}
+
+.control > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control i {
+  color: #fefefe;
+  cursor: pointer;
+}
+
+.pageText {
+  margin: 0;
+  color: #fefefe;
+}
+
+.pageText > input[type=text] {
+  width: 1rem;
+  height: 1rem;
+  background: #1d1d1d;
+  border: 1px solid #707070;
+  color: #fefefe;
+  border-radius: 2px;
+}
+
+.mediaArea {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.speed {
+  width: 2rem;
+  height: 1.4rem;
+  background: #fefefe;
+  color: #1d1d1d;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .playerImage {
+    width: 60%;
+  }
+
+  .control {
+    display: block;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -47,12 +108,33 @@
 
 @media (max-width: 768px) {
   .controlArea {
-    padding-bottom: 10vh;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .mediaArea {
+    width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .playerImage {
     width: 100%;
+  }
+
+  .pageText {
+    font-size: 0.7rem;
+  }
+
+  .pageText > input[type=text] {
+    width: 0.7rem;
+    height: 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .speed {
+    width: 1.2rem;
+    height: 0.9rem;
+    font-size: 0.7rem;
   }
 }

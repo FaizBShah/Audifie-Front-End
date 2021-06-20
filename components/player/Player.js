@@ -2,9 +2,12 @@ import React from 'react';
 import styles from '../../styles/Player.module.css';
 import ReactPlayer from 'react-player';
 import { Container } from '@material-ui/core';
-import { PlayerTrack } from '../MaterialComponents';
+import { PrimarySlider } from '../MaterialComponents';
+import { useWindowDimensions } from '../../utils/windowUtils';
 
 function Player() {
+  const { width } = useWindowDimensions();
+
   return (
     <>
       <div className={styles.mainArea}>
@@ -23,8 +26,49 @@ function Player() {
               <img className={styles.playerImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}} />
             </div>
             <div className={styles.controlArea}>
+              <div className={styles.control}>
+                {width > 1200 && (
+                  <>
+                    <div className={styles.options}>
+                      <i className="fas fa-ellipsis-h fa-2x"></i>
+                    </div>
+                    <div className={styles.pageArea}>
+                      <p className={styles.pageText}>Page No <input type="text" value="1" /> / 256</p>
+                    </div>
+                  </>
+                )}
+                <div className={styles.mediaControl} style={{flex: '3'}}>
+                  <div className={styles.mediaArea}>
+                    <i className="fas fa-step-backward fa-2x"></i>
+                    <i className="fas fa-play-circle fa-3x"></i>
+                    <i className="fas fa-step-forward fa-2x"></i>
+                  </div>
+                </div>
+                {width > 1200 ? (
+                  <>
+                    <div className={styles.speedControl}>
+                      <div className={styles.speed}>1x</div>
+                    </div>
+                    <div className={styles.volumeControl}>
+                      <i class="fas fa-volume-up fa-2x" style={{display: "inline-block", marginRight: "1rem"}}></i>
+                      <PrimarySlider style={{width: '40%'}} defaultValue={20} />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '2rem'}}>
+                      <div className={styles.pageArea}>
+                        <p className={styles.pageText}>Page No <input type="text" value="1" /> / 256</p>
+                      </div>
+                      <div className={styles.speedControl}>
+                        <div className={styles.speed}>1x</div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
               <div className={styles.track}>
-                <PlayerTrack defaultValue={20} />
+                <PrimarySlider defaultValue={20} />
               </div>
             </div>
           </div>
