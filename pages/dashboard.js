@@ -152,7 +152,7 @@ function Dashboard({ user }) {
       </div>
       {isPlayerActive && (
         <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
-          <Player />
+          <Player isSmallPlayer={isSmallPlayer} />
         </div>
       )}
       {width > 768 ? (
