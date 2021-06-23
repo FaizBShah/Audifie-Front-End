@@ -73,7 +73,7 @@
   position: fixed;
   bottom: 0;
   width: calc(100% - 240px);
-  height: 15%;
+  height: 20%;
   margin-left: 240px;
   background: rgba(29, 29, 29, 0.85);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);

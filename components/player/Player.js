@@ -80,7 +80,45 @@ function Player({ isSmallPlayer }) {
               <img className={styles.smallPlayerImage} style={{background: "url('/assets/kit/harryPotter.jpg') no-repeat center center/cover"}} />
             </div>
             <div className={styles.smallControlArea}>
-
+              <h3 className={styles.smallPlayerTitle}>
+                <span><i style={{display: "inline-block", cursor: "pointer"}} className={"fas fa-chevron-up"}></i></span>
+                {' '}
+                &nbsp;
+                Forever is True
+              </h3>
+              {width <= 1200 && (<h4 className={styles.smallPageTitle}>Page - 1</h4>)}
+              <div className={styles.smallPlayerControl}>
+                {width > 1200 && (
+                  <>
+                    <div className={styles.pageArea}>
+                      <p className={styles.smallPageText}>Page No <input type="text" value="1" /> / 256</p>
+                    </div>
+                  </>
+                )}
+                <div className={styles.mediaControl} style={{flex: '3'}}>
+                  <div className={styles.mediaArea} style={{justifyContent: width > 1200 ? 'space-around' : 'flex-end'}}>
+                    {width > 1200 && (<i className="fas fa-step-backward"></i>)}
+                    {width > 1200 ? (<i className="fas fa-play-circle fa-2x"></i>) : (<i className="fas fa-play"></i>)}
+                    {width > 1200 && (<i className="fas fa-step-forward"></i>)}
+                  </div>
+                </div>
+                {width > 1200 && (
+                  <>
+                    <div className={styles.speedControl}>
+                      <div className={styles.smallSpeed}>1x</div>
+                    </div>
+                    <div className={styles.volumeControl}>
+                      <i class="fas fa-volume-up" style={{display: "inline-block", marginRight: "1rem"}}></i>
+                    </div>
+                  </>
+                )}
+                <div className={styles.smallOptions}>
+                  {width > 1200 ? (<i className="fas fa-ellipsis-h"></i>) : (<i className="fas fa-ellipsis-v"></i>)}
+                </div>
+              </div>
+              <div className={styles.track}>
+                <PrimarySlider defaultValue={20} />
+              </div>
             </div>
           </div>
         )}
