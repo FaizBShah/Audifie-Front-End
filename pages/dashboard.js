@@ -80,7 +80,7 @@ function Dashboard({ user }) {
         ) : `?area=${menu}`;
       router.push(routerUrl, undefined, { shallow: true })
     }
-  }, [menu, isPlayerActive])
+  }, [menu, isPlayerActive, isSmallPlayer])
 
   // Function to render different menu screens
   const renderMenu = (value) => {
@@ -152,7 +152,7 @@ function Dashboard({ user }) {
       </div>
       {isPlayerActive && (
         <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
-          <Player isSmallPlayer={isSmallPlayer} />
+          <Player isSmallPlayer={isSmallPlayer} setIsSmallPlayer={setIsSmallPlayer}/>
         </div>
       )}
       {width > 768 ? (

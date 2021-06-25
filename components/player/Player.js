@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 import { PrimarySlider } from '../MaterialComponents';
 import { useWindowDimensions } from '../../utils/windowUtils';
 
-function Player({ isSmallPlayer }) {
+function Player({ isSmallPlayer, setIsSmallPlayer }) {
   const { width } = useWindowDimensions();
 
   return (
@@ -16,7 +16,13 @@ function Player({ isSmallPlayer }) {
             <div className={styles.innerArea}>
               <div className={styles.nameArea}>
                 <h3 className={styles.title}>
-                  <span><i style={{display: "inline-block", marginLeft: "-4rem", cursor: "pointer"}} className={"fas fa-chevron-down"}></i></span>
+                  <span onClick={() => setIsSmallPlayer(true)}>
+                    <i
+                      style={{display: "inline-block", marginLeft: "-4rem", cursor: "pointer"}} 
+                      className={"fas fa-chevron-down"}
+                    >
+                    </i>
+                  </span>
                   {' '}
                   &nbsp;
                   &nbsp;
@@ -81,7 +87,13 @@ function Player({ isSmallPlayer }) {
             </div>
             <div className={styles.smallControlArea}>
               <h3 className={styles.smallPlayerTitle}>
-                <span><i style={{display: "inline-block", cursor: "pointer"}} className={"fas fa-chevron-up"}></i></span>
+                <span onClick={() => setIsSmallPlayer(false)}>
+                  <i
+                    style={{display: "inline-block", cursor: "pointer"}} 
+                    className={"fas fa-chevron-up"}
+                  >
+                  </i>
+                </span>
                 {' '}
                 &nbsp;
                 Forever is True
