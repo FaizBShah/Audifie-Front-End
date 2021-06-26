@@ -4,16 +4,18 @@ import {
   PrimaryCardContent,
 } from '../MaterialComponents';
 import styles from '../../styles/Card.module.css';
-import { Link } from '@material-ui/core';
 import { useWindowDimensions } from '../../utils/windowUtils';
+import { useAppContext } from '../../context/store';
+import { selectFile } from '../../actions/fileActions';
 
 function Card({ card, setIsPlayerActive }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const { width } = useWindowDimensions();
+  const { dispatch } = useAppContext();
 
   const onPlay = () => {
     if (card.progress !== 'PROCESSING') {
-      setIsPlayerActive(true);
+      selectFile(card.fileId, dispatch);
     }
   }
 

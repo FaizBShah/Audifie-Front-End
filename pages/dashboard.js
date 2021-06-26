@@ -14,6 +14,8 @@ import EmptyArea from '../components/commons/EmptyArea';
 import UploadModal from '../components/dashboard/UploadModal';
 import axios from 'axios';
 import isEmpty from '../utils/validation/is-empty';
+import { useAppContext } from '../context/store';
+import { selectFile } from '../actions/fileActions';
 
 const menuConstants = {
   HOME: 'home',
@@ -30,8 +32,8 @@ function Dashboard({ user }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploading, setIsUploading] = useState(false);
   const [cards, setCards] = useState({});
-  const [isPlayerActive, setIsPlayerActive] = useState(false);
   const [isSmallPlayer, setIsSmallPlayer] = useState(false);
+  const { sharedState: { file }, dispatch } = useAppContext();
   
   const { width } = useWindowDimensions();
   const router = useRouter();
@@ -65,7 +67,7 @@ function Dashboard({ user }) {
       setMenu(router.query.area);
     }
     if (router.query.player) {
-      setIsPlayerActive(router.query.player);
+      selectFile(router.query.player, dispatch);
     }
     if (router.query.small) {
       setIsSmallPlayer(router.query.small);
@@ -74,23 +76,23 @@ function Dashboard({ user }) {
 
   useEffect(() => {
     if (menu) {
-      const routerUrl = isPlayerActive ? (
-          isSmallPlayer ? `?area=${menu}&player=${isPlayerActive}&small=${isSmallPlayer}` : 
-            `?area=${menu}&player=${isPlayerActive}`
+      const routerUrl = file ? (
+          isSmallPlayer ? `?area=${menu}&player=${file}&small=${isSmallPlayer}` : 
+            `?area=${menu}&player=${file}`
         ) : `?area=${menu}`;
       router.push(routerUrl, undefined, { shallow: true })
     }
-  }, [menu, isPlayerActive, isSmallPlayer])
+  }, [menu, file, isSmallPlayer])
 
   // Function to render different menu screens
   const renderMenu = (value) => {
     switch (value) {
       case HOME:
         return !empty ? (
-          <DashboardHome user={user} cards={cards.length > 6 ? cards.slice(0, 6) : cards} setIsPlayerActive={setIsPlayerActive} />
+          <DashboardHome cards={cards.length > 6 ? cards.slice(0, 6) : cards} />
         ) : (<EmptyArea />);
       case LIBRARY:
-        return (<Library user={user} cards={cards} setIsPlayerActive={setIsPlayerActive} />);
+        return (<Library cards={cards} />);
       default:
         return null;
     }
@@ -120,7 +122,7 @@ function Dashboard({ user }) {
 
   const handleMenuChange = (value) => {
     setMenu(value);
-    if (isPlayerActive) {
+    if (file) {
       setIsSmallPlayer(true);
     }
   }
@@ -150,7 +152,7 @@ function Dashboard({ user }) {
           {renderMenu(menu)}
         </div>
       </div>
-      {isPlayerActive && (
+      {file && (
         <div className={!isSmallPlayer ? styles.playerLargeArea : styles.playerSmallArea}>
           <Player isSmallPlayer={isSmallPlayer} setIsSmallPlayer={setIsSmallPlayer}/>
         </div>
@@ -231,7 +233,7 @@ function Dashboard({ user }) {
             </div>
           </div>
         </MainDrawer>
-      ) : !(isPlayerActive && !isSmallPlayer) ? (
+      ) : !(file && !isSmallPlayer) ? (
         <PrimaryBottomNavigation showLabels value={menu} onChange={(e, newVal) => handleMenuChange(newVal)}>
           <PrimaryBottomNavigationAction label="Home" value={HOME} icon={<i><HomeIcon height="1rem" color={menu === HOME ? '#FD5457' : '#FEFEFE'} /></i>} />
           <PrimaryBottomNavigationAction label="Library" value={LIBRARY} icon={<i><LibraryIcon height="1rem" color={menu === LIBRARY ? '#FD5457' : '#FEFEFE'} /></i>} />
