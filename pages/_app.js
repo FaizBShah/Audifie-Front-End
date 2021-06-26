@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme/theme';
 import '../styles/CustomIcons.css'
-import { AppWrapper } from '../context/state';
+import { AppWrapper } from '../context/store';
 import Amplify from 'aws-amplify';
 import awsConfig from '../config/awsConfig';
 
