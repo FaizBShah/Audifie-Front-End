@@ -43,7 +43,8 @@ function Dashboard({ user }) {
       setLoading(true);
 
       setTimeout(() => {
-        axios.get('https://gt8u1r94bf.execute-api.ap-south-1.amazonaws.com/dev/allfiles', {
+        // 'https://gt8u1r94bf.execute-api.ap-south-1.amazonaws.com/dev/allfiles'
+        axios.get('https://dev/allfiles', {
           headers: {
             'Authorization': `Bearer ${user.signInUserSession.idToken.jwtToken}`
           }
