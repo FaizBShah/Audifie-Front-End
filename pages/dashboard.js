@@ -16,6 +16,7 @@ import axios from 'axios';
 import isEmpty from '../utils/validation/is-empty';
 import { useAppContext } from '../context/store';
 import { selectFile } from '../actions/fileActions';
+import Settings from '../components/dashboard/sections/settings/Settings';
 
 const menuConstants = {
   HOME: 'home',
@@ -94,6 +95,8 @@ function Dashboard({ user }) {
         ) : (<EmptyArea />);
       case LIBRARY:
         return (<Library cards={cards} />);
+      case SETTINGS:
+        return (<Settings />);
       default:
         return null;
     }
