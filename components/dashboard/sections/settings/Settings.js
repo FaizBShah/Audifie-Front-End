@@ -5,6 +5,7 @@ import { useWindowDimensions } from "../../../../utils/windowUtils";
 import styles from "./Settings.module.scss";
 import AccountOverview from "./sections/AccountOverview";
 import EditProfile from "./sections/EditProfile";
+import ChangePassword from "./sections/ChangePassword";
 
 function Settings() {
   const [menu, setMenu] = useState("AccountOverview");
@@ -17,8 +18,8 @@ function Settings() {
         return <AccountOverview />;
       case "EditProfile":
         return <EditProfile />;
-      // case "SETTINGS":
-      //   return <Settings />;
+      case "ChangePassword":
+        return <ChangePassword />;
       default:
         return null;
     }
@@ -62,7 +63,13 @@ function Settings() {
                 >
                   Edit Profile
                 </li>
-                <li className={styles.sidebar__item}>Change Password</li>
+                <li
+                  className={styles.sidebar__item}
+                  style={menu === "ChangePassword" ? activeLinkStyle : null}
+                  onClick={() => changeMenu("ChangePassword")}
+                >
+                  Change Password
+                </li>
                 <li className={styles.sidebar__item}>Transactions</li>
                 <li className={styles.sidebar__item}>Support</li>
                 <li className={styles.sidebar__item}>Privacy and Terms</li>

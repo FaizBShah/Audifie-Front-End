@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../Settings.module.scss";
 
 const EditProfile = () => {
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <div className={styles.account__overview}>
+      <h2 className={styles.heading}>Edit Profile</h2>
       <ul className={styles.details}>
         <li className={styles.details__item}>
           <div className={styles.details__container}>
             <p className={styles.details__text}>Name</p>
           </div>
           <div className={styles.details__container__text}>
-            <input className={styles.details__input} type="text" placeholder="Name" />
+            {isEdit ? (
+              <div className={styles.form__group}>
+                <input
+                  className={styles.form__input}
+                  type="text"
+                  name="Name"
+                  placeholder="Name"
+                />
+              </div>
+            ) : (
+              <div className={styles.details__container__text}>
+                <p className={styles.details__text}>john.doe@mail.com</p>
+              </div>
+            )}
           </div>
         </li>
         <li className={styles.details__item}>
@@ -38,6 +53,7 @@ const EditProfile = () => {
           </div>
         </li>
       </ul>
+      <button onClick={() => setIsEdit(!isEdit)}>Save</button>
     </div>
   );
 };

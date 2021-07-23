@@ -3,6 +3,7 @@ import styles from "../Settings.module.scss";
 function AccountOverview() {
   return (
     <div className={styles.account__overview}>
+      <h2 className={styles.heading}>Account Overview</h2>
       <ul className={styles.details}>
         <li className={styles.details__item}>
           <div className={styles.details__container}>
