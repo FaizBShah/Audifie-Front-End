@@ -13,8 +13,9 @@ import {
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
-import { Auth, withSSRContext } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
+import axios from 'axios';
 
 function Signup() {
   const [name, setName] = useState('');
@@ -65,7 +66,7 @@ function Signup() {
 
     setLoading(true);
 
-    Auth.signUp({ username: email, password, attributes: { email, name } })
+    axios.post("http://localhost:5000/api/users/signup", { email, name, password, confirmPassword })
       .then((data) => {
         console.log(data);
         setIsCodeWaiting(true);
@@ -75,7 +76,7 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.message);
+        setErrorMessage(err.response.data.message);
         setIsErrorVisible(true);
         setLoading(false);
       });
@@ -95,7 +96,7 @@ function Signup() {
 
     setLoading(true);
 
-    Auth.confirmSignUp(email, verificationCode)
+    axios.post("http://localhost:5000/api/users/verify-email", { email, verificationCode })
       .then((data) => {
         console.log(data);
         setIsCodeWaiting(false);
@@ -115,7 +116,7 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.message);
+        setErrorMessage(err.response.data.message);
         setIsErrorVisible(true);
         setLoading(false);
       });
@@ -331,10 +332,8 @@ function Signup() {
 }
 
 export async function getServerSideProps({req, res}) {
-  const { Auth } = withSSRContext({ req });
-
   try {
-    const user = await Auth.currentAuthenticatedUser();
+    const user = await axios.get("http://localhost:5000/api/users/current", { withCredentials: true });
     console.log(user);
     res.writeHead(302, {Location: '/dashboard'});
     res.end();

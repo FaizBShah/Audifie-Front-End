@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '../components/commons/Navbar';
 import styles from '../styles/Home.module.css';
 import { Grid, Container, Button } from '@material-ui/core';
 import { PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import Footer from '../components/commons/Footer';
 import { GoForward, ProfileBordered, FileUploadBordered, WaveDuotone } from '../components/CustomIcons';
-import { withSSRContext } from 'aws-amplify';
+import axios from 'axios';
 
 function Home(props) {
   const { width } = useWindowDimensions();
@@ -84,10 +80,8 @@ function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { Auth } = withSSRContext(context);
-
   try {
-    const user = await Auth.currentAuthenticatedUser();
+    const user = await axios.get("http://localhost:5000/api/users/current", { withCredentials: true });
     console.log(user);
     return {
       props: {

@@ -6,14 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme/theme';
 import '../styles/CustomIcons.css'
 import { AppWrapper } from '../context/store';
-import Amplify from 'aws-amplify';
-import awsConfig from '../config/awsConfig';
-
-// Setting up configuration for Amplify
-Amplify.configure({
-  ...awsConfig,
-  ssr: true
-});
 
 function MyApp(props) {
   const { Component, pageProps } = props;
