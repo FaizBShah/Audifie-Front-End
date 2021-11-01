@@ -5,7 +5,7 @@ import { PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import Footer from '../components/commons/Footer';
 import { GoForward, ProfileBordered, FileUploadBordered, WaveDuotone } from '../components/CustomIcons';
-import axios from 'axios';
+import cookies from 'next-cookies';
 
 function Home(props) {
   const { width } = useWindowDimensions();
@@ -79,9 +79,14 @@ function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(ctx) {
   try {
-    const user = await axios.get("http://localhost:5000/api/users/current", { withCredentials: true });
+    const { data: { user } } = await http.get("api/users/current", {
+      credentials: 'include',
+      headers: {
+        cookie: cookies(ctx).token ? `token=${cookies(ctx).token};` : null
+      }
+    });
     console.log(user);
     return {
       props: {

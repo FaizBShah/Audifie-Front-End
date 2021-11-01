@@ -15,7 +15,8 @@ import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignUpInput, validateCodeInput } from '../utils/validation/validateUtils';
 import { Auth } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
-import axios from 'axios';
+import http from '../services/axiosConfig';
+import cookies from 'next-cookies';
 
 function Signup() {
   const [name, setName] = useState('');
@@ -66,7 +67,7 @@ function Signup() {
 
     setLoading(true);
 
-    axios.post("http://localhost:5000/api/users/signup", { email, name, password, confirmPassword })
+    http.post("http://localhost:5000/api/users/signup", { email, name, password, confirmPassword })
       .then((data) => {
         console.log(data);
         setIsCodeWaiting(true);
@@ -76,7 +77,7 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.response.data.message);
+        setErrorMessage(err);
         setIsErrorVisible(true);
         setLoading(false);
       });
@@ -96,7 +97,7 @@ function Signup() {
 
     setLoading(true);
 
-    axios.post("http://localhost:5000/api/users/verify-email", { email, verificationCode })
+    http.post("http://localhost:5000/api/users/verify-email", { email, verificationCode })
       .then((data) => {
         console.log(data);
         setIsCodeWaiting(false);
@@ -116,7 +117,7 @@ function Signup() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.response.data.message);
+        setErrorMessage(err);
         setIsErrorVisible(true);
         setLoading(false);
       });
@@ -331,9 +332,16 @@ function Signup() {
   )
 }
 
-export async function getServerSideProps({req, res}) {
+export async function getServerSideProps(ctx) {
+  const { req, res } = ctx;
+
   try {
-    const user = await axios.get("http://localhost:5000/api/users/current", { withCredentials: true });
+    const { data: { user } } = await http.get("api/users/current", {
+      credentials: 'include',
+      headers: {
+        cookie: cookies(ctx).token ? `token=${cookies(ctx).token};` : null
+      }
+    });
     console.log(user);
     res.writeHead(302, {Location: '/dashboard'});
     res.end();

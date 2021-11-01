@@ -13,8 +13,10 @@ import {
 } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import { validateSignInInput, validateEmail, validatePassword, validateCodeInput } from '../utils/validation/validateUtils';
-import { Auth, withSSRContext } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
+import http from '../services/axiosConfig';
+import cookies from 'next-cookies';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -33,7 +35,7 @@ function Login() {
   useEffect(() => {
     setLoading(true);
 
-    Auth.currentAuthenticatedUser()
+    http.get("api/users/current")
       .then(() => {
         router
           .push('/dashboard')
@@ -68,11 +70,12 @@ function Login() {
 
     setLoading(true);
 
-    Auth.signIn(email, password)
+    http.post("api/users/login", { email, password })
       .then((data) => {
         console.log(data);
         setEmail('');
         setPassword('');
+        setLoading(false);
         
         router
           .push('/dashboard')
@@ -86,7 +89,7 @@ function Login() {
       })
       .catch((err) => {
         console.log(err);
-        setErrorMessage(err.message);
+        setErrorMessage(err);
         setIsErrorVisible(true);
         setLoading(false);
       });
@@ -346,11 +349,16 @@ function Login() {
   )
 }
 
-export async function getServerSideProps({req, res}) {
-  const { Auth } = withSSRContext({ req });
+export async function getServerSideProps(ctx) {
+  const { req, res } = ctx;
 
   try {
-    const user = await Auth.currentAuthenticatedUser();
+    const { data: { user } } = await http.get("api/users/current", {
+      credentials: 'include',
+      headers: {
+        cookie: cookies(ctx).token ? `token=${cookies(ctx).token};` : null
+      }
+    });
     console.log(user);
     res.writeHead(302, {Location: '/dashboard'});
     res.end();

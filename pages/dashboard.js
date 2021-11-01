@@ -12,11 +12,12 @@ import Library from '../components/dashboard/sections/library/Library';
 import Player from '../components/player/Player';
 import EmptyArea from '../components/commons/EmptyArea';
 import UploadModal from '../components/dashboard/UploadModal';
-import axios from 'axios';
+import http from '../services/axiosConfig';
 import isEmpty from '../utils/validation/is-empty';
 import { useAppContext } from '../context/store';
 import { selectFile } from '../actions/fileActions';
 import Settings from '../components/dashboard/sections/settings/Settings';
+import cookies from 'next-cookies';
 
 const menuConstants = {
   HOME: 'home',
@@ -41,26 +42,26 @@ function Dashboard({ user }) {
 
   useEffect(() => {
     if (!uploading) {
-      setLoading(true);
+      // setLoading(true);
 
-      setTimeout(() => {
-        // 'https://gt8u1r94bf.execute-api.ap-south-1.amazonaws.com/dev/allfiles'
-        axios.get('https://dev/allfiles', {
-          headers: {
-            'Authorization': `Bearer ${user.signInUserSession.idToken.jwtToken}`
-          }
-        })
-        .then((res) => {
-          console.log(res);
-          setEmpty(isEmpty(res.data.body.Items));
-          setCards(res.data.body.Items);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        })
-      }, 2000);
+      // setTimeout(() => {
+      //   // 'https://gt8u1r94bf.execute-api.ap-south-1.amazonaws.com/dev/allfiles'
+      //   http.get('https://dev/allfiles', {
+      //     headers: {
+      //       'Authorization': `Bearer ${user.signInUserSession.idToken.jwtToken}`
+      //     }
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     setEmpty(isEmpty(res.data.body.Items));
+      //     setCards(res.data.body.Items);
+      //     setLoading(false);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     setLoading(false);
+      //   })
+      // }, 2000);
     }
   }, [uploading]);
 
@@ -107,7 +108,7 @@ function Dashboard({ user }) {
 
     setLoading(true);
 
-    Auth.signOut()
+    http.post('api/users/logout')
       .then(() => {
         console.log("Signed Out");
         router
@@ -253,15 +254,20 @@ function Dashboard({ user }) {
   )
 }
 
-export async function getServerSideProps({ req, res }) {
-  const { Auth } = withSSRContext({ req });
+export async function getServerSideProps(ctx) {
+  const { req, res } = ctx;
 
   try {
-    const user = await Auth.currentAuthenticatedUser();
+    const { data: { user } } = await http.get("api/users/current", {
+      credentials: 'include',
+      headers: {
+        cookie: cookies(ctx).token ? `token=${cookies(ctx).token};` : null
+      }
+    });
     console.log(user);
     return {
       props: {
-        user: JSON.parse(JSON.stringify(user))
+        user
       }
     }
   } catch (err) {
