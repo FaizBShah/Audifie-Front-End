@@ -17,6 +17,35 @@ import { Auth } from 'aws-amplify';
 import { Loader } from '../components/CustomIcons';
 import http from '../services/axiosConfig';
 import cookies from 'next-cookies';
+import queryString from 'query-string';
+
+const federatedConstants = {
+  GOOGLE: 'GOOGLE',
+  FACEBOOK: 'FACEBOOK'
+}
+
+const googleURL = queryString.stringify({
+  client_id: process.env.NEXT_PUBLIC_GOOGLE_ID,
+  redirect_uri: 'http://localhost:3000/login',
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+  ].join(' '), // space seperated string
+  response_type: 'code',
+  access_type: 'offline',
+  prompt: 'consent',
+  state: federatedConstants.GOOGLE
+});
+
+const facebookURL = queryString.stringify({
+  client_id: process.env.NEXT_PUBLIC_FACEBOOK_ID,
+  redirect_uri: 'http://localhost:3000/login',
+  scope: ['email', 'user_friends'].join(','), // comma seperated string
+  response_type: 'code',
+  auth_type: 'rerequest',
+  display: 'popup',
+  state: federatedConstants.FACEBOOK
+});
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -33,22 +62,31 @@ function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
+    if (router.query.state) {
+      setLoading(true);
 
-    http.get("api/users/current")
-      .then(() => {
-        router
+      const apiURL = 'api/users/' + (router.query.state === federatedConstants.GOOGLE ? 'googlesignup' : 'fbsignup');
+      const { code } = router.query;
+
+      http.post(apiURL, { code })
+        .then(() => {
+          router
           .push('/dashboard')
           .then(() => {
             setLoading(false);
           })
           .catch((err) => {
+            setErrorMessage(err);
+            setIsErrorVisible(true);
             setLoading(false);
           });
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
+        })
+        .catch((err) => {
+          setErrorMessage(err);
+          setIsErrorVisible(true);
+          setLoading(false);
+        });
+    }
   }, [])
 
   const handleSignIn = (e) => {
@@ -92,20 +130,6 @@ function Login() {
         setErrorMessage(err);
         setIsErrorVisible(true);
         setLoading(false);
-      });
-  }
-
-  const handleFederatedSignIn = (e, provider) => {
-    e.preventDefault();
-
-    Auth.federatedSignIn({provider})
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((e) => {
-        console.log(e);
-        setErrorMessage(err.message);
-        setIsErrorVisible(true);
       });
   }
 
@@ -242,7 +266,7 @@ function Login() {
                               size="medium"
                               type="contained"
                               style={{width: "100%", flex: "1", marginBottom: "1rem", marginRight: width > 768 ? "0.5rem" : "0"}}
-                              onClick={(e) => handleFederatedSignIn(e, 'Google')}>
+                              href={`https://accounts.google.com/o/oauth2/v2/auth?${googleURL}`}>
                                 Google
                             </GoogleButton>
                             <FacebookButton
@@ -250,7 +274,7 @@ function Login() {
                               size="medium"
                               type="contained"
                               style={{width: "100%", flex: "1", marginBottom: "1rem"}}
-                              onClick={(e) => handleFederatedSignIn(e, 'Facebook')}>
+                              href={`https://www.facebook.com/v4.0/dialog/oauth?${facebookURL}`}>
                                 Facebook
                             </FacebookButton>
                           </div>
@@ -350,7 +374,7 @@ function Login() {
 }
 
 export async function getServerSideProps(ctx) {
-  const { req, res } = ctx;
+  const { res } = ctx;
 
   try {
     const { data: { user } } = await http.get("api/users/current", {

@@ -5,6 +5,7 @@ import { PrimaryButton } from '../components/MaterialComponents';
 import { useWindowDimensions } from '../utils/windowUtils';
 import Footer from '../components/commons/Footer';
 import { GoForward, ProfileBordered, FileUploadBordered, WaveDuotone } from '../components/CustomIcons';
+import http from '../services/axiosConfig';
 import cookies from 'next-cookies';
 
 function Home(props) {
